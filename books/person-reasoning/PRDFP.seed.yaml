@@ -15,6 +15,8 @@
 seed:
   id: PRDFP-SEED-001
   book: Person Reasoning Design Foundation and Protocol
+  author: Yaoharee
+  year: 2026
   thesis: >
     This book IS the seed: a person's reasoning (Person Reasoning) distilled into
     equations + pseudo-schema as ONE light, concise file — read first so an AI can
@@ -26,6 +28,15 @@ seed:
   read_order: first
   size_intent: small-and-light   # read in one pass; must not dominate the task context
   law: "PR_t != Person"          # the documented model is never the whole person
+
+# --- POSITION: what this file IS / IS NOT (so it is never mistaken for a command) ---
+position:
+  is: an interpretive reference a human writes about their own reasoning, read first to align AI
+  is_not: [prompt, workflow, skill, persona, memory, policy, knowledge_base,
+           tool_instruction, task_prompt, biography, personality_clone, binding_decision_engine]
+  why_first: >
+    Each AI sees only part of the person; without a shared reference, interpretations fragment.
+    Creating AND reading this file FIRST gives every AI a common interpretive ground before any task.
 
 # --- what an AI must do with this file, in order ---
 bootstrap_protocol:
@@ -91,6 +102,14 @@ reflect: |
     RETURN reasoning_reference(principles, assumptions, uncertainty, affected, tensions, questions, criteria)
   # MUST NOT: select a workflow · assign an agent · call a tool · mutate a database ·
   #           send a message · make a binding decision · claim to represent the whole person
+
+# --- OUTPUT: what a human should end with after running the full protocol ---
+output:
+  target: a Personal Reasoning Foundation validated by personal_reasoning_foundation.schema.yaml
+  sections: [document, identity, philosophical_foundation, core_equations, core_principles,
+             conceptual_distinctions, interpretation_protocol, revision_protocol]
+  size: "~1500-3500 words · 6-15 principles · 3-10 equations"
+  also_emit: this compact seed (equations + pseudo-schema) for an AI to read first
 
 full_book:
   where: the chapters of "Person Reasoning Design Foundation and Protocol" (this library)

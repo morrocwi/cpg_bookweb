@@ -287,6 +287,7 @@ function bookView(){
       <p style="font-family:'Noto Sans Thai',sans-serif;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#0ea5e9;font-weight:600;margin-bottom:14px;">หนังสือ · ${cb.order.length} บท</p>
       <h1 style="font-size:clamp(27px,5.2vw,42px);line-height:1.22;font-weight:700;color:#16202c;letter-spacing:-0.01em;">${esc(m.title||'')}</h1>
       <p style="margin-top:12px;font-size:18px;line-height:1.5;color:#1b2531;font-weight:600;">${esc(m.title_th||'')}</p>
+      ${m.author ? `<p style="margin-top:10px;font-family:'Noto Sans Thai',sans-serif;font-size:13.5px;color:#9aa5b1;">เขียนโดย <strong style="color:#5d6b78;font-weight:600;">${esc(m.author)}</strong> · ${esc(m.year||'')}</p>` : ''}
     </section>
 
     <div style="max-width:720px;">${overviewBlock()}${seedPanel()}${installBox()}</div>

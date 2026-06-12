@@ -38,6 +38,8 @@ BOOK = {
     "brand": "ปรัชญาปัญญาประดิษฐ์",
     "title": "Person Reasoning Design Foundation and Protocol",
     "title_th": "รากฐานและระเบียบการของการให้เหตุผลของบุคคล",
+    "author": "Yaoharee",
+    "year": 2026,
     "accent": "#0ea5e9",
     "summary": ("หนังสือที่กลั่นรากฐานการให้เหตุผลของบุคคลเป็นฐานปรัชญา สมการ และหลักการ "
                 "— สำหรับให้มนุษย์และ AI เชื่อมโยงและทำงานร่วมกันอย่างมีบริบท"),
@@ -62,11 +64,15 @@ BOOK = {
 
 # ----- category metadata = the parts of the single book (drives the chips/TOC) -----
 CATEGORIES = {
-    "about":      {"label": "บทนำ",       "accent": "#f59e0b"},
-    "philosophy": {"label": "ฐานปรัชญา",  "accent": "#10b981"},
-    "equation":   {"label": "สมการหลัก",  "accent": "#8b5cf6"},
-    "principle":  {"label": "หลักการ",    "accent": "#0ea5e9"},
-    "reference":  {"label": "บทอ้างอิง",  "accent": "#64748b"},
+    "about":      {"label": "บทนำ",            "accent": "#f59e0b"},
+    "position":   {"label": "นิยาม & ตำแหน่ง", "accent": "#6366f1"},
+    "philosophy": {"label": "ฐานปรัชญา",       "accent": "#10b981"},
+    "equation":   {"label": "สมการหลัก",       "accent": "#8b5cf6"},
+    "principle":  {"label": "หลักการ",         "accent": "#0ea5e9"},
+    "protocol":   {"label": "กระบวนการ",       "accent": "#ec4899"},
+    "example":    {"label": "ตัวอย่างใช้งาน",  "accent": "#14b8a6"},
+    "schema":     {"label": "สคีมาผลลัพธ์",    "accent": "#0891b2"},
+    "reference":  {"label": "บทอ้างอิง",       "accent": "#64748b"},
 }
 
 # faithful Thai titles for the 10 principles (summaries of the verbatim English statement)
@@ -153,6 +159,144 @@ def build_about(book_dir):
     }
 
 
+# ----------------------------------------------------- PRF-derived narrative chapters
+def _mk(cid, cat, sort, title, excerpt, parts, tags, updated=""):
+    parts = parts + ['<p style="font-family:\'Noto Sans Thai\',sans-serif;font-size:13px;color:#9aa5b1;">'
+                     'ที่มา: <a href="%s" target="_blank" rel="noopener" style="color:#0ea5e9;">PRF-001 · %s</a></p>'
+                     % (gh_blob(PR_SRC), cid)]
+    body_html = "\n".join(parts)
+    return {
+        "id": cid, "cat": cat, "featured": False, "sort": sort, "title": title, "excerpt": excerpt,
+        "body_html": body_html, "tags": tags,
+        "read_minutes": read_minutes(re.sub(r"<[^>]+>", " ", body_html)),
+        "source": PR_SRC, "source_id": "PRF-001/" + cid, "lang": "th-en", "updated_at": updated,
+    }
+
+
+def _ul(items):
+    return "<ul>" + "".join("<li>%s</li>" % esc(x) for x in (items or [])) + "</ul>"
+
+
+def prf_identity(data):
+    idy = data.get("identity", {})
+    bridge = data.get("human_multi_ai_bridge", {})
+    p = ['<p>%s</p>' % esc(idy.get("thai_definition", "")),
+         '<blockquote><p><strong>Definition.</strong> %s</p></blockquote>' % esc(idy.get("definition", "")),
+         '<h2>ทำไมต้องเป็นไฟล์แรกที่มนุษย์สร้างเพื่อคุยกับ AI</h2>',
+         '<p>AI แต่ละตัวเห็นบุคคลเดียวกันเพียงบางบทบาท ถ้าไม่มีจุดอ้างอิงร่วม การตีความจะแตกกระจายและไม่ต่อเนื่อง '
+         'ไฟล์นี้จึงควรถูกสร้างและอ่าน <strong>ก่อน</strong> งานใด ๆ เพื่อวางพื้นความเข้าใจร่วม ก่อนที่ AI จะเริ่มตีความหรือทำงาน '
+         '— เป็น “ไฟล์ตั้งต้น” ที่มนุษย์เขียนถึงหลักคิดของตนเองในแบบที่ AI หลายตัวอ่านแล้วเข้าใจตรงกัน</p>']
+    if idy.get("purpose"):
+        p += ['<h2>ไฟล์นี้มีไว้เพื่อ</h2>', _ul(idy["purpose"])]
+    if bridge.get("function"):
+        p += ['<h2>หน้าที่ในการเชื่อมมนุษย์กับ AI หลายตัว</h2>', _ul(bridge["function"])]
+    p += ['<h2>ตำแหน่งของไฟล์: ไฟล์นี้ “ไม่ใช่” อะไร</h2>', _ul(idy.get("not_a")),
+          '<blockquote><p>ไฟล์นี้เป็น <strong>การอ้างอิงเชิงตีความ</strong> (interpretive reference) ไม่มีอำนาจสั่งการ '
+          'และไม่ใช่ตัวบุคคล: <code>PR_t ≠ Person</code></p></blockquote>']
+    return _mk("identity", "position", 1, "ไฟล์นี้คืออะไร และทำไมต้องเป็นไฟล์แรก",
+               "ตำแหน่งของไฟล์: เป็นการอ้างอิงเชิงตีความ ไม่ใช่คำสั่ง — และเหตุผลที่มนุษย์ควรสร้างไฟล์นี้ก่อนคุยกับ AI",
+               p, ["ตำแหน่ง", "นิยาม", "ไฟล์แรก"], str(data.get("document", {}).get("last_reviewed_at", "")))
+
+
+def prf_distinctions(data):
+    cd = data.get("conceptual_distinctions", {})
+    label = {"prompt": "prompt (คำสั่งงาน)", "workflow": "workflow (ลำดับงาน)", "skill": "skill (ความสามารถ)",
+             "memory": "memory (ความจำ)", "persona": "persona (โทน/บทบาท)", "policy": "policy (นโยบาย)",
+             "knowledge_base": "knowledge base (คลังความรู้)"}
+    p = ['<p>Personal Reasoning มักถูกสับสนกับสิ่งเหล่านี้ แต่ละอย่างทำหน้าที่คนละชั้น — แยกให้ชัดเพื่อไม่ให้ '
+         '“หลักคิด” กลายเป็น “คำสั่ง” โดยไม่ตั้งใจ (แสดงคำอธิบายต้นฉบับ)</p>']
+    for k, v in cd.items():
+        p += ['<h2>ต่างจาก %s</h2>' % esc(label.get(k, k)),
+              '<p><strong>คืออะไร.</strong> %s</p>' % esc(v.get("definition", "")),
+              '<p><strong>ต่างกันตรงไหน.</strong> %s</p>' % esc(v.get("difference", ""))]
+    return _mk("distinctions", "position", 2, "ต่างจาก prompt · skill · workflow · persona อย่างไร",
+               "ความต่างที่ชัดเจนระหว่าง Personal Reasoning กับ prompt, workflow, skill, memory, persona, policy และ knowledge base",
+               p, ["prompt", "skill", "workflow", "persona"], str(data.get("document", {}).get("last_reviewed_at", "")))
+
+
+def prf_protocol(data):
+    ip, ep, rp = (data.get("interpretation_protocol", {}), data.get("extension_protocol", {}),
+                  data.get("revision_protocol", {}))
+    p = ['<h2>กระบวนการตีความ (interpretation protocol)</h2>',
+         '<p>บทบาท: <code>%s</code> — ตีความและสะท้อนเท่านั้น ไม่สั่งการ</p>' % esc(ip.get("role", ""))]
+    if ip.get("input"): p += ['<p><strong>รับเข้า</strong></p>', _ul(ip["input"])]
+    if ip.get("output"): p += ['<p><strong>ให้ผลเป็น</strong></p>', _ul(ip["output"])]
+    if ip.get("must_not_output"): p += ['<p><strong>ต้องไม่ทำ</strong></p>', _ul(ip["must_not_output"])]
+    if ip.get("pseudocode"):
+        p.append('<blockquote><p style="font-family:ui-monospace,monospace;">'
+                 + "<br>".join(esc(x) for x in ip["pseudocode"]) + '</p></blockquote>')
+    p.append('<h2>การต่อยอด (extension protocol)</h2>')
+    if ep.get("allowed_extensions"): p += ['<p><strong>ต่อยอดได้</strong></p>', _ul(ep["allowed_extensions"])]
+    if ep.get("prohibited_extensions"): p += ['<p><strong>ห้าม</strong></p>', _ul(ep["prohibited_extensions"])]
+    if ep.get("new_principle_requirements"):
+        p += ['<p><strong>เพิ่มหลักการใหม่ต้องมี</strong></p>', _ul(ep["new_principle_requirements"])]
+    p.append('<h2>การทบทวนและยกระดับ (revision protocol)</h2>')
+    if rp.get("review_triggers"): p += ['<p><strong>ทบทวนเมื่อ</strong></p>', _ul(rp["review_triggers"])]
+    if rp.get("change_types"):
+        p.append('<p><strong>ชนิดการเปลี่ยน:</strong> %s</p>' % esc(", ".join(rp["change_types"])))
+    if rp.get("required_change_record"):
+        p.append('<p><strong>บันทึกการเปลี่ยนต้องมี:</strong> %s</p>' % esc(", ".join(rp["required_change_record"])))
+    if rp.get("deprecation_rule"):
+        p.append('<p>%s</p>' % esc(rp["deprecation_rule"]))
+    return _mk("protocol", "protocol", 30, "กระบวนการ: ตีความ · ต่อยอด · ทบทวน",
+               "interpretation / extension / revision protocol — กระบวนการครบสำหรับใช้ ต่อยอด และยกระดับไฟล์อย่างมีวินัย",
+               p, ["protocol", "กระบวนการ", "ทบทวน"], str(data.get("document", {}).get("last_reviewed_at", "")))
+
+
+def prf_examples(data):
+    exs = data.get("application_examples", [])
+    p = ['<p>ไฟล์เดียวกัน ถูกตีความต่างกันตามโดเมน โดยยังอิงหลักการร่วมเดียวกัน — และไม่กลายเป็นคำสั่ง (แสดงต้นฉบับ)</p>']
+    for e in exs:
+        p += ['<h2>%s</h2>' % esc(e.get("domain", "")),
+              '<p><strong>สถานการณ์.</strong> %s</p>' % esc(e.get("situation", ""))]
+        if e.get("relevant_principles"):
+            p.append('<p><strong>หลักการที่เกี่ยว.</strong> %s</p>' % esc(", ".join(e["relevant_principles"])))
+        p += ['<p><strong>ใช้เชิงตีความ.</strong> %s</p>' % esc(e.get("interpretive_use", "")),
+              '<p><strong>ไม่ใช่คำสั่ง.</strong> %s</p>' % esc(e.get("not_an_instruction", ""))]
+    return _mk("examples", "example", 40, "ตัวอย่างการใช้งานข้ามโดเมน",
+               "ไฟล์เดียวกัน ตีความต่างกันตามโดเมน — HR · COO · ที่ปรึกษาศาสนา · วิจัย · multi-agent",
+               p, ["ตัวอย่าง", "โดเมน"], str(data.get("document", {}).get("last_reviewed_at", "")))
+
+
+def prf_output_schema(data):
+    ws, qc = data.get("writing_standard", {}), data.get("quality_checks", [])
+    tfs, sl = ws.get("target_file_size", {}), ws.get("section_limits", {})
+    p = ['<p>เมื่อทำครบกระบวนการ ผลลัพธ์ควรเป็น <strong>ไฟล์ Personal Reasoning Foundation</strong> '
+         'ที่ตรวจสอบได้ด้วย <code>personal_reasoning_foundation.schema.yaml</code> — ฉบับเต็มสำหรับเก็บถาวร '
+         'และฉบับกลั่น (seed) สำหรับให้ AI อ่านก่อน</p>',
+         '<h2>ส่วนที่ไฟล์ schema ควรมี</h2>',
+         '<ul>'
+         '<li><code>document</code> — เมตา (id, version, status, owner, review_cycle)</li>'
+         '<li><code>identity</code> — นิยาม + purpose + not_a (ตำแหน่งของไฟล์)</li>'
+         '<li><code>philosophical_foundation</code> — ฐานปรัชญา</li>'
+         '<li><code>core_equations</code> — สมการเชิงตีความ</li>'
+         '<li><code>core_principles</code> — หลักการ (id, statement, rationale, scope, counterexample, revision_trigger, stability)</li>'
+         '<li><code>conceptual_distinctions</code> — ต่างจาก prompt/skill/workflow/...</li>'
+         '<li><code>interpretation_protocol</code> + <code>revision_protocol</code> — กระบวนการ</li>'
+         '</ul>',
+         '<h2>รูปร่างของรายการ (pseudo-schema)</h2>',
+         '<blockquote><p style="font-family:ui-monospace,monospace;">'
+         'principle: { id, statement, rationale, scope[], counterexample, revision_trigger, stability }<br>'
+         'equation:&nbsp; { id, name, expression, terms, meaning }<br>'
+         'stability: [constitutional, high, medium, experimental]</p></blockquote>']
+    if tfs or sl:
+        items = []
+        if tfs.get("recommended_words"):
+            items.append("ความยาว ~%s คำ (%s บรรทัด · %s)" % (tfs.get("recommended_words"),
+                          tfs.get("recommended_lines"), tfs.get("recommended_file_bytes")))
+        if sl.get("core_principles"):
+            items.append("หลักการ %s ข้อ · สมการ %s · ตัวอย่าง %s" % (sl.get("core_principles"),
+                          sl.get("core_equations"), sl.get("application_examples")))
+        p += ['<h2>ขนาดและขอบเขตที่แนะนำ</h2>', _ul(items)]
+    if qc:
+        p += ['<h2>เกณฑ์คุณภาพ (peer-review checklist)</h2>', _ul(qc)]
+    p.append('<blockquote><p>ฉบับกลั่นที่ AI อ่านก่อน: '
+             '<a href="books/person-reasoning/PRDFP.seed.yaml" target="_blank" rel="noopener">PRDFP.seed.yaml</a></p></blockquote>')
+    return _mk("output-schema", "schema", 50, "ผลลัพธ์: ไฟล์ schema ที่ควรได้ตอนจบ",
+               "เมื่อครบกระบวนการ ควรได้ไฟล์ schema รูปแบบนี้ — โครงสร้าง รูปร่างรายการ ขนาด และเกณฑ์คุณภาพ",
+               p, ["schema", "ผลลัพธ์", "peer-review"], str(data.get("document", {}).get("last_reviewed_at", "")))
+
+
 # ----------------------------------------------------- PRF: philosophy + equations + principles
 def build_from_prf(book_dir):
     path = os.path.join(book_dir, PR_SRC)
@@ -179,7 +323,7 @@ def build_from_prf(book_dir):
                  f'ที่มา: <a href="{gh_blob(PR_SRC, "L37")}" target="_blank" rel="noopener" '
                  f'style="color:#0ea5e9;">PRF-001 · philosophical_foundation</a></p>')
     out.append({
-        "id": "philosophical-foundation", "cat": "philosophy", "featured": False, "sort": 1,
+        "id": "philosophical-foundation", "cat": "philosophy", "featured": False, "sort": 3,
         "title": "ฐานปรัชญา 7 ด้านของการให้เหตุผล",
         "excerpt": "ความเป็นบุคคล ญาณวิทยา การตีความ ปัญญาเชิงปฏิบัติ จริยศาสตร์เชิงสัมพันธ์ "
                    "จิตที่ขยายออก และความเข้าใจร่วม — รากฐานของ Personal Reasoning Foundation",
@@ -206,7 +350,7 @@ def build_from_prf(book_dir):
                  f'ที่มา: <a href="{gh_blob(PR_SRC)}" target="_blank" rel="noopener" '
                  f'style="color:#0ea5e9;">PRF-001 · core_equations</a></p>')
     out.append({
-        "id": "core-equations", "cat": "equation", "featured": False, "sort": 2,
+        "id": "core-equations", "cat": "equation", "featured": False, "sort": 4,
         "title": "สมการหลัก 6 สมการของการให้เหตุผล",
         "excerpt": "ClaimStrength ≤ EvidenceStrength · PR(t+1) = Revise(...) · PR_t ≠ Person — "
                    "สมการเชิงตีความที่อธิบายความสัมพันธ์ ไม่ใช่ความแม่นยำทางคณิตศาสตร์ลวงตา",
@@ -253,7 +397,9 @@ def build_from_prf(book_dir):
             "read_minutes": read_minutes(p.get("statement"), p.get("rationale"), p.get("counterexample")),
             "source": PR_SRC, "source_id": pid, "lang": "th-en", "updated_at": updated,
         })
-    return out
+    # peer-reviewed elevation: position/distinctions before, protocol/examples/output-schema after
+    return ([prf_identity(data), prf_distinctions(data)] + out
+            + [prf_protocol(data), prf_examples(data), prf_output_schema(data)])
 
 
 def build_references():
@@ -280,12 +426,14 @@ def build_references():
         '<p>โคลนหนังสือต้นทาง หรือดึงเฉพาะไฟล์ตั้งต้นสำหรับ AI:</p>',
         '<blockquote><p><code>git clone %s.git</code><br>'
         '<code>curl -O %s</code></p></blockquote>' % (BOOK["source_repo"], BOOK["seed_url"]),
-        '<h2>เจ้าของบริบท</h2>',
+        '<h2>ผู้เขียน & เจ้าของบริบท</h2>',
+        '<p><strong>ผู้เขียน:</strong> %s, %s</p>' % (BOOK["author"], BOOK["year"]),
         '<p>Yaoharee Lahtee · Walancha — เจ้าของประสบการณ์ บริบท และความหมายที่ถูกกลั่นเป็นองค์ความรู้นี้ '
         '(บุคคลไม่เท่ากับแบบจำลอง: <code>PR_t ≠ Person</code>)</p>',
         '<h2>วิธีอ้างอิง</h2>',
-        '<blockquote><p>Person Reasoning Design Foundation and Protocol. '
-        'ปรัชญาปัญญาประดิษฐ์ (cpg_bookweb). เรียบเรียงจาก morrocwi/cpg_book · PRF-001.</p></blockquote>',
+        '<blockquote><p>%s, %s. <em>Person Reasoning Design Foundation and Protocol.</em> '
+        'ปรัชญาปัญญาประดิษฐ์ (cpg_bookweb). เรียบเรียงจาก morrocwi/cpg_book · PRF-001.</p></blockquote>'
+        % (BOOK["author"], BOOK["year"]),
     ]
     return {
         "id": "references", "cat": "reference", "featured": False, "sort": 900,
