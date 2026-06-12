@@ -1,5 +1,6 @@
 {
-  "generated_at": "2026-06-12T07:36:05Z",
+  "generated_at": "2026-06-12T07:48:33Z",
+  "_generated": "generated from cpg_book by tools/build_articles.py — canonical source = morrocwi/cpg_book; do NOT hand-edit (workflow A: edit cpg_book, then rebuild)",
   "source_repo": "morrocwi/cpg_book",
   "book": {
     "slug": "person-reasoning",

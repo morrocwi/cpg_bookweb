@@ -17,5 +17,6 @@
   "source_id": "PR-004",
   "lang": "th-en",
   "updated_at": "2026-06-12",
-  "book_id": "person-reasoning"
+  "book_id": "person-reasoning",
+  "_generated": "generated from cpg_book by tools/build_articles.py — canonical source = morrocwi/cpg_book; do NOT hand-edit (workflow A: edit cpg_book, then rebuild)"
 }

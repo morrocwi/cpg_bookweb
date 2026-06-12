@@ -77,6 +77,10 @@ CATEGORIES = {
     "reference":  {"label": "บทอ้างอิง",       "accent": "#64748b"},
 }
 
+# Workflow A (human_pi 2026-06-12): cpg_book is the canonical source; chapters/ are GENERATED.
+GEN_NOTE = ("generated from cpg_book by tools/build_articles.py — canonical source = morrocwi/cpg_book; "
+            "do NOT hand-edit (workflow A: edit cpg_book, then rebuild)")
+
 # faithful Thai titles for the 10 principles (summaries of the verbatim English statement)
 PRINCIPLE_TITLE_TH = {
     "PR-001": "แยกสิ่งที่สังเกต ออกจากการตีความและกฎที่กำกับ",
@@ -425,10 +429,11 @@ def build_references():
         '· สมการ + pseudo-schema ที่ให้ AI อ่านก่อน</li>' % seed_path,
         '</ul>',
         '<h2>ติดตั้ง / ดึงผ่าน git (เฉพาะเล่มนี้)</h2>',
-        '<p>ดึง <strong>เฉพาะหนังสือเล่มนี้</strong> (ไม่ใช่ทั้ง repo) ด้วย sparse-checkout — แก้ไขรายบทได้:</p>',
+        '<p>ดึง <strong>เฉพาะหนังสือเล่มนี้</strong> (ไม่ใช่ทั้ง repo) ด้วย sparse-checkout — หนังสือแยกเป็นไฟล์รายบท:</p>',
         '<blockquote><p><code>git clone --filter=blob:none --sparse %s.git</code><br>'
         '<code>cd cpg_bookweb &amp;&amp; git sparse-checkout set %s</code><br>'
-        '<code># แก้รายบทที่ %s/chapters/*.json · เพิ่มบทใหม่ = เพิ่มไฟล์</code><br>'
+        '<code># อ่าน/ใช้: %s/chapters/*.json (1 ไฟล์ = 1 บท)</code><br>'
+        '<code># แก้เนื้อหา: แก้ต้นทาง cpg_book แล้ว rebuild (chapters/ เป็นไฟล์ generated)</code><br>'
         '<code>curl -O %s</code>  <span style="color:#9aa5b1;"># ไฟล์ตั้งต้น (seed)</span></p></blockquote>'
         % (BOOK["book_repo"], BOOK["book_path"], BOOK["book_path"], BOOK["seed_url"]),
         '<h2>ผู้เขียน & เจ้าของบริบท</h2>',
@@ -517,15 +522,26 @@ def main():
                   "tags", "featured", "sort", "source", "source_id", "lang")
     chapter_index = []
     for rank, a in enumerate(bundle["articles"], 1):
+        a["_generated"] = GEN_NOTE
         fn = "%02d-%s.json" % (rank, a["id"])
         write_json(os.path.join(chapters_dir, fn), a)        # full chapter (incl body_html)
         idx = {k: a.get(k) for k in index_keys}
         idx["file"] = "chapters/" + fn                       # manifest points at the per-chapter file
         chapter_index.append(idx)
 
-    # book.json is now a lightweight MANIFEST (table of contents, no bodies) — the site lazy-loads chapters
+    # make the "generated, don't hand-edit" rule visible in the folder itself
+    with open(os.path.join(chapters_dir, "README.md"), "w", encoding="utf-8") as f:
+        f.write("# chapters/ — GENERATED (do not hand-edit)\n\n"
+                "These per-chapter files are generated from **morrocwi/cpg_book** by\n"
+                "`tools/build_articles.py` (workflow A). To change content, edit the source in cpg_book,\n"
+                "then rebuild — a rebuild OVERWRITES every `chapters/*.json`:\n\n"
+                "```\npython tools/build_articles.py --book-dir <path-to-cpg_book> --web-root .\n```\n\n"
+                "The site (`index.html`) reads `book.json` (manifest) + lazy-loads each chapter file.\n")
+
+    # book.json is a lightweight MANIFEST (table of contents, no bodies) — the site lazy-loads chapters
     manifest = {
         "generated_at": bundle["generated_at"],
+        "_generated": GEN_NOTE,
         "source_repo": bundle["source_repo"],
         "book": bundle["book"],
         "categories": bundle["categories"],

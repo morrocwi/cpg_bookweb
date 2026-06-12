@@ -261,11 +261,12 @@ function installBox(){
       </h2>
       <button class="copy-btn" data-copy="${encodeURIComponent(cmds)}" style="cursor:pointer;font-family:'Noto Sans Thai',sans-serif;font-size:12px;font-weight:600;color:#9fe8c4;background:rgba(126,226,184,0.12);border:1px solid rgba(126,226,184,0.32);border-radius:8px;padding:5px 12px;">คัดลอก</button>
     </div>
-    <p style="font-family:'Noto Sans Thai',sans-serif;font-size:12px;color:#8b98a8;margin:0 0 12px;">ดึงแค่โฟลเดอร์หนังสือ (ไม่ใช่ทั้ง repo) ด้วย sparse-checkout — แก้/เพิ่มบทได้ทีละไฟล์ใน <code style="color:#9fe8c4;">${esc(path)}/chapters/</code></p>
+    <p style="font-family:'Noto Sans Thai',sans-serif;font-size:12px;color:#8b98a8;margin:0 0 12px;">ดึงแค่โฟลเดอร์หนังสือ (ไม่ใช่ทั้ง repo) ด้วย sparse-checkout — หนังสือแยกเป็นไฟล์รายบทใน <code style="color:#9fe8c4;">${esc(path)}/chapters/</code> · แก้เนื้อหาที่ต้นทาง <code style="color:#9fe8c4;">cpg_book</code> แล้ว rebuild</p>
     <pre style="margin:0;overflow-x:auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.75;white-space:pre;"><span style="color:#5b6b7c;"># ดึงเฉพาะหนังสือเล่มนี้</span>
 <span style="color:#cdd6e0;">git clone --filter=blob:none --sparse </span><span style="color:#9fe8c4;">${esc(repo)}.git</span>
 <span style="color:#cdd6e0;">cd cpg_bookweb && git sparse-checkout set </span><span style="color:#9fe8c4;">${esc(path)}</span>
-<span style="color:#5b6b7c;"># แก้รายบทที่ ${esc(path)}/chapters/*.json · เพิ่มบทใหม่ = เพิ่มไฟล์</span>
+<span style="color:#5b6b7c;"># อ่าน/ใช้: ${esc(path)}/chapters/*.json (1 ไฟล์ = 1 บท, generated)</span>
+<span style="color:#5b6b7c;"># แก้เนื้อหา → แก้ต้นทาง cpg_book แล้ว rebuild</span>
 <span style="color:#5b6b7c;"># ไฟล์ตั้งต้นสำหรับ AI (seed):</span>
 <span style="color:#cdd6e0;">curl -O </span><span style="color:#9fe8c4;">${esc(m.seed_url||'')}</span></pre>
   </section>`;
