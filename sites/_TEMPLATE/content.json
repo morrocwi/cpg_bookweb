@@ -1,0 +1,9 @@
+{
+  "sections": [
+    {
+      "id": "intro",
+      "heading": "หัวข้อแรก",
+      "body_html": "<p>เนื้อหาเริ่มต้นของเว็บนี้ แก้ไขไฟล์ <code>content.json</code> หรือเชื่อม Supabase ได้เลย</p>"
+    }
+  ]
+}

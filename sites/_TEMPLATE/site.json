@@ -1,0 +1,13 @@
+{
+  "slug": "TEMPLATE",
+  "title": "ชื่อเว็บ",
+  "title_th": "",
+  "tagline": "",
+  "accent": "#0ea5e9",
+  "supabase": {
+    "url": "https://ckvxuvkxctssyozscfbm.supabase.co",
+    "anonKey": "",
+    "table": ""
+  },
+  "status": "draft"
+}

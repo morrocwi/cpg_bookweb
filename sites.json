@@ -1,0 +1,25 @@
+{
+  "hub": {
+    "name": "ปรัชญาปัญญาประดิษฐ์ Web Hub",
+    "repo": "morrocwi/cpg_bookweb",
+    "deploy": "github-pages",
+    "base_url": "https://morrocwi.github.io/cpg_bookweb/",
+    "standard": "notify-supabase-git",
+    "supabase_project_ref": "ckvxuvkxctssyozscfbm",
+    "skill": "WebForge",
+    "doc": "WEBHUB.md"
+  },
+  "sites": [
+    {
+      "slug": "person-reasoning-library",
+      "title": "ปรัชญาปัญญาประดิษฐ์ (ห้องสมุด)",
+      "kind": "library",
+      "path": ".",
+      "url": "https://morrocwi.github.io/cpg_bookweb/",
+      "data": "library.json",
+      "supabase_table": "articles",
+      "status": "live",
+      "notes": "library → book → chapter; book: Person Reasoning Design Foundation and Protocol (Yaoharee, 2026). lives at repo root (legacy root site)."
+    }
+  ]
+}

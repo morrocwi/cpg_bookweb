@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>เว็บใหม่ · ปรัชญาปัญญาประดิษฐ์ Web Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Noto+Serif+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#fbfaf7; color:#26303b; font-family:'Noto Serif Thai',serif; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:760px; margin:0 auto; padding:56px 22px 90px; }
+  h1 { font-size:clamp(28px,5.5vw,42px); line-height:1.25; color:#16202c; }
+  .tag { font-family:'Noto Sans Thai',sans-serif; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; font-weight:600; margin-bottom:14px; }
+  .sub { margin-top:14px; font-size:18px; line-height:1.8; color:#5d6b78; }
+  section.block { margin-top:40px; }
+  section.block h2 { font-family:'Noto Sans Thai',sans-serif; font-size:21px; font-weight:600; color:#1b2531; margin-bottom:12px; }
+  section.block p { font-size:17px; line-height:1.95; color:#46535f; margin:0 0 16px; }
+  code { font-family:ui-monospace,monospace; background:#f0ede5; padding:1px 6px; border-radius:5px; }
+  footer { font-family:'Noto Sans Thai',sans-serif; font-size:12.5px; color:#9aa5b1; border-top:1px solid #ece9e2; margin-top:54px; padding-top:22px; }
+</style>
+</head>
+<body>
+<div class="wrap" id="app"><p style="font-family:sans-serif;color:#9aa5b1;">กำลังโหลด…</p></div>
+<script>
+/* generic hub site — reads site.json (config) + content.json (fallback),
+   prefers Supabase when site.supabase.anonKey + table are set. */
+async function getJSON(p){ const r = await fetch(p, {cache:'no-cache'}); if(!r.ok) throw new Error(p+' '+r.status); return r.json(); }
+async function fromSupabase(sb){
+  if(!(sb && sb.anonKey && sb.table)) return null;
+  const url = sb.url.replace(/\/$/,'') + '/rest/v1/' + sb.table + '?select=*&order=sort.asc';
+  const r = await fetch(url, { headers:{ apikey:sb.anonKey, Authorization:'Bearer '+sb.anonKey } });
+  if(!r.ok) throw new Error('supabase '+r.status);
+  const rows = await r.json(); return rows.length ? rows : null;
+}
+function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+(async () => {
+  const app = document.getElementById('app');
+  let site = {}; try { site = await getJSON('site.json'); } catch(e){}
+  let sections = [];
+  try { const c = await getJSON('content.json'); sections = c.sections || []; } catch(e){}
+  try { const live = await fromSupabase(site.supabase); if(live) sections = live; } catch(e){}
+  const accent = site.accent || '#0ea5e9';
+  app.innerHTML =
+    `<p class="tag" style="color:${esc(accent)};">ปรัชญาปัญญาประดิษฐ์ · Web Hub</p>` +
+    `<h1>${esc(site.title||'เว็บใหม่')}</h1>` +
+    (site.title_th ? `<p class="sub" style="font-weight:600;color:#1b2531;">${esc(site.title_th)}</p>` : '') +
+    (site.tagline ? `<p class="sub">${esc(site.tagline)}</p>` : '') +
+    sections.map(s => `<section class="block">${s.heading?`<h2>${esc(s.heading)}</h2>`:''}<div>${s.body_html||''}</div></section>`).join('') +
+    `<footer>${esc(site.title||'')} · cpg_bookweb/sites/${esc(site.slug||'')}</footer>`;
+})();
+</script>
+</body>
+</html>

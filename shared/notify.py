@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 """
-notify.py — send a short notification about a cpg_book -> Supabase sync.
+notify.py — shared notifier for the web hub (notify-supabase-git).
 
-Provider-agnostic and fail-soft: it sends to whichever channel is configured via
-environment variables, and exits 0 (without error) when none is set, so it never
-breaks a CI run. Pick a channel by setting ONE of:
+Provider-agnostic and fail-soft: sends to whichever channel is configured via env,
+and exits 0 when none is set, so it never breaks a CI run. Set ONE of:
 
   Discord   : DISCORD_WEBHOOK_URL
   Telegram  : TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID
   LINE      : LINE_CHANNEL_ACCESS_TOKEN + LINE_TO   (Messaging API push)
 
-Usage:  python notify.py "ข้อความแจ้งเตือน"
+Usage:  python shared/notify.py "ข้อความแจ้งเตือน"
 """
 import json, os, sys, urllib.request
 
@@ -38,7 +37,7 @@ def send(msg):
 
 
 def main():
-    msg = " ".join(sys.argv[1:]) or "cpg_book sync"
+    msg = " ".join(sys.argv[1:]) or "web hub sync"
     try:
         channel, status = send(msg)
     except Exception as e:

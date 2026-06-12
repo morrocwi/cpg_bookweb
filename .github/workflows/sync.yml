@@ -66,4 +66,4 @@ jobs:
           LINE_TO: ${{ secrets.LINE_TO }}
         run: |
           N=$(python -c "import json;print(sum(b['chapters'] for b in json.load(open('library.json'))['books']))" 2>/dev/null || echo "?")
-          python tools/notify.py "ปรัชญาปัญญาประดิษฐ์ · ซิงก์ ${{ job.status }} — ${N} บทจาก cpg_book"
+          python shared/notify.py "ปรัชญาปัญญาประดิษฐ์ · ซิงก์ ${{ job.status }} — ${N} บทจาก cpg_book"
