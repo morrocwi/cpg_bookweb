@@ -1,10 +1,14 @@
 {
-  "generated_at": "2026-06-12T05:09:42Z",
+  "generated_at": "2026-06-12T05:28:37Z",
   "source_repo": "morrocwi/cpg_book",
   "book": {
+    "slug": "person-reasoning",
     "brand": "ปรัชญาปัญญาประดิษฐ์",
     "title": "Person Reasoning Design Foundation and Protocol",
-    "title_th": "รากฐานและระเบียบการของการให้เหตุผลของบุคคล"
+    "title_th": "รากฐานและระเบียบการของการให้เหตุผลของบุคคล",
+    "accent": "#0ea5e9",
+    "summary": "หนังสือที่กลั่นรากฐานการให้เหตุผลของบุคคลเป็นฐานปรัชญา สมการ และหลักการ — สำหรับให้มนุษย์และ AI เชื่อมโยงและทำงานร่วมกันอย่างมีบริบท",
+    "seed": "PRDFP.seed.yaml"
   },
   "categories": {
     "about": {
@@ -31,8 +35,8 @@
       "featured": true,
       "sort": 0,
       "title": "บทนำ: เกี่ยวกับหนังสือเล่มนี้",
-      "excerpt": "บทนำของหนังสือ Person Reasoning Design Foundation and Protocol — รวมรากฐานปรัชญา สมการ และหลักการของการให้เหตุผลของบุคคลไว้ในเล่มเดียว",
-      "body_html": "<p>หนังสือเล่มนี้รวบรวมรากฐานการให้เหตุผลของบุคคล (Person Reasoning) ไว้ในเล่มเดียว — ฐานปรัชญา สมการหลัก และหลักการ — เพื่อให้มนุษย์และ AI หลายตัวเข้าใจวิธีตีความ ตัดสิน และแก้ไขของบุคคลได้อย่างสอดคล้องและมีบริบท โดยไม่ลดทอนบุคคลให้เหลือเพียงข้อมูลหรือแบบจำลอง เนื้อหาเรียบเรียงจากห้องสมุดความรู้ cpg_book ของ Yaoharee Lahtee และ Walancha</p>\n<h2>หลักการของห้องสมุด</h2>\n<p><strong>เอกสารไม่เท่ากับตัวบุคคล</strong></p>\n<blockquote><p>Documented knowledge ≠ complete person</p></blockquote>\n<p><strong>บทสรุปไม่เท่ากับแหล่งต้นฉบับ</strong></p>\n<blockquote><p>Summary ≠ source</p></blockquote>\n<p><strong>ความมั่นใจไม่เท่ากับหลักฐาน</strong></p>\n<blockquote><p>Confidence ≠ evidence</p></blockquote>\n<p><strong>ประสบการณ์ไม่เท่ากับกฎทั่วไป</strong></p>\n<blockquote><p>Experience ≠ universal rule</p></blockquote>\n<p><strong>ความรู้ต้องรักษาบริบท</strong></p>\n<blockquote><p>AI interpretation ≠ owner intention</p></blockquote>\n<h2>คำแถลงสุดท้าย</h2>\n<blockquote><p>`cpg_book` คือห้องสมุดร่วมของ Yaoharee Lahtee และ Walancha สำหรับรักษา เชื่อมโยง และพัฒนาความรู้ ประสบการณ์ หลักคิด และคำถามที่มีความหมายต่อชีวิต ครอบครัว งาน และการเรียนรู้ร่วมกัน โดยเปิดให้มนุษย์และ AI ช่วยกันอ่านและพัฒนา แต่ไม่ลดทอนบุคคลให้เหลือเพียงข้อมูล แบบจำลอง หรือคำสั่งของระบบ</p></blockquote>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/README.md\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">cpg_book/README.md</a></p>",
+      "excerpt": "หนังสือเล่มนี้กลั่นรากฐานการให้เหตุผลของบุคคล (Person Reasoning) เป็นสมการและ pseudo-schema — ไฟล์ตั้งต้นที่กระชับและเบา ให้ AI อ่านเป็นไฟล์แรกก่อนทำงานร่วมกับบุคคล",
+      "body_html": "<p><strong>สิ่งที่หนังสือเล่มนี้ต้องการสื่อ:</strong> รวบรวมรากฐานการให้เหตุผลของบุคคล (Person Reasoning) แล้วแปลเป็น <strong>สมการ</strong> และ <strong>pseudo-schema</strong> ให้กลายเป็น <strong>ไฟล์ตั้งต้น</strong> ไฟล์เดียวที่กระชับและเบา — เพื่อให้ AI อ่านไฟล์นี้ <strong>เป็นไฟล์แรก</strong> แล้วทำงานร่วมกับบุคคลผู้นั้นได้อย่างลงตัว ทั้งทาง <strong>การซิงโครไนซ์</strong> (ความหมายร่วม) และ <strong>รีทึม</strong> (จังหวะร่วม) โดยไม่ลดทอนบุคคลให้เหลือเพียงข้อมูลหรือแบบจำลอง (PR_t ≠ Person)</p>\n<blockquote><p>📄 ไฟล์ตั้งต้นสำหรับ AI: <a href=\"books/person-reasoning/PRDFP.seed.yaml\" target=\"_blank\" rel=\"noopener\">PRDFP.seed.yaml</a> — ให้ AI อ่านก่อนเริ่มงาน</p></blockquote>\n<p>ส่วนที่เหลือของหนังสือคือเนื้อหาที่ไฟล์ตั้งต้นนี้กลั่นมา — ฐานปรัชญา สมการหลัก และหลักการ เรียบเรียงจากห้องสมุดความรู้ cpg_book ของ Yaoharee Lahtee และ Walancha</p>\n<h2>หลักการของห้องสมุด</h2>\n<p><strong>เอกสารไม่เท่ากับตัวบุคคล</strong></p>\n<blockquote><p>Documented knowledge ≠ complete person</p></blockquote>\n<p><strong>บทสรุปไม่เท่ากับแหล่งต้นฉบับ</strong></p>\n<blockquote><p>Summary ≠ source</p></blockquote>\n<p><strong>ความมั่นใจไม่เท่ากับหลักฐาน</strong></p>\n<blockquote><p>Confidence ≠ evidence</p></blockquote>\n<p><strong>ประสบการณ์ไม่เท่ากับกฎทั่วไป</strong></p>\n<blockquote><p>Experience ≠ universal rule</p></blockquote>\n<p><strong>ความรู้ต้องรักษาบริบท</strong></p>\n<blockquote><p>AI interpretation ≠ owner intention</p></blockquote>\n<h2>คำแถลงสุดท้าย</h2>\n<blockquote><p>`cpg_book` คือห้องสมุดร่วมของ Yaoharee Lahtee และ Walancha สำหรับรักษา เชื่อมโยง และพัฒนาความรู้ ประสบการณ์ หลักคิด และคำถามที่มีความหมายต่อชีวิต ครอบครัว งาน และการเรียนรู้ร่วมกัน โดยเปิดให้มนุษย์และ AI ช่วยกันอ่านและพัฒนา แต่ไม่ลดทอนบุคคลให้เหลือเพียงข้อมูล แบบจำลอง หรือคำสั่งของระบบ</p></blockquote>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/README.md\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">cpg_book/README.md</a></p>",
       "tags": [
         "ห้องสมุด",
         "ความรู้",
@@ -41,7 +45,8 @@
       "read_minutes": 2,
       "source": "README.md",
       "source_id": "README",
-      "lang": "th"
+      "lang": "th",
+      "book_id": "person-reasoning"
     },
     {
       "id": "philosophical-foundation",
@@ -60,7 +65,8 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PRF-001/philosophy",
       "lang": "th-en",
-      "updated_at": "2026-06-12"
+      "updated_at": "2026-06-12",
+      "book_id": "person-reasoning"
     },
     {
       "id": "core-equations",
@@ -78,7 +84,8 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PRF-001/equations",
       "lang": "th-en",
-      "updated_at": "2026-06-12"
+      "updated_at": "2026-06-12",
+      "book_id": "person-reasoning"
     },
     {
       "id": "pr-001",
@@ -98,7 +105,8 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-001",
       "lang": "th-en",
-      "updated_at": "2026-06-12"
+      "updated_at": "2026-06-12",
+      "book_id": "person-reasoning"
     },
     {
       "id": "pr-002",
@@ -118,7 +126,8 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-002",
       "lang": "th-en",
-      "updated_at": "2026-06-12"
+      "updated_at": "2026-06-12",
+      "book_id": "person-reasoning"
     },
     {
       "id": "pr-003",
@@ -138,7 +147,8 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-003",
       "lang": "th-en",
-      "updated_at": "2026-06-12"
+      "updated_at": "2026-06-12",
+      "book_id": "person-reasoning"
     },
     {
       "id": "pr-004",
@@ -158,7 +168,8 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-004",
       "lang": "th-en",
-      "updated_at": "2026-06-12"
+      "updated_at": "2026-06-12",
+      "book_id": "person-reasoning"
     },
     {
       "id": "pr-005",
@@ -178,7 +189,8 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-005",
       "lang": "th-en",
-      "updated_at": "2026-06-12"
+      "updated_at": "2026-06-12",
+      "book_id": "person-reasoning"
     },
     {
       "id": "pr-006",
@@ -198,7 +210,8 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-006",
       "lang": "th-en",
-      "updated_at": "2026-06-12"
+      "updated_at": "2026-06-12",
+      "book_id": "person-reasoning"
     },
     {
       "id": "pr-007",
@@ -218,7 +231,8 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-007",
       "lang": "th-en",
-      "updated_at": "2026-06-12"
+      "updated_at": "2026-06-12",
+      "book_id": "person-reasoning"
     },
     {
       "id": "pr-008",
@@ -237,7 +251,8 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-008",
       "lang": "th-en",
-      "updated_at": "2026-06-12"
+      "updated_at": "2026-06-12",
+      "book_id": "person-reasoning"
     },
     {
       "id": "pr-009",
@@ -255,7 +270,8 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-009",
       "lang": "th-en",
-      "updated_at": "2026-06-12"
+      "updated_at": "2026-06-12",
+      "book_id": "person-reasoning"
     },
     {
       "id": "pr-010",
@@ -274,7 +290,8 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-010",
       "lang": "th-en",
-      "updated_at": "2026-06-12"
+      "updated_at": "2026-06-12",
+      "book_id": "person-reasoning"
     }
   ]
 }

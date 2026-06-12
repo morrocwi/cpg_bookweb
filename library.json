@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-06-12T05:28:37Z",
+  "library": {
+    "brand": "ปรัชญาปัญญาประดิษฐ์",
+    "tagline": "ห้องสมุดว่าด้วยปรัชญาปัญญาประดิษฐ์ — การให้เหตุผลและการอยู่ร่วมกันของมนุษย์กับ AI"
+  },
+  "books": [
+    {
+      "slug": "person-reasoning",
+      "title": "Person Reasoning Design Foundation and Protocol",
+      "title_th": "รากฐานและระเบียบการของการให้เหตุผลของบุคคล",
+      "accent": "#0ea5e9",
+      "summary": "หนังสือที่กลั่นรากฐานการให้เหตุผลของบุคคลเป็นฐานปรัชญา สมการ และหลักการ — สำหรับให้มนุษย์และ AI เชื่อมโยงและทำงานร่วมกันอย่างมีบริบท",
+      "chapters": 13,
+      "data": "books/person-reasoning/book.json",
+      "seed": "books/person-reasoning/PRDFP.seed.yaml",
+      "source_repo": "morrocwi/cpg_book"
+    }
+  ]
+}

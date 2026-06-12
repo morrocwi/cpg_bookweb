@@ -4,7 +4,8 @@
 -- Writes are done by the sync job using the service-role key (bypasses RLS).
 
 create table if not exists public.articles (
-  id           text primary key,            -- slug, e.g. 'pr-002'
+  id           text primary key,            -- chapter slug, e.g. 'pr-002'
+  book_id      text not null default 'person-reasoning',  -- which book this chapter belongs to
   cat          text not null,               -- about | philosophy | equation | principle
   title        text not null,               -- Thai display title
   excerpt      text,
@@ -22,6 +23,7 @@ create table if not exists public.articles (
 
 create index if not exists articles_cat_idx  on public.articles (cat);
 create index if not exists articles_sort_idx on public.articles (sort);
+create index if not exists articles_book_idx on public.articles (book_id);
 
 -- keep updated_at fresh on upsert
 create or replace function public.touch_updated_at() returns trigger as $$

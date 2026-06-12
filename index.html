@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ปรัชญาปัญญาประดิษฐ์ · Person Reasoning Design Foundation and Protocol</title>
-<meta name="description" content="หนังสือเล่มเดียวว่าด้วยรากฐานและระเบียบการของการให้เหตุผลของบุคคล — สะพานเชื่อมมนุษย์และปัญญาประดิษฐ์">
+<title>ปรัชญาปัญญาประดิษฐ์ · ห้องสมุด</title>
+<meta name="description" content="ห้องสมุดปรัชญาปัญญาประดิษฐ์ — หนังสือว่าด้วยการให้เหตุผลและการอยู่ร่วมกันของมนุษย์กับ AI">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Noto+Serif+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,12 +17,14 @@
 
   .lib-card { transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
   .lib-card:hover { transform:translateY(-3px); box-shadow:0 10px 26px rgba(20,60,90,0.10); border-color:#bfe6fa; }
+  .lib-book:hover { transform:translateY(-3px); box-shadow:0 14px 34px rgba(20,60,90,0.13); border-color:#bfe6fa; }
   .lib-featured:hover { box-shadow:0 12px 30px rgba(20,60,90,0.12); border-color:#bfe6fa; }
   .lib-related { transition:border-color .18s ease, transform .18s ease; }
   .lib-related:hover { border-color:#bfe6fa; transform:translateX(2px); }
   .lib-nav { transition:border-color .18s ease, background .18s ease; }
   .lib-nav:hover { border-color:#bfe6fa; background:#f4fbff; }
   .lib-chip { transition:background .15s ease, color .15s ease, border-color .15s ease; }
+  .seed-link:hover { background:#dff1fb; }
 
   .lib-scroll { scrollbar-width:thin; scrollbar-color:#e0dcd2 transparent; }
   .lib-scroll::-webkit-scrollbar { height:5px; }
@@ -37,92 +39,89 @@
   .article-body blockquote p { margin:0; font-size:16px; color:#3f5562; }
   .article-body .principle { font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:#0284c7; background:#e3f4fd; display:inline-block; padding:4px 12px; border-radius:8px; font-weight:600; margin:2px 0 8px; }
   .article-body strong { color:#1b2531; font-weight:600; }
+  .article-body code { font-family:ui-monospace,monospace; font-size:0.92em; background:#f0ede5; padding:1px 6px; border-radius:5px; }
   .article-body a { color:#0ea5e9; }
 
   @media (max-width:560px){ .article-body p, .article-body li { font-size:16.5px; } }
 </style>
 </head>
 <body>
-<div id="app"><div style="min-height:60vh;display:grid;place-items:center;font-family:'Noto Sans Thai',sans-serif;color:#9aa5b1;font-size:14px;">กำลังเปิดหนังสือ…</div></div>
+<div id="app"><div style="min-height:60vh;display:grid;place-items:center;font-family:'Noto Sans Thai',sans-serif;color:#9aa5b1;font-size:14px;">กำลังเปิดห้องสมุด…</div></div>
 
 <script>
 /* =====================================================================
-   ปรัชญาปัญญาประดิษฐ์
-   หนังสือ: Person Reasoning Design Foundation and Protocol
+   ห้องสมุดปรัชญาปัญญาประดิษฐ์
    ---------------------------------------------------------------------
-   หนังสือเล่มเดียว แบ่งเป็นบท (chapters) จัดตามภาค: บทนำ · ฐานปรัชญา ·
-   สมการหลัก · หลักการ — สกัดจาก Claude design-code artifact และเรียบเรียง
-   จากเนื้อหาจริงใน morrocwi/cpg_book (README + PRF yaml) ผ่าน
-   tools/build_articles.py -> articles.json. อ่านสดจาก Supabase เมื่อมี
-   anon key, ไม่งั้น fallback เป็น articles.json (เนื้อหาเดียวกัน)
+   library → book → chapter. 1 folder = 1 book (books/<slug>/book.json).
+   ตอนนี้มีหนังสือ 1 เล่ม: Person Reasoning Design Foundation and Protocol —
+   ซึ่ง "คือ" ไฟล์ตั้งต้น (seed) ที่กลั่น Person Reasoning เป็นสมการ +
+   pseudo-schema ให้ AI อ่านก่อน เพื่อเชื่อมกับบุคคลทั้ง sync และ rhythm.
+   ข้อมูลบทมาจาก Supabase (anon, กรองด้วย book_id) -> fallback book.json.
    ===================================================================== */
 
 const SUPABASE = {
   url: "https://ckvxuvkxctssyozscfbm.supabase.co",
-  // public anon key — safe to expose; access is restricted by RLS (supabase/schema.sql).
   anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNrdnh1dmt4Y3Rzc3lvenNjZmJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExODIyMzQsImV4cCI6MjA5Njc1ODIzNH0.cN2EFIBtaVvPsbWfHrxtQWMmKnAKH0fRsKZaBVPDeRc"
 };
 
-let BOOK = {
-  brand: "ปรัชญาปัญญาประดิษฐ์",
-  title: "Person Reasoning Design Foundation and Protocol",
-  title_th: "รากฐานและระเบียบการของการให้เหตุผลของบุคคล"
-};
-let CATEGORIES = {};
-let ARTICLES = [];
-let ORDER = [];            // chapter order (article ids sorted by `sort`)
+let LIB = { brand: "ปรัชญาปัญญาประดิษฐ์", tagline: "" };
+let BOOKS = [];               // from library.json
+const bookCache = {};         // slug -> { meta, libMeta, categories, articles, order }
 const OWNERS = 'Yaoharee Lahtee · Walancha';
-const state = { view: 'home', cat: 'all', currentId: null };
+const state = { view: 'library', book: null, cat: 'all', currentId: null };
 const $app = document.getElementById('app');
 
-/* ===================== data loading ===================== */
-async function fetchBundle() {
-  const res = await fetch('articles.json', { cache: 'no-cache' });
-  if (!res.ok) throw new Error('articles.json ' + res.status);
-  return res.json();
-}
-async function fetchSupabase() {
+/* ===================== data ===================== */
+async function fetchJSON(path){ const r = await fetch(path, { cache:'no-cache' }); if(!r.ok) throw new Error(path+' '+r.status); return r.json(); }
+async function fetchSupabase(slug){
   if (!SUPABASE.anonKey) return null;
-  const url = SUPABASE.url.replace(/\/$/, '') + '/rest/v1/articles?select=*&order=sort.asc';
-  const res = await fetch(url, { headers: { apikey: SUPABASE.anonKey, Authorization: 'Bearer ' + SUPABASE.anonKey } });
-  if (!res.ok) throw new Error('supabase ' + res.status);
-  const rows = await res.json();
+  const url = SUPABASE.url.replace(/\/$/,'') + '/rest/v1/articles?select=*&book_id=eq.' + encodeURIComponent(slug) + '&order=sort.asc';
+  const r = await fetch(url, { headers:{ apikey:SUPABASE.anonKey, Authorization:'Bearer '+SUPABASE.anonKey } });
+  if (!r.ok) throw new Error('supabase '+r.status);
+  const rows = await r.json();
   return (rows && rows.length) ? rows : null;
 }
-async function bootstrap() {
-  let bundle;
-  try { bundle = await fetchBundle(); }
-  catch (e) {
-    $app.innerHTML = '<div style="min-height:60vh;display:grid;place-items:center;font-family:sans-serif;color:#9aa5b1;">โหลดข้อมูลไม่สำเร็จ — ' + e.message + '</div>';
-    return;
-  }
-  CATEGORIES = bundle.categories || {};
-  if (bundle.book) BOOK = Object.assign({}, BOOK, bundle.book);
-  ARTICLES = bundle.articles || [];
-  try { const live = await fetchSupabase(); if (live) ARTICLES = live; } catch (e) { /* keep json fallback */ }
-  ORDER = ARTICLES.slice().sort((a, b) => (a.sort == null ? 999 : a.sort) - (b.sort == null ? 999 : b.sort)).map(a => a.id);
-  document.title = BOOK.brand + ' · ' + BOOK.title;
-  routeFromHash();
-  render();
+async function ensureBook(slug){
+  if (bookCache[slug]) return bookCache[slug];
+  const libMeta = BOOKS.find(b => b.slug === slug);
+  if (!libMeta) throw new Error('unknown book ' + slug);
+  const bundle = await fetchJSON(libMeta.data);
+  let arts = bundle.articles || [];
+  try { const live = await fetchSupabase(slug); if (live) arts = live; } catch(e){ /* keep json */ }
+  const order = arts.slice().sort((a,b)=>(a.sort==null?999:a.sort)-(b.sort==null?999:b.sort)).map(a=>a.id);
+  bookCache[slug] = { meta: bundle.book || {}, libMeta, categories: bundle.categories || {}, articles: arts, order };
+  return bookCache[slug];
+}
+async function bootstrap(){
+  let lib;
+  try { lib = await fetchJSON('library.json'); }
+  catch(e){ $app.innerHTML = '<div style="min-height:60vh;display:grid;place-items:center;font-family:sans-serif;color:#9aa5b1;">โหลดห้องสมุดไม่สำเร็จ — '+e.message+'</div>'; return; }
+  LIB = lib.library || LIB;
+  BOOKS = lib.books || [];
+  document.title = LIB.brand + ' · ห้องสมุด';
+  await routeAndRender();
 }
 
-/* ===================== helpers ===================== */
-function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-function byId(id){ return ARTICLES.find(x => x.id === id); }
-function catLabel(c){ return CATEGORIES[c] ? CATEGORIES[c].label : c; }
-function catAccent(c){ return CATEGORIES[c] ? CATEGORIES[c].accent : '#0ea5e9'; }
-function chapterNo(id){ const i = ORDER.indexOf(id); return i < 0 ? null : i + 1; }
-function readLabel(a){ return 'อ่าน ~' + (a.read_minutes || 1) + ' นาที'; }
-function chapterMeta(a){ const n = chapterNo(a.id); return (n ? 'บทที่ ' + n + ' · ' : '') + readLabel(a); }
+/* ===================== current-book helpers ===================== */
+function CB(){ return bookCache[state.book] || { meta:{}, libMeta:{}, categories:{}, articles:[], order:[] }; }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function byId(id){ return CB().articles.find(x=>x.id===id); }
+function catLabel(c){ const m=CB().categories[c]; return m?m.label:c; }
+function catAccent(c){ const m=CB().categories[c]; return m?m.accent:'#0ea5e9'; }
+function chapterNo(id){ const i=CB().order.indexOf(id); return i<0?null:i+1; }
+function readLabel(a){ return 'อ่าน ~'+(a.read_minutes||1)+' นาที'; }
+function chapterMeta(a){ const n=chapterNo(a.id); return (n?'บทที่ '+n+' · ':'')+readLabel(a); }
 
-/* ===================== navigation ===================== */
-function goHome(){ state.view='home'; state.currentId=null; location.hash=''; render(); window.scrollTo(0,0); }
-function openArticle(id){ state.view='article'; state.currentId=id; location.hash='#/a/'+id; render(); window.scrollTo(0,0); }
+/* ===================== navigation (hash-driven) ===================== */
+function goLibrary(){ if(location.hash){ location.hash=''; } else { state.view='library'; render(); } window.scrollTo(0,0); }
+function openBook(slug){ location.hash='#/b/'+encodeURIComponent(slug); }
+function openChapter(slug,id){ location.hash='#/b/'+encodeURIComponent(slug)+'/'+encodeURIComponent(id); }
 function selectCat(c){ state.cat=c; render(); }
 
-/* ===================== views ===================== */
+/* ===================== shared chrome ===================== */
 function header(){
-  const total = ORDER.length + ' บท';
+  let right = BOOKS.length + ' เล่ม';
+  if (state.view !== 'library') right = CB().order.length + ' บท';
   return `
   <header style="position:sticky;top:0;z-index:30;background:rgba(251,250,247,0.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #ece9e2;">
     <div style="max-width:1080px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
@@ -131,87 +130,140 @@ function header(){
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
         </span>
         <span style="text-align:left;line-height:1.12;">
-          <span style="display:block;font-size:17px;font-weight:600;color:#1b2531;">${esc(BOOK.brand)}</span>
-          <span style="display:block;font-family:'Noto Sans Thai',sans-serif;font-size:11px;letter-spacing:0.05em;color:#94a3b8;">หนังสือเล่มเดียว · ค่อยๆ อ่านทีละบท</span>
+          <span style="display:block;font-size:17px;font-weight:600;color:#1b2531;">${esc(LIB.brand)}</span>
+          <span style="display:block;font-family:'Noto Sans Thai',sans-serif;font-size:11px;letter-spacing:0.05em;color:#94a3b8;">ห้องสมุด · ค่อยๆ อ่าน</span>
         </span>
       </button>
-      <span style="font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#7c8794;font-weight:500;background:#f0ede5;padding:6px 13px;border-radius:99px;border:1px solid #e7e3da;">${total}</span>
+      <span style="font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#7c8794;font-weight:500;background:#f0ede5;padding:6px 13px;border-radius:99px;border:1px solid #e7e3da;">${right}</span>
     </div>
   </header>`;
 }
-
 function footer(){
   return `
   <footer style="border-top:1px solid #ece9e2;background:#f6f3ec;">
     <div style="max-width:1080px;margin:0 auto;padding:26px 22px;font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#9aa5b1;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-      <span>${esc(BOOK.brand)} · ${esc(BOOK.title)}</span>
+      <span>${esc(LIB.brand)} · ห้องสมุด</span>
       <span>รักษาที่มา ก่อนเพิ่มการตีความ</span>
     </div>
   </footer>`;
 }
 
-function chipsBar(){
-  const counts = {}; ARTICLES.forEach(a => counts[a.cat] = (counts[a.cat]||0)+1);
-  const order = Object.keys(CATEGORIES);
-  const present = order.filter(c => counts[c]).concat(Object.keys(counts).filter(c => order.indexOf(c) < 0));
-  const items = [{ id:'all', label:'ทั้งหมด', count:ARTICLES.length }]
-    .concat(present.map(c => ({ id:c, label:catLabel(c), count:counts[c] })));
-  return items.map(it => {
-    const active = state.cat === it.id;
-    const accent = it.id==='all' ? '#16202c' : catAccent(it.id);
-    const base = `display:inline-flex;align-items:center;gap:8px;white-space:nowrap;cursor:pointer;border-radius:99px;padding:8px 15px;font-family:'Noto Sans Thai',sans-serif;font-size:13.5px;font-weight:500;`;
-    const style = active
-      ? base + `background:${accent};color:#fff;border:1px solid ${accent};`
-      : base + `background:#fff;color:#5d6b78;border:1px solid #e7e3da;`;
-    const cstyle = active
-      ? `font-size:11.5px;background:rgba(255,255,255,0.22);color:#fff;padding:1px 8px;border-radius:99px;`
-      : `font-size:11.5px;background:#f0ede5;color:#94a3b8;padding:1px 8px;border-radius:99px;`;
-    return `<button class="lib-chip" data-cat="${esc(it.id)}" style="${style}"><span>${esc(it.label)}</span><span style="${cstyle}">${it.count}</span></button>`;
-  }).join('');
-}
-
-function homeView(){
-  const featured = ARTICLES.find(a=>a.featured) || byId(ORDER[0]);
-  const grid = (state.cat==='all' ? ARTICLES.filter(a=>a!==featured) : ARTICLES.filter(a=>a.cat===state.cat));
+/* ===================== LIBRARY view ===================== */
+function libraryView(){
   return `
   <main style="max-width:1080px;margin:0 auto;padding:0 22px 80px;">
     <section style="padding:54px 0 30px;max-width:720px;">
-      <p style="font-family:'Noto Sans Thai',sans-serif;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#0ea5e9;font-weight:600;margin-bottom:16px;">${esc(BOOK.brand)} · หนังสือ</p>
-      <h1 style="font-size:clamp(28px,5.4vw,44px);line-height:1.22;font-weight:700;color:#16202c;letter-spacing:-0.01em;">${esc(BOOK.title)}</h1>
-      <p style="margin-top:14px;font-size:19px;line-height:1.5;color:#1b2531;font-weight:600;">${esc(BOOK.title_th)}</p>
-      <p style="margin-top:14px;font-size:18px;line-height:1.85;color:#5d6b78;">หนังสือเล่มเดียวที่รวมฐานปรัชญา สมการ และหลักการของการให้เหตุผลของบุคคลไว้ด้วยกัน — สะพานเชื่อมมนุษย์และปัญญาประดิษฐ์ ค่อยๆ อ่านทีละบทได้ตามใจ</p>
+      <p style="font-family:'Noto Sans Thai',sans-serif;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#0ea5e9;font-weight:600;margin-bottom:16px;">ห้องสมุด</p>
+      <h1 style="font-size:clamp(30px,6vw,46px);line-height:1.25;font-weight:700;color:#16202c;letter-spacing:-0.01em;">${esc(LIB.brand)}</h1>
+      <p style="margin-top:18px;font-size:18px;line-height:1.85;color:#5d6b78;">${esc(LIB.tagline || 'หนังสือว่าด้วยการให้เหตุผลและการอยู่ร่วมกันของมนุษย์กับปัญญาประดิษฐ์')}</p>
     </section>
 
-    ${featured ? `
-    <section style="margin-top:18px;">
+    <section style="margin-top:14px;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:18px;">
+        <h2 style="font-size:14px;font-family:'Noto Sans Thai',sans-serif;font-weight:600;letter-spacing:0.04em;color:#1b2531;">หนังสือในห้องสมุด</h2>
+        <span style="font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#9aa5b1;">ตอนนี้มี ${BOOKS.length} เล่ม</span>
+        <span style="height:1px;flex:1;background:#ece9e2;"></span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;">
+        ${BOOKS.map(b => `
+          <button class="lib-book" data-book="${esc(b.slug)}" style="position:relative;text-align:left;cursor:pointer;background:linear-gradient(135deg,#ffffff 0%,#f4fbff 100%);border:1px solid #e9e5db;border-radius:18px;padding:26px 26px 24px;font-family:inherit;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(20,40,60,0.03);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;">
+            <span style="position:absolute;left:0;top:26px;width:4px;height:42px;border-radius:0 4px 4px 0;background:${esc(b.accent||'#0ea5e9')};"></span>
+            <span style="font-family:'Noto Sans Thai',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:${esc(b.accent||'#0ea5e9')};margin-bottom:12px;">หนังสือ</span>
+            <span style="font-size:22px;line-height:1.34;font-weight:700;color:#152232;letter-spacing:-0.01em;">${esc(b.title)}</span>
+            <span style="margin-top:8px;font-size:15px;font-weight:600;color:#1b2531;font-family:'Noto Sans Thai',sans-serif;">${esc(b.title_th||'')}</span>
+            <span style="margin-top:13px;font-size:14.5px;line-height:1.72;color:#6c7884;flex:1;">${esc(b.summary||'')}</span>
+            <span style="display:flex;align-items:center;gap:8px;margin-top:20px;font-family:'Noto Sans Thai',sans-serif;font-size:13px;font-weight:600;color:#0ea5e9;">เปิดอ่าน · ${b.chapters||0} บท
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </span>
+          </button>`).join('')}
+      </div>
+    </section>
+  </main>`;
+}
+
+/* ===================== BOOK view (cover + seed + table of contents) ===================== */
+function crumb(){
+  return `<div style="padding:24px 0 0;font-family:'Noto Sans Thai',sans-serif;font-size:13.5px;color:#9aa5b1;">
+    <button data-home style="background:none;border:none;cursor:pointer;color:#0ea5e9;font-family:inherit;font-size:13.5px;padding:0;">ห้องสมุด</button>
+    <span style="margin:0 8px;color:#cbd5e1;">›</span><span>${esc(CB().meta.title||'')}</span>
+  </div>`;
+}
+function seedPanel(){
+  const seed = CB().libMeta.seed;
+  if (!seed) return '';
+  return `
+  <section style="margin-top:30px;border:1px solid #d6ebf7;background:linear-gradient(135deg,#f4fbff 0%,#eef8ff 100%);border-radius:16px;padding:24px 24px 22px;">
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>
+      <h2 style="font-family:'Noto Sans Thai',sans-serif;font-size:15px;font-weight:700;color:#0c4a6e;">ไฟล์ตั้งต้นสำหรับ AI — อ่านก่อนเริ่มงาน</h2>
+    </div>
+    <p style="font-size:15px;line-height:1.8;color:#3f5562;">หนังสือเล่มนี้ “คือ” ไฟล์ตั้งต้น: กลั่น Person Reasoning เป็น <strong>สมการ + pseudo-schema</strong> ไฟล์เดียวที่กระชับ เบา ให้ AI อ่านเป็นไฟล์แรก เพื่อเชื่อมกับบุคคลได้ลงตัวทั้ง <strong>การซิงโครไนซ์</strong> (ความหมายร่วม) และ <strong>รีทึม</strong> (จังหวะร่วม)</p>
+    <a class="seed-link" href="${esc(seed)}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-family:'Noto Sans Thai',sans-serif;font-size:13.5px;font-weight:600;color:#0284c7;background:#e3f4fd;border:1px solid #cdeafb;padding:8px 15px;border-radius:99px;text-decoration:none;transition:background .15s ease;">
+      เปิดไฟล์ตั้งต้น (PRDFP.seed.yaml)
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"></path></svg>
+    </a>
+  </section>`;
+}
+function chipsBar(){
+  const cb = CB();
+  const counts = {}; cb.articles.forEach(a => counts[a.cat]=(counts[a.cat]||0)+1);
+  const order = Object.keys(cb.categories);
+  const present = order.filter(c=>counts[c]).concat(Object.keys(counts).filter(c=>order.indexOf(c)<0));
+  const items = [{ id:'all', label:'ทั้งหมด', count:cb.articles.length }]
+    .concat(present.map(c=>({ id:c, label:catLabel(c), count:counts[c] })));
+  return items.map(it => {
+    const active = state.cat===it.id;
+    const accent = it.id==='all' ? '#16202c' : catAccent(it.id);
+    const base = `display:inline-flex;align-items:center;gap:8px;white-space:nowrap;cursor:pointer;border-radius:99px;padding:8px 15px;font-family:'Noto Sans Thai',sans-serif;font-size:13.5px;font-weight:500;`;
+    const style = active ? base+`background:${accent};color:#fff;border:1px solid ${accent};` : base+`background:#fff;color:#5d6b78;border:1px solid #e7e3da;`;
+    const cstyle = active ? `font-size:11.5px;background:rgba(255,255,255,0.22);color:#fff;padding:1px 8px;border-radius:99px;` : `font-size:11.5px;background:#f0ede5;color:#94a3b8;padding:1px 8px;border-radius:99px;`;
+    return `<button class="lib-chip" data-cat="${esc(it.id)}" style="${style}"><span>${esc(it.label)}</span><span style="${cstyle}">${it.count}</span></button>`;
+  }).join('');
+}
+function bookView(){
+  const cb = CB(); const m = cb.meta;
+  const featured = cb.articles.find(a=>a.featured) || byId(cb.order[0]);
+  const grid = (state.cat==='all' ? cb.articles.filter(a=>a!==featured) : cb.articles.filter(a=>a.cat===state.cat));
+  return `
+  <main style="max-width:1080px;margin:0 auto;padding:0 22px 80px;">
+    ${crumb()}
+    <section style="padding:30px 0 6px;max-width:720px;">
+      <p style="font-family:'Noto Sans Thai',sans-serif;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#0ea5e9;font-weight:600;margin-bottom:14px;">หนังสือ · ${cb.order.length} บท</p>
+      <h1 style="font-size:clamp(27px,5.2vw,42px);line-height:1.22;font-weight:700;color:#16202c;letter-spacing:-0.01em;">${esc(m.title||'')}</h1>
+      <p style="margin-top:12px;font-size:18px;line-height:1.5;color:#1b2531;font-weight:600;">${esc(m.title_th||'')}</p>
+      <p style="margin-top:14px;font-size:17px;line-height:1.85;color:#5d6b78;">${esc(m.summary||'')}</p>
+    </section>
+
+    <div style="max-width:720px;">${seedPanel()}</div>
+
+    <section style="margin-top:42px;">
       <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:16px;">
         <h2 style="font-size:14px;font-family:'Noto Sans Thai',sans-serif;font-weight:600;letter-spacing:0.04em;color:#1b2531;">เริ่มอ่าน</h2>
         <span style="height:1px;flex:1;background:#ece9e2;"></span>
       </div>
+      ${featured ? `
       <button class="lib-featured" data-open="${esc(featured.id)}" style="width:100%;text-align:left;cursor:pointer;border:1px solid #e9e5db;border-radius:18px;background:linear-gradient(135deg,#ffffff 0%,#f4fbff 100%);padding:0;overflow:hidden;box-shadow:0 1px 2px rgba(20,40,60,0.03);transition:box-shadow .18s ease,border-color .18s ease;">
         <div style="padding:30px 30px 32px;">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
-            <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;font-weight:600;color:#0284c7;background:#e3f4fd;padding:5px 12px;border-radius:99px;">${esc(catLabel(featured.cat))}</span>
+            <span style="font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;font-weight:600;color:#0284c7;background:#e3f4fd;padding:5px 12px;border-radius:99px;">${esc(catLabel(featured.cat))}</span>
             <span style="font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#9aa5b1;">${chapterMeta(featured)}</span>
           </div>
-          <h3 style="font-size:clamp(24px,4.5vw,32px);line-height:1.32;font-weight:700;color:#152232;letter-spacing:-0.01em;">${esc(featured.title)}</h3>
+          <h3 style="font-size:clamp(23px,4.5vw,31px);line-height:1.32;font-weight:700;color:#152232;letter-spacing:-0.01em;">${esc(featured.title)}</h3>
           <p style="margin-top:14px;font-size:17px;line-height:1.8;color:#56646f;max-width:62ch;">${esc(featured.excerpt)}</p>
           <span style="display:inline-flex;align-items:center;gap:7px;margin-top:22px;font-family:'Noto Sans Thai',sans-serif;font-size:14px;font-weight:600;color:#0ea5e9;">เปิดอ่านบทนี้
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
           </span>
         </div>
-      </button>
-    </section>` : ''}
+      </button>` : ''}
+    </section>
 
-    <section style="margin-top:48px;">
+    <section style="margin-top:44px;">
       <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:18px;">
         <h2 style="font-size:14px;font-family:'Noto Sans Thai',sans-serif;font-weight:600;letter-spacing:0.04em;color:#1b2531;">สารบัญ</h2>
         <span style="font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#9aa5b1;">เลือกอ่านตามบท</span>
         <span style="height:1px;flex:1;background:#ece9e2;"></span>
       </div>
-      <div class="lib-scroll" style="display:flex;gap:9px;overflow-x:auto;padding-bottom:6px;margin-bottom:26px;-webkit-overflow-scrolling:touch;">
-        ${chipsBar()}
-      </div>
+      <div class="lib-scroll" style="display:flex;gap:9px;overflow-x:auto;padding-bottom:6px;margin-bottom:26px;-webkit-overflow-scrolling:touch;">${chipsBar()}</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px;">
         ${grid.map(a => `
           <button class="lib-card" data-open="${esc(a.id)}" style="position:relative;text-align:left;cursor:pointer;background:#ffffff;border:1px solid #eae6dd;border-radius:16px;padding:24px 22px 22px;display:flex;flex-direction:column;min-height:212px;box-shadow:0 1px 2px rgba(20,40,60,0.03);">
@@ -226,30 +278,19 @@ function homeView(){
           </button>`).join('')}
       </div>
     </section>
-
-    <section style="margin-top:54px;border-top:1px solid #ece9e2;padding-top:34px;display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
-      <div>
-        <h3 style="font-size:18px;font-weight:600;color:#1b2531;margin-bottom:10px;">เกี่ยวกับหนังสือเล่มนี้</h3>
-        <p style="font-size:15px;line-height:1.8;color:#6c7884;">หนังสือเล่มเดียวที่รวบรวมรากฐานการให้เหตุผลของบุคคล — ฐานปรัชญา สมการ และหลักการ — เปิดให้มนุษย์และ AI หลายตัวเข้าใจวิธีตีความและตัดสินได้อย่างสอดคล้องและมีบริบท</p>
-      </div>
-      <div>
-        <h3 style="font-size:18px;font-weight:600;color:#1b2531;margin-bottom:10px;">วิธีอ่าน</h3>
-        <p style="font-size:15px;line-height:1.8;color:#6c7884;">เลือกบทที่สนใจจากสารบัญด้านบน แล้วอ่านได้เลย ไม่ต้องเรียงลำดับ — อ่านบทไหนก่อนก็ได้ตามใจ หรือไล่ทีละบทด้วยปุ่ม “บทถัดไป”</p>
-      </div>
-    </section>
   </main>`;
 }
 
-function articleView(){
+/* ===================== CHAPTER view ===================== */
+function chapterView(){
   const a = byId(state.currentId);
-  if(!a) return homeView();
-  const accent = catAccent(a.cat);
-  const tags = a.tags || [];
-  const related = ARTICLES.filter(x=>x.cat===a.cat && x.id!==a.id).slice(0,3);
-  const idx = ORDER.indexOf(a.id);
-  const prev = idx > 0 ? byId(ORDER[idx-1]) : null;
-  const next = idx >= 0 && idx < ORDER.length-1 ? byId(ORDER[idx+1]) : null;
-  const navBtn = (art, dir) => art ? `
+  if(!a) return bookView();
+  const cb = CB(); const accent = catAccent(a.cat); const tags = a.tags || [];
+  const related = cb.articles.filter(x=>x.cat===a.cat && x.id!==a.id).slice(0,3);
+  const idx = cb.order.indexOf(a.id);
+  const prev = idx>0 ? byId(cb.order[idx-1]) : null;
+  const next = idx>=0 && idx<cb.order.length-1 ? byId(cb.order[idx+1]) : null;
+  const navBtn = (art,dir)=> art ? `
     <button class="lib-nav" data-open="${esc(art.id)}" style="flex:1;min-width:0;text-align:${dir>0?'right':'left'};cursor:pointer;background:#fff;border:1px solid #eae6dd;border-radius:14px;padding:16px 18px;display:block;">
       <span style="display:block;font-family:'Noto Sans Thai',sans-serif;font-size:12px;color:#9aa5b1;margin-bottom:5px;">${dir>0?'บทถัดไป →':'← บทก่อนหน้า'}</span>
       <span style="display:block;font-size:15.5px;font-weight:600;color:#1a2733;line-height:1.4;overflow:hidden;text-overflow:ellipsis;">${esc(art.title)}</span>
@@ -257,14 +298,14 @@ function articleView(){
   return `
   <main style="max-width:720px;margin:0 auto;padding:0 22px 90px;">
     <div style="padding:26px 0 0;">
-      <button data-home style="display:inline-flex;align-items:center;gap:8px;white-space:nowrap;background:none;border:none;cursor:pointer;font-family:'Noto Sans Thai',sans-serif;font-size:14px;font-weight:500;color:#0ea5e9;padding:0;">
+      <button data-book="${esc(state.book)}" style="display:inline-flex;align-items:center;gap:8px;white-space:nowrap;background:none;border:none;cursor:pointer;font-family:'Noto Sans Thai',sans-serif;font-size:14px;font-weight:500;color:#0ea5e9;padding:0;">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"></path></svg>
         กลับสารบัญ
       </button>
     </div>
     <article style="padding-top:30px;">
       <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:20px;">
-        <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;font-weight:600;color:#fff;background:${esc(accent)};padding:5px 13px;border-radius:99px;">${esc(catLabel(a.cat))}</span>
+        <span style="font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;font-weight:600;color:#fff;background:${esc(accent)};padding:5px 13px;border-radius:99px;">${esc(catLabel(a.cat))}</span>
         <span style="font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;display:inline-flex;align-items:center;gap:6px;">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
           ${chapterMeta(a)}
@@ -273,7 +314,7 @@ function articleView(){
       <h1 style="font-size:clamp(28px,5.5vw,40px);line-height:1.32;font-weight:700;color:#141f2b;letter-spacing:-0.01em;">${esc(a.title)}</h1>
       <p style="margin-top:18px;font-size:19px;line-height:1.75;color:#586470;font-style:italic;border-left:3px solid #bfe6fa;padding-left:18px;">${esc(a.excerpt)}</p>
       <div style="margin-top:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;padding-bottom:26px;border-bottom:1px solid #ece9e2;">
-        <span>จากหนังสือ ${esc(BOOK.title)}</span><span style="color:#d4cfc4;">·</span><span>${esc(OWNERS)}</span>
+        <span>จากหนังสือ ${esc(CB().meta.title||'')}</span><span style="color:#d4cfc4;">·</span><span>${esc(OWNERS)}</span>
       </div>
       <div class="article-body" style="margin-top:30px;">${a.body_html || ''}</div>
       ${tags.length ? `
@@ -282,13 +323,7 @@ function articleView(){
         ${tags.map(t=>`<span style="font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:5px 12px;border-radius:99px;">${esc(t)}</span>`).join('')}
       </div>` : ''}
     </article>
-
-    ${(prev || next) ? `
-    <nav style="margin-top:40px;display:flex;gap:14px;">
-      ${navBtn(prev, -1)}
-      ${navBtn(next, 1)}
-    </nav>` : ''}
-
+    ${(prev||next) ? `<nav style="margin-top:40px;display:flex;gap:14px;">${navBtn(prev,-1)}${navBtn(next,1)}</nav>` : ''}
     ${related.length ? `
     <section style="margin-top:46px;border-top:1px solid #ece9e2;padding-top:30px;">
       <h2 style="font-size:14px;font-family:'Noto Sans Thai',sans-serif;font-weight:600;letter-spacing:0.04em;color:#1b2531;margin-bottom:18px;">บทอื่นในภาคเดียวกัน</h2>
@@ -306,21 +341,35 @@ function articleView(){
   </main>`;
 }
 
-/* ===================== render + events ===================== */
+/* ===================== render + routing ===================== */
 function render(){
-  const body = state.view === 'article' ? articleView() : homeView();
+  let body;
+  if (state.view==='chapter') body = chapterView();
+  else if (state.view==='book') body = bookView();
+  else body = libraryView();
   $app.innerHTML = `<div style="min-height:100vh;background:#fbfaf7;color:#26303b;font-family:'Noto Serif Thai',serif;">${header()}${body}${footer()}</div>`;
-  $app.querySelectorAll('[data-home]').forEach(el => el.addEventListener('click', goHome));
-  $app.querySelectorAll('[data-open]').forEach(el => el.addEventListener('click', () => openArticle(el.getAttribute('data-open'))));
+  $app.querySelectorAll('[data-home]').forEach(el => el.addEventListener('click', goLibrary));
+  $app.querySelectorAll('[data-book]').forEach(el => el.addEventListener('click', () => openBook(el.getAttribute('data-book'))));
+  $app.querySelectorAll('[data-open]').forEach(el => el.addEventListener('click', () => openChapter(state.book, el.getAttribute('data-open'))));
   $app.querySelectorAll('[data-cat]').forEach(el => el.addEventListener('click', () => selectCat(el.getAttribute('data-cat'))));
 }
 
-function routeFromHash(){
-  const m = location.hash.match(/^#\/a\/(.+)$/);
-  if (m && ARTICLES.some(a=>a.id===decodeURIComponent(m[1]))) { state.view='article'; state.currentId=decodeURIComponent(m[1]); }
-  else { state.view='home'; state.currentId=null; }
+function parseHash(){
+  const h = location.hash; let m;
+  if ((m = h.match(/^#\/b\/([^/]+)\/(.+)$/))) return { view:'chapter', book:decodeURIComponent(m[1]), id:decodeURIComponent(m[2]) };
+  if ((m = h.match(/^#\/b\/([^/]+)$/)))       return { view:'book', book:decodeURIComponent(m[1]) };
+  return { view:'library' };
 }
-window.addEventListener('hashchange', () => { routeFromHash(); render(); window.scrollTo(0,0); });
+async function routeAndRender(){
+  const r = parseHash();
+  state.view = r.view; state.book = r.book || null; state.currentId = r.id || null; state.cat = 'all';
+  if (state.book) {
+    try { await ensureBook(state.book); }
+    catch(e){ state.view='library'; state.book=null; }
+  }
+  render(); window.scrollTo(0,0);
+}
+window.addEventListener('hashchange', routeAndRender);
 
 bootstrap();
 </script>

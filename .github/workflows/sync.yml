@@ -40,20 +40,20 @@ jobs:
 
       - run: pip install --quiet pyyaml
 
-      - name: Build articles.json from cpg_book (+ upsert to Supabase if configured)
+      - name: Build books from cpg_book (+ upsert to Supabase if configured)
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: |
-          python tools/build_articles.py --book-dir .cpg_book --out articles.json \
+          python tools/build_articles.py --book-dir .cpg_book --web-root . \
             ${SUPABASE_SERVICE_KEY:+--push-supabase}
 
-      - name: Commit refreshed articles.json
+      - name: Commit refreshed library
         run: |
           git config user.name  "cpg-bookweb-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add articles.json
-          git diff --cached --quiet && echo "no changes" || git commit -m "chore: sync articles from cpg_book"
+          git add library.json books
+          git diff --cached --quiet && echo "no changes" || git commit -m "chore: sync books from cpg_book"
           git push || echo "nothing to push"
 
       - name: Notify
@@ -65,5 +65,5 @@ jobs:
           LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
           LINE_TO: ${{ secrets.LINE_TO }}
         run: |
-          N=$(python -c "import json;print(len(json.load(open('articles.json'))['articles']))" 2>/dev/null || echo "?")
-          python tools/notify.py "ห้องสมุดสบายๆ · ซิงก์ ${{ job.status }} — ${N} บทความจาก cpg_book"
+          N=$(python -c "import json;print(sum(b['chapters'] for b in json.load(open('library.json'))['books']))" 2>/dev/null || echo "?")
+          python tools/notify.py "ปรัชญาปัญญาประดิษฐ์ · ซิงก์ ${{ job.status }} — ${N} บทจาก cpg_book"

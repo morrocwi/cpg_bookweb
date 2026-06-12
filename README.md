@@ -11,35 +11,47 @@
 ## โครงสร้าง
 
 ```
-cpg_bookweb/
+cpg_bookweb/                          # ห้องสมุด: library → book → chapter
 ├─ index.html               # ตัวเว็บ (static, vanilla JS — ไม่ต้อง build)
-├─ articles.json            # ข้อมูลบทความจริง สร้างจาก cpg_book
+├─ library.json             # รายชื่อหนังสือในห้องสมุด (ตอนนี้ 1 เล่ม)
+├─ books/                   # 1 โฟลเดอร์ = 1 เล่ม
+│  └─ person-reasoning/
+│     ├─ book.json          # ข้อมูลบท (chapters) ของหนังสือ สร้างจาก cpg_book
+│     └─ PRDFP.seed.yaml    # ไฟล์ตั้งต้นสำหรับ AI (สมการ + pseudo-schema · อ่านก่อน)
 ├─ tools/
-│  ├─ build_articles.py     # cpg_book (README + PRF yaml) -> articles.json (+ upsert Supabase)
+│  ├─ build_articles.py     # cpg_book (README + PRF yaml) -> books/<slug>/book.json + library.json
 │  └─ notify.py             # แจ้งเตือน Discord / Telegram / LINE (fail-soft)
 ├─ supabase/
-│  └─ schema.sql            # ตาราง articles + RLS (อ่านสาธารณะ)
+│  └─ schema.sql            # ตาราง articles (มี book_id) + RLS (อ่านสาธารณะ)
 ├─ .github/workflows/
 │  └─ sync.yml              # git -> build -> supabase -> notify
 └─ _design_extracted/       # ดีไซน์ต้นฉบับที่สกัดจาก .dc.html (provenance)
 ```
 
+## โครงสร้าง: ห้องสมุด → หนังสือ → บท
+
+- **ห้องสมุด** = `ปรัชญาปัญญาประดิษฐ์` (เว็บนี้) — รวมหนังสือหลายเล่มได้ ตอนนี้มี **1 เล่ม**
+- **1 โฟลเดอร์ = 1 เล่ม** ที่ `books/<slug>/`
+- **หนังสือเล่มแรก** = *Person Reasoning Design Foundation and Protocol* ซึ่ง **“คือ” ไฟล์ตั้งต้น**:
+  กลั่น Person Reasoning เป็น **สมการ + pseudo-schema** (ดู `PRDFP.seed.yaml`) ให้ AI อ่านก่อน
+  เพื่อเชื่อมกับบุคคลทั้ง **การซิงโครไนซ์** (ความหมายร่วม) และ **รีทึม** (จังหวะร่วม)
+
 ## เนื้อหา = ของจริงจาก cpg_book เท่านั้น
 
-`articles.json` ถูกสร้างโดย `tools/build_articles.py` ซึ่งอ่านไฟล์จริงใน `cpg_book`:
+`book.json` ถูกสร้างโดย `tools/build_articles.py` ซึ่งอ่านไฟล์จริงใน `cpg_book`:
 
-- `README.md` → บทความ "เกี่ยวกับห้องสมุด"
+- `README.md` → บท "บทนำ"
 - `personal_reasoning/00_…FOUNDATION….yaml` → ฐานปรัชญา 7 ด้าน · สมการหลัก 6 สมการ ·
-  หลักการให้เหตุผล 10 ข้อ (PR-001…PR-010)
+  หลักการ 10 ข้อ (PR-001…PR-010)
 
-หลักการ/เหตุผล/ตัวอย่าง/สมการ ถูกนำมา **ตามต้นฉบับ** และทุกบทความลิงก์กลับไปยังไฟล์ต้นทาง
+หลักการ/เหตุผล/ตัวอย่าง/สมการ ถูกนำมา **ตามต้นฉบับ** และทุกบทลิงก์กลับไปยังไฟล์ต้นทาง
 (รักษาที่มา ก่อนเพิ่มการตีความ) ชื่อหัวข้อภาษาไทยเป็นคำแปลที่ซื่อตรงของต้นฉบับภาษาอังกฤษ
 ซึ่งยังแสดงคู่กันในเนื้อหา
 
 สร้างใหม่:
 
 ```bash
-python tools/build_articles.py --book-dir /path/to/cpg_book --out articles.json
+python tools/build_articles.py --book-dir /path/to/cpg_book --web-root .
 ```
 
 ## รันในเครื่อง

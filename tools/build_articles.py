@@ -28,11 +28,20 @@ for _s in (sys.stdout, sys.stderr):
     except Exception:
         pass
 
-# ----- the book -----
+# ----- the library + the (currently single) book -----
+LIBRARY = {
+    "brand": "ปรัชญาปัญญาประดิษฐ์",
+    "tagline": "ห้องสมุดว่าด้วยปรัชญาปัญญาประดิษฐ์ — การให้เหตุผลและการอยู่ร่วมกันของมนุษย์กับ AI",
+}
 BOOK = {
+    "slug": "person-reasoning",
     "brand": "ปรัชญาปัญญาประดิษฐ์",
     "title": "Person Reasoning Design Foundation and Protocol",
     "title_th": "รากฐานและระเบียบการของการให้เหตุผลของบุคคล",
+    "accent": "#0ea5e9",
+    "summary": ("หนังสือที่กลั่นรากฐานการให้เหตุผลของบุคคลเป็นฐานปรัชญา สมการ และหลักการ "
+                "— สำหรับให้มนุษย์และ AI เชื่อมโยงและทำงานร่วมกันอย่างมีบริบท"),
+    "seed": "PRDFP.seed.yaml",
 }
 
 # ----- category metadata = the parts of the single book (drives the chips/TOC) -----
@@ -88,13 +97,21 @@ def build_about(book_dir):
     fm = re.search(r"## Final statement\s*\n+>\s*(.+?)(?:\n\n|\Z)", md, re.S)
     final = re.sub(r"\s+", " ", fm.group(1)).strip() if fm else ""
 
-    intro = ("บทนำของหนังสือ Person Reasoning Design Foundation and Protocol — "
-             "รวมรากฐานปรัชญา สมการ และหลักการของการให้เหตุผลของบุคคลไว้ในเล่มเดียว")
+    seed_path = "books/%s/%s" % (BOOK["slug"], BOOK["seed"])
+    intro = ("หนังสือเล่มนี้กลั่นรากฐานการให้เหตุผลของบุคคล (Person Reasoning) เป็นสมการและ pseudo-schema "
+             "— ไฟล์ตั้งต้นที่กระชับและเบา ให้ AI อ่านเป็นไฟล์แรกก่อนทำงานร่วมกับบุคคล")
 
-    body = ['<p>หนังสือเล่มนี้รวบรวมรากฐานการให้เหตุผลของบุคคล (Person Reasoning) ไว้ในเล่มเดียว — '
-            'ฐานปรัชญา สมการหลัก และหลักการ — เพื่อให้มนุษย์และ AI หลายตัวเข้าใจวิธีตีความ ตัดสิน '
-            'และแก้ไขของบุคคลได้อย่างสอดคล้องและมีบริบท โดยไม่ลดทอนบุคคลให้เหลือเพียงข้อมูลหรือแบบจำลอง '
-            'เนื้อหาเรียบเรียงจากห้องสมุดความรู้ cpg_book ของ Yaoharee Lahtee และ Walancha</p>']
+    body = ['<p><strong>สิ่งที่หนังสือเล่มนี้ต้องการสื่อ:</strong> รวบรวมรากฐานการให้เหตุผลของบุคคล '
+            '(Person Reasoning) แล้วแปลเป็น <strong>สมการ</strong> และ <strong>pseudo-schema</strong> '
+            'ให้กลายเป็น <strong>ไฟล์ตั้งต้น</strong> ไฟล์เดียวที่กระชับและเบา — เพื่อให้ AI อ่านไฟล์นี้ '
+            '<strong>เป็นไฟล์แรก</strong> แล้วทำงานร่วมกับบุคคลผู้นั้นได้อย่างลงตัว ทั้งทาง '
+            '<strong>การซิงโครไนซ์</strong> (ความหมายร่วม) และ <strong>รีทึม</strong> (จังหวะร่วม) '
+            'โดยไม่ลดทอนบุคคลให้เหลือเพียงข้อมูลหรือแบบจำลอง (PR_t ≠ Person)</p>',
+            '<blockquote><p>📄 ไฟล์ตั้งต้นสำหรับ AI: '
+            '<a href="%s" target="_blank" rel="noopener">PRDFP.seed.yaml</a> — ให้ AI อ่านก่อนเริ่มงาน</p>'
+            '</blockquote>' % seed_path,
+            '<p>ส่วนที่เหลือของหนังสือคือเนื้อหาที่ไฟล์ตั้งต้นนี้กลั่นมา — ฐานปรัชญา สมการหลัก และหลักการ '
+            'เรียบเรียงจากห้องสมุดความรู้ cpg_book ของ Yaoharee Lahtee และ Walancha</p>']
     if dist:
         body.append("<h2>หลักการของห้องสมุด</h2>")
         for title, eqn in dist:
@@ -225,6 +242,8 @@ def build_from_prf(book_dir):
 def build(book_dir):
     articles = [build_about(book_dir)] + build_from_prf(book_dir)
     articles.sort(key=lambda a: a.get("sort", 999))
+    for a in articles:
+        a["book_id"] = BOOK["slug"]
     return {
         "generated_at": datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat() + "Z",
         "source_repo": "morrocwi/cpg_book",
@@ -244,7 +263,7 @@ def push_supabase(articles):
     rows = []
     for a in articles:
         rows.append({k: a.get(k) for k in (
-            "id", "cat", "title", "excerpt", "body_html", "tags",
+            "id", "book_id", "cat", "title", "excerpt", "body_html", "tags",
             "read_minutes", "featured", "source", "source_id", "lang", "sort")})
     body = json.dumps(rows).encode("utf-8")
     req = urllib.request.Request(
@@ -258,18 +277,49 @@ def push_supabase(articles):
     return True
 
 
+def write_json(path, obj):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(obj, f, ensure_ascii=False, indent=2)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--book-dir", default=os.environ.get("CPG_BOOK_DIR", "."))
-    ap.add_argument("--out", default=os.path.join(os.path.dirname(__file__), "..", "articles.json"))
+    ap.add_argument("--web-root", default=os.path.join(os.path.dirname(__file__), ".."),
+                    help="cpg_bookweb root; writes books/<slug>/book.json and library.json")
     ap.add_argument("--push-supabase", action="store_true")
     args = ap.parse_args()
 
     bundle = build(args.book_dir)
-    out = os.path.abspath(args.out)
-    with open(out, "w", encoding="utf-8") as f:
-        json.dump(bundle, f, ensure_ascii=False, indent=2)
-    print(f"[build] {len(bundle['articles'])} articles -> {out}")
+    web_root = os.path.abspath(args.web_root)
+    slug = BOOK["slug"]
+
+    # one folder = one book
+    book_json = os.path.join(web_root, "books", slug, "book.json")
+    write_json(book_json, bundle)
+
+    # library index (lists the books; currently one)
+    library = {
+        "generated_at": bundle["generated_at"],
+        "library": LIBRARY,
+        "books": [{
+            "slug": slug,
+            "title": BOOK["title"],
+            "title_th": BOOK["title_th"],
+            "accent": BOOK["accent"],
+            "summary": BOOK["summary"],
+            "chapters": len(bundle["articles"]),
+            "data": f"books/{slug}/book.json",
+            "seed": f"books/{slug}/{BOOK['seed']}",
+            "source_repo": "morrocwi/cpg_book",
+        }],
+    }
+    write_json(os.path.join(web_root, "library.json"), library)
+
+    print(f"[build] library '{LIBRARY['brand']}' · 1 book · {len(bundle['articles'])} chapters")
+    print(f"   -> {book_json}")
+    print(f"   -> {os.path.join(web_root, 'library.json')}")
     for a in bundle["articles"]:
         print(f"   - [{a['cat']:10}] {a['id']:24} {a['title']}")
 
