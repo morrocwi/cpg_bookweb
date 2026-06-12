@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T05:28:37Z",
+  "generated_at": "2026-06-12T05:47:42Z",
   "source_repo": "morrocwi/cpg_book",
   "book": {
     "slug": "person-reasoning",
@@ -8,7 +8,20 @@
     "title_th": "รากฐานและระเบียบการของการให้เหตุผลของบุคคล",
     "accent": "#0ea5e9",
     "summary": "หนังสือที่กลั่นรากฐานการให้เหตุผลของบุคคลเป็นฐานปรัชญา สมการ และหลักการ — สำหรับให้มนุษย์และ AI เชื่อมโยงและทำงานร่วมกันอย่างมีบริบท",
-    "seed": "PRDFP.seed.yaml"
+    "seed": "PRDFP.seed.yaml",
+    "repo": "https://github.com/morrocwi/cpg_bookweb",
+    "source_repo": "https://github.com/morrocwi/cpg_book",
+    "seed_url": "https://morrocwi.github.io/cpg_bookweb/books/person-reasoning/PRDFP.seed.yaml",
+    "overview": {
+      "what": "กลั่นรากฐานการให้เหตุผลของบุคคล (Person Reasoning) เป็น สมการ + pseudo-schema ไฟล์เดียวที่กระชับและเบา ให้ AI อ่านเป็นไฟล์แรกก่อนทำงานร่วมกับบุคคล",
+      "problems": [
+        "AI แต่ละตัวเห็นบุคคลเดียวกันแค่บางบทบาท จึงเข้าใจไม่ตรงกัน",
+        "คุยกันคนละรอบ ทำให้สรุปลำดับความสำคัญของบุคคลเพี้ยนไปคนละทาง",
+        "memory ที่แยกตามงาน ทำให้ความต่อเนื่องของการให้เหตุผลแตกเป็นเสี่ยง",
+        "การปรับแต่งสไตล์อย่างเดียว ไม่รักษามาตรฐานการตัดสินของบุคคล"
+      ],
+      "solves": "ให้ AI อ่านไฟล์ตั้งต้นนี้ก่อน แล้วเชื่อมกับบุคคลได้ลงตัวทั้ง การซิงโครไนซ์ (ความหมายร่วม) และ รีทึม (จังหวะร่วม) โดยไม่ลดทอนบุคคลให้เหลือเพียงแบบจำลอง (PR_t ≠ Person)"
+    }
   },
   "categories": {
     "about": {
@@ -26,6 +39,10 @@
     "principle": {
       "label": "หลักการ",
       "accent": "#0ea5e9"
+    },
+    "reference": {
+      "label": "บทอ้างอิง",
+      "accent": "#64748b"
     }
   },
   "articles": [
@@ -291,6 +308,25 @@
       "source_id": "PR-010",
       "lang": "th-en",
       "updated_at": "2026-06-12",
+      "book_id": "person-reasoning"
+    },
+    {
+      "id": "references",
+      "cat": "reference",
+      "featured": false,
+      "sort": 900,
+      "title": "บทอ้างอิง — ที่มาทั้งหมดบน git",
+      "excerpt": "แหล่งที่มาทั้งหมดของหนังสือ อ้างอิงกลับไปยัง git ต้นทาง พร้อมวิธีติดตั้งผ่าน git",
+      "body_html": "<p>หนังสือเล่มนี้เรียบเรียงจากแหล่งต้นทางบน git ทั้งหมด ตามหลักของห้องสมุด — <strong>“รักษาที่มา ก่อนเพิ่มการตีความ”</strong> ทุกบทอ้างอิงกลับไปยังไฟล์ต้นทางได้</p>\n<h2>แหล่งต้นทาง (git)</h2>\n<ul>\n<li><strong>หนังสือต้นทาง</strong> — <a href=\"https://github.com/morrocwi/cpg_book\" target=\"_blank\" rel=\"noopener\">morrocwi/cpg_book</a> · ห้องสมุดความรู้ของ Yaoharee Lahtee และ Walancha</li>\n<li><strong>ไฟล์รากฐาน (PRF-001)</strong> — <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\">personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml</a> · ที่มาของ 7 ฐานปรัชญา · 6 สมการ · 10 หลักการ</li>\n<li><strong>เว็บ + ไฟล์ตั้งต้น</strong> — <a href=\"https://github.com/morrocwi/cpg_bookweb\" target=\"_blank\" rel=\"noopener\">morrocwi/cpg_bookweb</a></li>\n<li><strong>ไฟล์ตั้งต้นสำหรับ AI (seed)</strong> — <a href=\"books/person-reasoning/PRDFP.seed.yaml\" target=\"_blank\" rel=\"noopener\">PRDFP.seed.yaml</a> · สมการ + pseudo-schema ที่ให้ AI อ่านก่อน</li>\n</ul>\n<h2>ติดตั้ง / ดึงผ่าน git</h2>\n<p>โคลนหนังสือต้นทาง หรือดึงเฉพาะไฟล์ตั้งต้นสำหรับ AI:</p>\n<blockquote><p><code>git clone https://github.com/morrocwi/cpg_book.git</code><br><code>curl -O https://morrocwi.github.io/cpg_bookweb/books/person-reasoning/PRDFP.seed.yaml</code></p></blockquote>\n<h2>เจ้าของบริบท</h2>\n<p>Yaoharee Lahtee · Walancha — เจ้าของประสบการณ์ บริบท และความหมายที่ถูกกลั่นเป็นองค์ความรู้นี้ (บุคคลไม่เท่ากับแบบจำลอง: <code>PR_t ≠ Person</code>)</p>\n<h2>วิธีอ้างอิง</h2>\n<blockquote><p>Person Reasoning Design Foundation and Protocol. ปรัชญาปัญญาประดิษฐ์ (cpg_bookweb). เรียบเรียงจาก morrocwi/cpg_book · PRF-001.</p></blockquote>",
+      "tags": [
+        "อ้างอิง",
+        "git",
+        "ที่มา"
+      ],
+      "read_minutes": 1,
+      "source": "README.md",
+      "source_id": "REFERENCES",
+      "lang": "th-en",
       "book_id": "person-reasoning"
     }
   ]

@@ -42,6 +42,22 @@ BOOK = {
     "summary": ("หนังสือที่กลั่นรากฐานการให้เหตุผลของบุคคลเป็นฐานปรัชญา สมการ และหลักการ "
                 "— สำหรับให้มนุษย์และ AI เชื่อมโยงและทำงานร่วมกันอย่างมีบริบท"),
     "seed": "PRDFP.seed.yaml",
+    "repo": "https://github.com/morrocwi/cpg_bookweb",
+    "source_repo": "https://github.com/morrocwi/cpg_book",
+    "seed_url": "https://morrocwi.github.io/cpg_bookweb/books/person-reasoning/PRDFP.seed.yaml",
+    # what the book is + the problem it solves (problems = Thai gloss of PRF human_multi_ai_bridge.problem)
+    "overview": {
+        "what": ("กลั่นรากฐานการให้เหตุผลของบุคคล (Person Reasoning) เป็น สมการ + pseudo-schema "
+                 "ไฟล์เดียวที่กระชับและเบา ให้ AI อ่านเป็นไฟล์แรกก่อนทำงานร่วมกับบุคคล"),
+        "problems": [
+            "AI แต่ละตัวเห็นบุคคลเดียวกันแค่บางบทบาท จึงเข้าใจไม่ตรงกัน",
+            "คุยกันคนละรอบ ทำให้สรุปลำดับความสำคัญของบุคคลเพี้ยนไปคนละทาง",
+            "memory ที่แยกตามงาน ทำให้ความต่อเนื่องของการให้เหตุผลแตกเป็นเสี่ยง",
+            "การปรับแต่งสไตล์อย่างเดียว ไม่รักษามาตรฐานการตัดสินของบุคคล",
+        ],
+        "solves": ("ให้ AI อ่านไฟล์ตั้งต้นนี้ก่อน แล้วเชื่อมกับบุคคลได้ลงตัวทั้ง การซิงโครไนซ์ "
+                   "(ความหมายร่วม) และ รีทึม (จังหวะร่วม) โดยไม่ลดทอนบุคคลให้เหลือเพียงแบบจำลอง (PR_t ≠ Person)"),
+    },
 }
 
 # ----- category metadata = the parts of the single book (drives the chips/TOC) -----
@@ -50,6 +66,7 @@ CATEGORIES = {
     "philosophy": {"label": "ฐานปรัชญา",  "accent": "#10b981"},
     "equation":   {"label": "สมการหลัก",  "accent": "#8b5cf6"},
     "principle":  {"label": "หลักการ",    "accent": "#0ea5e9"},
+    "reference":  {"label": "บทอ้างอิง",  "accent": "#64748b"},
 }
 
 # faithful Thai titles for the 10 principles (summaries of the verbatim English statement)
@@ -239,8 +256,50 @@ def build_from_prf(book_dir):
     return out
 
 
+def build_references():
+    """The closing chapter — cites every source back to its git origin."""
+    seed_path = "books/%s/%s" % (BOOK["slug"], BOOK["seed"])
+    body = [
+        '<p>หนังสือเล่มนี้เรียบเรียงจากแหล่งต้นทางบน git ทั้งหมด ตามหลักของห้องสมุด — '
+        '<strong>“รักษาที่มา ก่อนเพิ่มการตีความ”</strong> ทุกบทอ้างอิงกลับไปยังไฟล์ต้นทางได้</p>',
+        '<h2>แหล่งต้นทาง (git)</h2>',
+        '<ul>',
+        '<li><strong>หนังสือต้นทาง</strong> — '
+        '<a href="%s" target="_blank" rel="noopener">morrocwi/cpg_book</a> '
+        '· ห้องสมุดความรู้ของ Yaoharee Lahtee และ Walancha</li>' % BOOK["source_repo"],
+        '<li><strong>ไฟล์รากฐาน (PRF-001)</strong> — '
+        '<a href="%s" target="_blank" rel="noopener">personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml</a> '
+        '· ที่มาของ 7 ฐานปรัชญา · 6 สมการ · 10 หลักการ</li>' % gh_blob(PR_SRC),
+        '<li><strong>เว็บ + ไฟล์ตั้งต้น</strong> — '
+        '<a href="%s" target="_blank" rel="noopener">morrocwi/cpg_bookweb</a></li>' % BOOK["repo"],
+        '<li><strong>ไฟล์ตั้งต้นสำหรับ AI (seed)</strong> — '
+        '<a href="%s" target="_blank" rel="noopener">PRDFP.seed.yaml</a> '
+        '· สมการ + pseudo-schema ที่ให้ AI อ่านก่อน</li>' % seed_path,
+        '</ul>',
+        '<h2>ติดตั้ง / ดึงผ่าน git</h2>',
+        '<p>โคลนหนังสือต้นทาง หรือดึงเฉพาะไฟล์ตั้งต้นสำหรับ AI:</p>',
+        '<blockquote><p><code>git clone %s.git</code><br>'
+        '<code>curl -O %s</code></p></blockquote>' % (BOOK["source_repo"], BOOK["seed_url"]),
+        '<h2>เจ้าของบริบท</h2>',
+        '<p>Yaoharee Lahtee · Walancha — เจ้าของประสบการณ์ บริบท และความหมายที่ถูกกลั่นเป็นองค์ความรู้นี้ '
+        '(บุคคลไม่เท่ากับแบบจำลอง: <code>PR_t ≠ Person</code>)</p>',
+        '<h2>วิธีอ้างอิง</h2>',
+        '<blockquote><p>Person Reasoning Design Foundation and Protocol. '
+        'ปรัชญาปัญญาประดิษฐ์ (cpg_bookweb). เรียบเรียงจาก morrocwi/cpg_book · PRF-001.</p></blockquote>',
+    ]
+    return {
+        "id": "references", "cat": "reference", "featured": False, "sort": 900,
+        "title": "บทอ้างอิง — ที่มาทั้งหมดบน git",
+        "excerpt": "แหล่งที่มาทั้งหมดของหนังสือ อ้างอิงกลับไปยัง git ต้นทาง พร้อมวิธีติดตั้งผ่าน git",
+        "body_html": "\n".join(body),
+        "tags": ["อ้างอิง", "git", "ที่มา"],
+        "read_minutes": 1,
+        "source": "README.md", "source_id": "REFERENCES", "lang": "th-en",
+    }
+
+
 def build(book_dir):
-    articles = [build_about(book_dir)] + build_from_prf(book_dir)
+    articles = [build_about(book_dir)] + build_from_prf(book_dir) + [build_references()]
     articles.sort(key=lambda a: a.get("sort", 999))
     for a in articles:
         a["book_id"] = BOOK["slug"]
