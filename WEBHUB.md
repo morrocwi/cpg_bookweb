@@ -54,3 +54,16 @@ git add sites/<slug> sites.json && git commit -m "feat(site): <slug>" && git pus
 - **anon key** ใส่ใน frontend ได้ (ปลอดภัยด้วย Supabase RLS) — **service key ห้ามคอมมิต** อยู่ใน GitHub Secrets เท่านั้น
 - **1 โฟลเดอร์ = 1 เว็บ** — อย่าปนเนื้อหาข้ามเว็บ; เว็บใหม่ไม่แตะของเว็บอื่น
 - เนื้อหาที่มาจาก repo อื่น (เช่น `cpg_book`) ให้ **รักษาที่มา** + ลิงก์กลับต้นทาง
+
+## ขอบเขตระหว่างสองเว็บ (ISSUE-0119 · human_pi 2026-06-12 — แยกแต่จัดระเบียบ)
+
+| | **cpg_bookweb** (hub นี้) | **projects/araya-platform** |
+|---|---|---|
+| ประเภท | เว็บเนื้อหา **static** | **แอป dynamic** (auth/SSR/API/connector) |
+| Stack / deploy | static + vanilla JS → **GitHub Pages** | Next.js + Supabase SSR → **Netlify** |
+| สกิล | `/WebForge` | (devteam / actor-connector) |
+
+- **Supabase = โปรเจกต์เดียว** (`ckvxuvkxctssyozscfbm`) แต่ **แต่ละเว็บเป็นเจ้าของตารางของตัวเองในรีโปของตัวเอง** —
+  ตารางเนื้อหาของ hub นี้ (เช่น `articles`) นิยามใน `supabase/schema.sql` ของ cpg_bookweb เท่านั้น ไม่ปนกับตารางของ araya-platform
+- งานเว็บที่เป็น **แอป/auth/connector → ไปที่ araya-platform** (ไม่ใช่ที่นี่)
+- คลังสกิล/ติดตั้ง/อ่าน อยู่จุดเดียวที่ `cpq_skill/SKILLS.md` (`python cpq_skill/skills.py …`)
