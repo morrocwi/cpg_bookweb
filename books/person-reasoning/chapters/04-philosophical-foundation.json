@@ -1,0 +1,20 @@
+{
+  "id": "philosophical-foundation",
+  "cat": "philosophy",
+  "featured": false,
+  "sort": 3,
+  "title": "ฐานปรัชญา 7 ด้านของการให้เหตุผล",
+  "excerpt": "ความเป็นบุคคล ญาณวิทยา การตีความ ปัญญาเชิงปฏิบัติ จริยศาสตร์เชิงสัมพันธ์ จิตที่ขยายออก และความเข้าใจร่วม — รากฐานของ Personal Reasoning Foundation",
+  "body_html": "<p>ฐานปรัชญาเจ็ดด้านที่รองรับวิธีการให้เหตุผล — แต่ละด้านมี \"หลักการ\" และ \"นัยที่ตามมา\" (แสดงต้นฉบับภาษาอังกฤษตามที่บันทึกไว้)</p>\n<h2>ความเป็นบุคคล</h2>\n<p><strong>Principle.</strong> A person is more than stored preferences, memories, roles, or outputs.</p>\n<p><strong>Implication.</strong> The file may represent recurring reasoning patterns, but must never claim identity-equivalence with the person.</p>\n<h2>ญาณวิทยา</h2>\n<p><strong>Principle.</strong> Knowledge is finite, situated, corrigible, and answerable to evidence.</p>\n<p><strong>Implication.</strong> Confidence, fluency, status, and repetition do not independently establish truth.</p>\n<h2>การตีความ</h2>\n<p><strong>Principle.</strong> Meaning arises through the relation between content, context, language, and prior understanding.</p>\n<p><strong>Implication.</strong> A principle should guide interpretation without erasing the particular context.</p>\n<h2>ปัญญาเชิงปฏิบัติ</h2>\n<p><strong>Principle.</strong> Good judgment cannot be reduced to rule execution alone.</p>\n<p><strong>Implication.</strong> The file should preserve priorities, tensions, exceptions, and conditions for revision.</p>\n<h2>จริยศาสตร์เชิงสัมพันธ์</h2>\n<p><strong>Principle.</strong> Judgment is relational because decisions affect persons beyond the immediate speaker.</p>\n<p><strong>Implication.</strong> Relevant affected persons, dignity, responsibility, and repairability should remain visible.</p>\n<h2>จิตที่ขยายออก</h2>\n<p><strong>Principle.</strong> External artifacts can support human memory and reasoning without becoming the human.</p>\n<p><strong>Implication.</strong> This file is a shared cognitive reference for humans and AI, not an autonomous mind.</p>\n<h2>ความเข้าใจร่วมระหว่างผู้คน</h2>\n<p><strong>Principle.</strong> Collaboration requires shared meanings and standards, not identical conclusions.</p>\n<p><strong>Implication.</strong> Multiple AI systems may interpret differently while remaining coherent with common principles.</p>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml#L37\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · philosophical_foundation</a></p>",
+  "tags": [
+    "ปรัชญา",
+    "ญาณวิทยา",
+    "จริยศาสตร์"
+  ],
+  "read_minutes": 1,
+  "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+  "source_id": "PRF-001/philosophy",
+  "lang": "th-en",
+  "updated_at": "2026-06-12",
+  "book_id": "person-reasoning"
+}

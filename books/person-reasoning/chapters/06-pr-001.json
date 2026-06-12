@@ -1,0 +1,21 @@
+{
+  "id": "pr-001",
+  "cat": "principle",
+  "featured": false,
+  "sort": 10,
+  "title": "แยกสิ่งที่สังเกต ออกจากการตีความและกฎที่กำกับ",
+  "excerpt": "Many errors occur when a report, its interpretation, and the rule applied to it are treated as one thing.",
+  "body_html": "<span class=\"principle\">PR-001 · ความเสถียร: สูง (high)</span>\n<h2>หลักการ (ต้นฉบับ)</h2>\n<blockquote><p>Separate observed content, contextual interpretation, and governing protocol.</p></blockquote>\n<h2>เหตุผล</h2>\n<p>Many errors occur when a report, its interpretation, and the rule applied to it are treated as one thing.</p>\n<h2>ตัวอย่างการใช้ผิด</h2>\n<p>Treating a client's statement as verified institutional fact.</p>\n<h2>เงื่อนไขทบทวน</h2>\n<p>A better distinction model is demonstrated across multiple cases.</p>\n<h2>ขอบเขต</h2>\n<div><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">general</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">research</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">operations</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">people</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">religious_advisory</span></div>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · PR-001</a></p>",
+  "tags": [
+    "general",
+    "research",
+    "operations",
+    "people"
+  ],
+  "read_minutes": 1,
+  "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+  "source_id": "PR-001",
+  "lang": "th-en",
+  "updated_at": "2026-06-12",
+  "book_id": "person-reasoning"
+}

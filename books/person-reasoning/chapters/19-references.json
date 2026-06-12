@@ -1,0 +1,19 @@
+{
+  "id": "references",
+  "cat": "reference",
+  "featured": false,
+  "sort": 900,
+  "title": "บทอ้างอิง — ที่มาทั้งหมดบน git",
+  "excerpt": "แหล่งที่มาทั้งหมดของหนังสือ อ้างอิงกลับไปยัง git ต้นทาง พร้อมวิธีติดตั้งผ่าน git",
+  "body_html": "<p>หนังสือเล่มนี้เรียบเรียงจากแหล่งต้นทางบน git ทั้งหมด ตามหลักของห้องสมุด — <strong>“รักษาที่มา ก่อนเพิ่มการตีความ”</strong> ทุกบทอ้างอิงกลับไปยังไฟล์ต้นทางได้</p>\n<h2>แหล่งต้นทาง (git)</h2>\n<ul>\n<li><strong>หนังสือต้นทาง</strong> — <a href=\"https://github.com/morrocwi/cpg_book\" target=\"_blank\" rel=\"noopener\">morrocwi/cpg_book</a> · ห้องสมุดความรู้ของ Yaoharee Lahtee และ Walancha</li>\n<li><strong>ไฟล์รากฐาน (PRF-001)</strong> — <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\">personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml</a> · ที่มาของ 7 ฐานปรัชญา · 6 สมการ · 10 หลักการ</li>\n<li><strong>เว็บ + ไฟล์ตั้งต้น</strong> — <a href=\"https://github.com/morrocwi/cpg_bookweb\" target=\"_blank\" rel=\"noopener\">morrocwi/cpg_bookweb</a></li>\n<li><strong>ไฟล์ตั้งต้นสำหรับ AI (seed)</strong> — <a href=\"books/person-reasoning/PRDFP.seed.yaml\" target=\"_blank\" rel=\"noopener\">PRDFP.seed.yaml</a> · สมการ + pseudo-schema ที่ให้ AI อ่านก่อน</li>\n</ul>\n<h2>ติดตั้ง / ดึงผ่าน git (เฉพาะเล่มนี้)</h2>\n<p>ดึง <strong>เฉพาะหนังสือเล่มนี้</strong> (ไม่ใช่ทั้ง repo) ด้วย sparse-checkout — แก้ไขรายบทได้:</p>\n<blockquote><p><code>git clone --filter=blob:none --sparse https://github.com/morrocwi/cpg_bookweb.git</code><br><code>cd cpg_bookweb &amp;&amp; git sparse-checkout set books/person-reasoning</code><br><code># แก้รายบทที่ books/person-reasoning/chapters/*.json · เพิ่มบทใหม่ = เพิ่มไฟล์</code><br><code>curl -O https://morrocwi.github.io/cpg_bookweb/books/person-reasoning/PRDFP.seed.yaml</code>  <span style=\"color:#9aa5b1;\"># ไฟล์ตั้งต้น (seed)</span></p></blockquote>\n<h2>ผู้เขียน & เจ้าของบริบท</h2>\n<p><strong>ผู้เขียน:</strong> Yaoharee, 2026</p>\n<p>Yaoharee Lahtee · Walancha — เจ้าของประสบการณ์ บริบท และความหมายที่ถูกกลั่นเป็นองค์ความรู้นี้ (บุคคลไม่เท่ากับแบบจำลอง: <code>PR_t ≠ Person</code>)</p>\n<h2>วิธีอ้างอิง</h2>\n<blockquote><p>Yaoharee, 2026. <em>Person Reasoning Design Foundation and Protocol.</em> ปรัชญาปัญญาประดิษฐ์ (cpg_bookweb). เรียบเรียงจาก morrocwi/cpg_book · PRF-001.</p></blockquote>",
+  "tags": [
+    "อ้างอิง",
+    "git",
+    "ที่มา"
+  ],
+  "read_minutes": 1,
+  "source": "README.md",
+  "source_id": "REFERENCES",
+  "lang": "th-en",
+  "book_id": "person-reasoning"
+}

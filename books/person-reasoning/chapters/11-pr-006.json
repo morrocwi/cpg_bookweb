@@ -1,0 +1,21 @@
+{
+  "id": "pr-006",
+  "cat": "principle",
+  "featured": false,
+  "sort": 15,
+  "title": "ความสามารถแก้ไขกลับ คือส่วนหนึ่งของการตัดสินที่รับผิดชอบ",
+  "excerpt": "Good decisions preserve correction, appeal, rollback, or remedy when possible.",
+  "body_html": "<span class=\"principle\">PR-006 · ความเสถียร: สูง (high)</span>\n<h2>หลักการ (ต้นฉบับ)</h2>\n<blockquote><p>Repairability is part of responsible judgment.</p></blockquote>\n<h2>เหตุผล</h2>\n<p>Good decisions preserve correction, appeal, rollback, or remedy when possible.</p>\n<h2>ตัวอย่างการใช้ผิด</h2>\n<p>Making an irreversible external commitment from incomplete information.</p>\n<h2>เงื่อนไขทบทวน</h2>\n<p>A domain requires a more specific concept of remedy or irreversibility.</p>\n<h2>ขอบเขต</h2>\n<div><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">general</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">operations</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">AI_collaboration</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">people</span></div>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · PR-006</a></p>",
+  "tags": [
+    "general",
+    "operations",
+    "AI_collaboration",
+    "people"
+  ],
+  "read_minutes": 1,
+  "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+  "source_id": "PR-006",
+  "lang": "th-en",
+  "updated_at": "2026-06-12",
+  "book_id": "person-reasoning"
+}

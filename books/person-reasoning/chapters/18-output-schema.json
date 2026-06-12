@@ -1,0 +1,20 @@
+{
+  "id": "output-schema",
+  "cat": "schema",
+  "featured": false,
+  "sort": 50,
+  "title": "ผลลัพธ์: ไฟล์ schema ที่ควรได้ตอนจบ",
+  "excerpt": "เมื่อครบกระบวนการ ควรได้ไฟล์ schema รูปแบบนี้ — โครงสร้าง รูปร่างรายการ ขนาด และเกณฑ์คุณภาพ",
+  "body_html": "<p>เมื่อทำครบกระบวนการ ผลลัพธ์ควรเป็น <strong>ไฟล์ Personal Reasoning Foundation</strong> ที่ตรวจสอบได้ด้วย <code>personal_reasoning_foundation.schema.yaml</code> — ฉบับเต็มสำหรับเก็บถาวร และฉบับกลั่น (seed) สำหรับให้ AI อ่านก่อน</p>\n<h2>ส่วนที่ไฟล์ schema ควรมี</h2>\n<ul><li><code>document</code> — เมตา (id, version, status, owner, review_cycle)</li><li><code>identity</code> — นิยาม + purpose + not_a (ตำแหน่งของไฟล์)</li><li><code>philosophical_foundation</code> — ฐานปรัชญา</li><li><code>core_equations</code> — สมการเชิงตีความ</li><li><code>core_principles</code> — หลักการ (id, statement, rationale, scope, counterexample, revision_trigger, stability)</li><li><code>conceptual_distinctions</code> — ต่างจาก prompt/skill/workflow/...</li><li><code>interpretation_protocol</code> + <code>revision_protocol</code> — กระบวนการ</li></ul>\n<h2>รูปร่างของรายการ (pseudo-schema)</h2>\n<blockquote><p style=\"font-family:ui-monospace,monospace;\">principle: { id, statement, rationale, scope[], counterexample, revision_trigger, stability }<br>equation:&nbsp; { id, name, expression, terms, meaning }<br>stability: [constitutional, high, medium, experimental]</p></blockquote>\n<h2>ขนาดและขอบเขตที่แนะนำ</h2>\n<ul><li>ความยาว ~1,500-3,500 คำ (180-450 บรรทัด · 12-35 KB)</li><li>หลักการ 6-15 active principles ข้อ · สมการ 3-10 equations · ตัวอย่าง 3-12 concise examples</li></ul>\n<h2>เกณฑ์คุณภาพ (peer-review checklist)</h2>\n<ul><li>Does the file describe reusable reasoning rather than commands?</li><li>Can each principle be explained without referring to a single task?</li><li>Are Personal Reasoning, prompt, workflow, skill, memory, persona, and policy clearly distinguished?</li><li>Does every principle include rationale, scope, counterexample, revision trigger, and stability?</li><li>Does the file explicitly state PR_t != Person?</li><li>Are equations interpretive rather than pseudo-scientific decoration?</li><li>Does pseudocode stop at a reasoning reference rather than an action?</li><li>Can multiple AI systems use the principles without being forced into identical conclusions?</li><li>Can the owner challenge, revise, or deprecate any principle?</li><li>Are private or sensitive details excluded unless necessary and explicitly approved?</li></ul>\n<blockquote><p>ฉบับกลั่นที่ AI อ่านก่อน: <a href=\"books/person-reasoning/PRDFP.seed.yaml\" target=\"_blank\" rel=\"noopener\">PRDFP.seed.yaml</a></p></blockquote>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · output-schema</a></p>",
+  "tags": [
+    "schema",
+    "ผลลัพธ์",
+    "peer-review"
+  ],
+  "read_minutes": 1,
+  "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+  "source_id": "PRF-001/output-schema",
+  "lang": "th-en",
+  "updated_at": "2026-06-12",
+  "book_id": "person-reasoning"
+}

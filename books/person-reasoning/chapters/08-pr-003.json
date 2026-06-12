@@ -1,0 +1,21 @@
+{
+  "id": "pr-003",
+  "cat": "principle",
+  "featured": false,
+  "sort": 12,
+  "title": "ข้อสรุปยังเป็นชั่วคราว ตราบที่ยังมีความไม่แน่นอน",
+  "excerpt": "Making uncertainty visible prevents temporary interpretations from becoming false certainty.",
+  "body_html": "<span class=\"principle\">PR-003 · ความเสถียร: รากฐาน (constitutional)</span>\n<h2>หลักการ (ต้นฉบับ)</h2>\n<blockquote><p>A conclusion is provisional when relevant uncertainty remains.</p></blockquote>\n<h2>เหตุผล</h2>\n<p>Making uncertainty visible prevents temporary interpretations from becoming false certainty.</p>\n<h2>ตัวอย่างการใช้ผิด</h2>\n<p>Reporting a likely cause as the confirmed cause.</p>\n<h2>เงื่อนไขทบทวน</h2>\n<p>New evidence resolves or changes the uncertainty.</p>\n<h2>ขอบเขต</h2>\n<div><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">general</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">research</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">people</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">operations</span></div>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · PR-003</a></p>",
+  "tags": [
+    "general",
+    "research",
+    "people",
+    "operations"
+  ],
+  "read_minutes": 1,
+  "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+  "source_id": "PR-003",
+  "lang": "th-en",
+  "updated_at": "2026-06-12",
+  "book_id": "person-reasoning"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "distinctions",
+  "cat": "position",
+  "featured": false,
+  "sort": 2,
+  "title": "ต่างจาก prompt · skill · workflow · persona อย่างไร",
+  "excerpt": "ความต่างที่ชัดเจนระหว่าง Personal Reasoning กับ prompt, workflow, skill, memory, persona, policy และ knowledge base",
+  "body_html": "<p>Personal Reasoning มักถูกสับสนกับสิ่งเหล่านี้ แต่ละอย่างทำหน้าที่คนละชั้น — แยกให้ชัดเพื่อไม่ให้ “หลักคิด” กลายเป็น “คำสั่ง” โดยไม่ตั้งใจ (แสดงคำอธิบายต้นฉบับ)</p>\n<h2>ต่างจาก prompt (คำสั่งงาน)</h2>\n<p><strong>คืออะไร.</strong> A request or instruction for a particular task.</p>\n<p><strong>ต่างกันตรงไหน.</strong> A prompt says what is requested now; Personal Reasoning preserves reusable ways of interpreting and judging.</p>\n<h2>ต่างจาก workflow (ลำดับงาน)</h2>\n<p><strong>คืออะไร.</strong> A sequence of states, responsibilities, and transitions for completing work.</p>\n<p><strong>ต่างกันตรงไหน.</strong> A workflow organizes action; Personal Reasoning explains principles that may inform understanding across many workflows.</p>\n<h2>ต่างจาก skill (ความสามารถ)</h2>\n<p><strong>คืออะไร.</strong> A bounded capability to perform a type of work.</p>\n<p><strong>ต่างกันตรงไหน.</strong> A skill concerns what a system can do; Personal Reasoning concerns how meaning, evidence, limits, and responsibility are understood.</p>\n<h2>ต่างจาก memory (ความจำ)</h2>\n<p><strong>คืออะไร.</strong> Stored facts, preferences, events, and prior decisions.</p>\n<p><strong>ต่างกันตรงไหน.</strong> Memory records what happened or is preferred; Personal Reasoning records recurring standards and patterns of judgment.</p>\n<h2>ต่างจาก persona (โทน/บทบาท)</h2>\n<p><strong>คืออะไร.</strong> A presentation style, tone, role, or character.</p>\n<p><strong>ต่างกันตรงไหน.</strong> Persona shapes expression; Personal Reasoning concerns the structure behind interpretation and judgment.</p>\n<h2>ต่างจาก policy (นโยบาย)</h2>\n<p><strong>คืออะไร.</strong> An organizational or institutional rule governing permitted conduct.</p>\n<p><strong>ต่างกันตรงไหน.</strong> Policy has formal scope and authority; Personal Reasoning is a personal interpretive reference unless explicitly adopted elsewhere.</p>\n<h2>ต่างจาก knowledge base (คลังความรู้)</h2>\n<p><strong>คืออะไร.</strong> A collection of facts, documents, sources, and domain knowledge.</p>\n<p><strong>ต่างกันตรงไหน.</strong> A knowledge base stores content; Personal Reasoning stores relations among evidence, context, values, limits, and correction.</p>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · distinctions</a></p>",
+  "tags": [
+    "prompt",
+    "skill",
+    "workflow",
+    "persona"
+  ],
+  "read_minutes": 1,
+  "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+  "source_id": "PRF-001/distinctions",
+  "lang": "th-en",
+  "updated_at": "2026-06-12",
+  "book_id": "person-reasoning"
+}

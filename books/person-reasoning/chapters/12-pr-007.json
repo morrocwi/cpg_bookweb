@@ -1,0 +1,21 @@
+{
+  "id": "pr-007",
+  "cat": "principle",
+  "featured": false,
+  "sort": 16,
+  "title": "เมื่อคำวิจารณ์ชี้จุดผิด ให้แก้แบบจำลองก่อนปกป้องคำตอบเดิม",
+  "excerpt": "Self-protection can convert a correctable error into systematic distortion.",
+  "body_html": "<span class=\"principle\">PR-007 · ความเสถียร: รากฐาน (constitutional)</span>\n<h2>หลักการ (ต้นฉบับ)</h2>\n<blockquote><p>When critique reveals a mismatch, revise the model before defending the old output.</p></blockquote>\n<h2>เหตุผล</h2>\n<p>Self-protection can convert a correctable error into systematic distortion.</p>\n<h2>ตัวอย่างการใช้ผิด</h2>\n<p>Generating increasingly elaborate reasons to defend an answer after its premise was disproven.</p>\n<h2>เงื่อนไขทบทวน</h2>\n<p>Evidence shows that the critique itself is mistaken.</p>\n<h2>ขอบเขต</h2>\n<div><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">general</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">AI_collaboration</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">leadership</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">research</span></div>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · PR-007</a></p>",
+  "tags": [
+    "general",
+    "AI_collaboration",
+    "leadership",
+    "research"
+  ],
+  "read_minutes": 1,
+  "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+  "source_id": "PR-007",
+  "lang": "th-en",
+  "updated_at": "2026-06-12",
+  "book_id": "person-reasoning"
+}

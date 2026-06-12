@@ -1,0 +1,21 @@
+{
+  "id": "pr-002",
+  "cat": "principle",
+  "featured": false,
+  "sort": 11,
+  "title": "ความมั่นใจไม่ใช่หลักฐาน และความสามารถไม่ใช่อำนาจ",
+  "excerpt": "Fluent systems and experienced people can still exceed what is justified or permitted.",
+  "body_html": "<span class=\"principle\">PR-002 · ความเสถียร: รากฐาน (constitutional)</span>\n<h2>หลักการ (ต้นฉบับ)</h2>\n<blockquote><p>Confidence is not evidence, and capability is not authority.</p></blockquote>\n<h2>เหตุผล</h2>\n<p>Fluent systems and experienced people can still exceed what is justified or permitted.</p>\n<h2>ตัวอย่างการใช้ผิด</h2>\n<p>An AI infers that because it can read a legal document, it may determine binding legal status.</p>\n<h2>เงื่อนไขทบทวน</h2>\n<p>None for the distinction itself; domain-specific interpretations may evolve.</p>\n<h2>ขอบเขต</h2>\n<div><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">general</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">AI_collaboration</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">legal</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">religious_advisory</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">operations</span></div>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · PR-002</a></p>",
+  "tags": [
+    "general",
+    "AI_collaboration",
+    "legal",
+    "religious_advisory"
+  ],
+  "read_minutes": 1,
+  "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+  "source_id": "PR-002",
+  "lang": "th-en",
+  "updated_at": "2026-06-12",
+  "book_id": "person-reasoning"
+}

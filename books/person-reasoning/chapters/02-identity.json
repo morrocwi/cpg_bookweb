@@ -1,0 +1,20 @@
+{
+  "id": "identity",
+  "cat": "position",
+  "featured": false,
+  "sort": 1,
+  "title": "ไฟล์นี้คืออะไร และทำไมต้องเป็นไฟล์แรก",
+  "excerpt": "ตำแหน่งของไฟล์: เป็นการอ้างอิงเชิงตีความ ไม่ใช่คำสั่ง — และเหตุผลที่มนุษย์ควรสร้างไฟล์นี้ก่อนคุยกับ AI",
+  "body_html": "<p>แบบจำลองที่แก้ไขได้ของหลักคิดซึ่งเกิดซ้ำในการรับรู้ ตีความ ตัดสิน เรียนรู้ และแก้ไขของบุคคลข้ามหลายสถานการณ์</p>\n<blockquote><p><strong>Definition.</strong> A revisable, explicit model of a person's recurring ways of interpreting, judging, learning, and correcting across situations.</p></blockquote>\n<h2>ทำไมต้องเป็นไฟล์แรกที่มนุษย์สร้างเพื่อคุยกับ AI</h2>\n<p>AI แต่ละตัวเห็นบุคคลเดียวกันเพียงบางบทบาท ถ้าไม่มีจุดอ้างอิงร่วม การตีความจะแตกกระจายและไม่ต่อเนื่อง ไฟล์นี้จึงควรถูกสร้างและอ่าน <strong>ก่อน</strong> งานใด ๆ เพื่อวางพื้นความเข้าใจร่วม ก่อนที่ AI จะเริ่มตีความหรือทำงาน — เป็น “ไฟล์ตั้งต้น” ที่มนุษย์เขียนถึงหลักคิดของตนเองในแบบที่ AI หลายตัวอ่านแล้วเข้าใจตรงกัน</p>\n<h2>ไฟล์นี้มีไว้เพื่อ</h2>\n<ul><li>preserve distilled experience as reusable principles</li><li>provide a shared interpretive language between one human and multiple AI systems</li><li>make assumptions, boundaries, and standards of judgment visible</li><li>support consistency without simulating or replacing the person</li><li>allow principles to be criticized, revised, versioned, and extended</li></ul>\n<h2>หน้าที่ในการเชื่อมมนุษย์กับ AI หลายตัว</h2>\n<ul><li>provide a shared interpretive vocabulary</li><li>preserve cross-domain principles without forcing identical outputs</li><li>make the person's correction standards visible</li><li>reduce superficial imitation of personality</li><li>support transfer of intent between human and multiple AI systems</li><li>keep the person distinct from any documented model</li></ul>\n<h2>ตำแหน่งของไฟล์: ไฟล์นี้ “ไม่ใช่” อะไร</h2>\n<ul><li>biography</li><li>personality clone</li><li>private chain-of-thought record</li><li>workflow</li><li>skill implementation</li><li>tool instruction</li><li>task prompt</li><li>binding decision engine</li><li>complete representation of the person</li></ul>\n<blockquote><p>ไฟล์นี้เป็น <strong>การอ้างอิงเชิงตีความ</strong> (interpretive reference) ไม่มีอำนาจสั่งการ และไม่ใช่ตัวบุคคล: <code>PR_t ≠ Person</code></p></blockquote>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · identity</a></p>",
+  "tags": [
+    "ตำแหน่ง",
+    "นิยาม",
+    "ไฟล์แรก"
+  ],
+  "read_minutes": 1,
+  "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+  "source_id": "PRF-001/identity",
+  "lang": "th-en",
+  "updated_at": "2026-06-12",
+  "book_id": "person-reasoning"
+}

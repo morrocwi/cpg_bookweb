@@ -76,24 +76,32 @@ const $app = document.getElementById('app');
 
 /* ===================== data ===================== */
 async function fetchJSON(path){ const r = await fetch(path, { cache:'no-cache' }); if(!r.ok) throw new Error(path+' '+r.status); return r.json(); }
-async function fetchSupabase(slug){
-  if (!SUPABASE.anonKey) return null;
-  const url = SUPABASE.url.replace(/\/$/,'') + '/rest/v1/articles?select=*&book_id=eq.' + encodeURIComponent(slug) + '&order=sort.asc';
-  const r = await fetch(url, { headers:{ apikey:SUPABASE.anonKey, Authorization:'Bearer '+SUPABASE.anonKey } });
-  if (!r.ok) throw new Error('supabase '+r.status);
-  const rows = await r.json();
-  return (rows && rows.length) ? rows : null;
-}
 async function ensureBook(slug){
   if (bookCache[slug]) return bookCache[slug];
   const libMeta = BOOKS.find(b => b.slug === slug);
   if (!libMeta) throw new Error('unknown book ' + slug);
   const bundle = await fetchJSON(libMeta.data);
-  let arts = bundle.articles || [];
-  try { const live = await fetchSupabase(slug); if (live) arts = live; } catch(e){ /* keep json */ }
-  const order = arts.slice().sort((a,b)=>(a.sort==null?999:a.sort)-(b.sort==null?999:b.sort)).map(a=>a.id);
-  bookCache[slug] = { meta: bundle.book || {}, libMeta, categories: bundle.categories || {}, articles: arts, order };
+  // book.json is a MANIFEST: chapters = table of contents (no bodies); bodies lazy-load per file
+  const chapters = bundle.chapters || bundle.articles || [];
+  const base = libMeta.data.replace(/[^/]+$/, '');   // ".../books/<slug>/"
+  const order = chapters.slice().sort((a,b)=>(a.sort==null?999:a.sort)-(b.sort==null?999:b.sort)).map(a=>a.id);
+  bookCache[slug] = { meta: bundle.book || {}, libMeta, base, categories: bundle.categories || {}, articles: chapters, order };
   return bookCache[slug];
+}
+async function ensureChapterBody(slug, id){
+  const cb = bookCache[slug]; if (!cb) return;
+  const ch = cb.articles.find(a => a.id === id);
+  if (!ch || ch.body_html != null) return;           // already loaded
+  if (ch.file) {                                      // primary: the per-chapter file in git
+    try { Object.assign(ch, await fetchJSON(cb.base + ch.file)); return; } catch(e){}
+  }
+  if (SUPABASE.anonKey) {                             // fallback: one row from Supabase
+    try {
+      const url = SUPABASE.url.replace(/\/$/,'') + '/rest/v1/articles?select=*&id=eq.' + encodeURIComponent(id);
+      const r = await fetch(url, { headers:{ apikey:SUPABASE.anonKey, Authorization:'Bearer '+SUPABASE.anonKey } });
+      if (r.ok) { const rows = await r.json(); if (rows[0]) Object.assign(ch, rows[0]); }
+    } catch(e){}
+  }
 }
 async function bootstrap(){
   let lib;
@@ -241,20 +249,24 @@ function overviewBlock(){
 
 function installBox(){
   const m = CB().meta;
-  if (!m.source_repo) return '';
-  const cmds = 'git clone ' + m.source_repo + '.git\ncurl -O ' + (m.seed_url||'');
+  const repo = m.book_repo || m.repo; const path = m.book_path || '';
+  if (!repo) return '';
+  const cmds = 'git clone --filter=blob:none --sparse ' + repo + '.git\ncd cpg_bookweb && git sparse-checkout set ' + path + '\ncurl -O ' + (m.seed_url||'');
   return `
   <section style="margin-top:16px;border:1px solid #1f2b3a;background:#0f1722;border-radius:16px;padding:18px 20px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;">
       <h2 style="font-family:'Noto Sans Thai',sans-serif;font-size:14.5px;font-weight:700;color:#e6edf3;display:flex;align-items:center;gap:8px;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7ee2b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6M12 19h8"></path></svg>
-        ติดตั้ง / ดึงผ่าน git
+        ติดตั้ง / ดึง <span style="color:#7ee2b8;">เฉพาะเล่มนี้</span> ผ่าน git
       </h2>
       <button class="copy-btn" data-copy="${encodeURIComponent(cmds)}" style="cursor:pointer;font-family:'Noto Sans Thai',sans-serif;font-size:12px;font-weight:600;color:#9fe8c4;background:rgba(126,226,184,0.12);border:1px solid rgba(126,226,184,0.32);border-radius:8px;padding:5px 12px;">คัดลอก</button>
     </div>
-    <pre style="margin:0;overflow-x:auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.75;white-space:pre;"><span style="color:#5b6b7c;"># โคลนหนังสือต้นทาง</span>
-<span style="color:#cdd6e0;">git clone </span><span style="color:#9fe8c4;">${esc(m.source_repo)}.git</span>
-<span style="color:#5b6b7c;"># หรือดึงเฉพาะไฟล์ตั้งต้น (seed) ให้ AI อ่านก่อน</span>
+    <p style="font-family:'Noto Sans Thai',sans-serif;font-size:12px;color:#8b98a8;margin:0 0 12px;">ดึงแค่โฟลเดอร์หนังสือ (ไม่ใช่ทั้ง repo) ด้วย sparse-checkout — แก้/เพิ่มบทได้ทีละไฟล์ใน <code style="color:#9fe8c4;">${esc(path)}/chapters/</code></p>
+    <pre style="margin:0;overflow-x:auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.75;white-space:pre;"><span style="color:#5b6b7c;"># ดึงเฉพาะหนังสือเล่มนี้</span>
+<span style="color:#cdd6e0;">git clone --filter=blob:none --sparse </span><span style="color:#9fe8c4;">${esc(repo)}.git</span>
+<span style="color:#cdd6e0;">cd cpg_bookweb && git sparse-checkout set </span><span style="color:#9fe8c4;">${esc(path)}</span>
+<span style="color:#5b6b7c;"># แก้รายบทที่ ${esc(path)}/chapters/*.json · เพิ่มบทใหม่ = เพิ่มไฟล์</span>
+<span style="color:#5b6b7c;"># ไฟล์ตั้งต้นสำหรับ AI (seed):</span>
 <span style="color:#cdd6e0;">curl -O </span><span style="color:#9fe8c4;">${esc(m.seed_url||'')}</span></pre>
   </section>`;
 }
@@ -398,7 +410,10 @@ async function routeAndRender(){
   const r = parseHash();
   state.view = r.view; state.book = r.book || null; state.currentId = r.id || null; state.cat = 'all';
   if (state.book) {
-    try { await ensureBook(state.book); }
+    try {
+      await ensureBook(state.book);
+      if (state.view === 'chapter' && state.currentId) await ensureChapterBody(state.book, state.currentId);
+    }
     catch(e){ state.view='library'; state.book=null; }
   }
   render(); window.scrollTo(0,0);

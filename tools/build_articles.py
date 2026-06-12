@@ -18,7 +18,7 @@ Usage:
   python build_articles.py --book-dir <path-to-cpg_book> --out ../articles.json
   python build_articles.py --book-dir <path> --push-supabase   # uses env creds
 """
-import argparse, json, os, re, sys, html, datetime
+import argparse, glob, json, os, re, sys, html, datetime
 import yaml
 
 # Windows consoles default to cp1252 and choke on Thai in print(); force UTF-8.
@@ -47,6 +47,8 @@ BOOK = {
     "repo": "https://github.com/morrocwi/cpg_bookweb",
     "source_repo": "https://github.com/morrocwi/cpg_book",
     "seed_url": "https://morrocwi.github.io/cpg_bookweb/books/person-reasoning/PRDFP.seed.yaml",
+    "book_repo": "https://github.com/morrocwi/cpg_bookweb",   # where this book lives (sparse-checkout target)
+    "book_path": "books/person-reasoning",                    # download ONLY this folder, not the whole repo
     # what the book is + the problem it solves (problems = Thai gloss of PRF human_multi_ai_bridge.problem)
     "overview": {
         "what": ("กลั่นรากฐานการให้เหตุผลของบุคคล (Person Reasoning) เป็น สมการ + pseudo-schema "
@@ -422,10 +424,13 @@ def build_references():
         '<a href="%s" target="_blank" rel="noopener">PRDFP.seed.yaml</a> '
         '· สมการ + pseudo-schema ที่ให้ AI อ่านก่อน</li>' % seed_path,
         '</ul>',
-        '<h2>ติดตั้ง / ดึงผ่าน git</h2>',
-        '<p>โคลนหนังสือต้นทาง หรือดึงเฉพาะไฟล์ตั้งต้นสำหรับ AI:</p>',
-        '<blockquote><p><code>git clone %s.git</code><br>'
-        '<code>curl -O %s</code></p></blockquote>' % (BOOK["source_repo"], BOOK["seed_url"]),
+        '<h2>ติดตั้ง / ดึงผ่าน git (เฉพาะเล่มนี้)</h2>',
+        '<p>ดึง <strong>เฉพาะหนังสือเล่มนี้</strong> (ไม่ใช่ทั้ง repo) ด้วย sparse-checkout — แก้ไขรายบทได้:</p>',
+        '<blockquote><p><code>git clone --filter=blob:none --sparse %s.git</code><br>'
+        '<code>cd cpg_bookweb &amp;&amp; git sparse-checkout set %s</code><br>'
+        '<code># แก้รายบทที่ %s/chapters/*.json · เพิ่มบทใหม่ = เพิ่มไฟล์</code><br>'
+        '<code>curl -O %s</code>  <span style="color:#9aa5b1;"># ไฟล์ตั้งต้น (seed)</span></p></blockquote>'
+        % (BOOK["book_repo"], BOOK["book_path"], BOOK["book_path"], BOOK["seed_url"]),
         '<h2>ผู้เขียน & เจ้าของบริบท</h2>',
         '<p><strong>ผู้เขียน:</strong> %s, %s</p>' % (BOOK["author"], BOOK["year"]),
         '<p>Yaoharee Lahtee · Walancha — เจ้าของประสบการณ์ บริบท และความหมายที่ถูกกลั่นเป็นองค์ความรู้นี้ '
@@ -501,10 +506,33 @@ def main():
     bundle = build(args.book_dir)
     web_root = os.path.abspath(args.web_root)
     slug = BOOK["slug"]
+    book_dir_out = os.path.join(web_root, "books", slug)
 
-    # one folder = one book
-    book_json = os.path.join(web_root, "books", slug, "book.json")
-    write_json(book_json, bundle)
+    # split the book into one editable file PER CHAPTER (git-friendly: edit/add a chapter = one file)
+    chapters_dir = os.path.join(book_dir_out, "chapters")
+    os.makedirs(chapters_dir, exist_ok=True)
+    for old in glob.glob(os.path.join(chapters_dir, "*.json")):
+        os.remove(old)
+    index_keys = ("id", "book_id", "cat", "title", "excerpt", "read_minutes",
+                  "tags", "featured", "sort", "source", "source_id", "lang")
+    chapter_index = []
+    for rank, a in enumerate(bundle["articles"], 1):
+        fn = "%02d-%s.json" % (rank, a["id"])
+        write_json(os.path.join(chapters_dir, fn), a)        # full chapter (incl body_html)
+        idx = {k: a.get(k) for k in index_keys}
+        idx["file"] = "chapters/" + fn                       # manifest points at the per-chapter file
+        chapter_index.append(idx)
+
+    # book.json is now a lightweight MANIFEST (table of contents, no bodies) — the site lazy-loads chapters
+    manifest = {
+        "generated_at": bundle["generated_at"],
+        "source_repo": bundle["source_repo"],
+        "book": bundle["book"],
+        "categories": bundle["categories"],
+        "chapters": chapter_index,
+    }
+    book_json = os.path.join(book_dir_out, "book.json")
+    write_json(book_json, manifest)
 
     # library index (lists the books; currently one)
     library = {

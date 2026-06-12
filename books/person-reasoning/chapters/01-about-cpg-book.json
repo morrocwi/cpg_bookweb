@@ -1,0 +1,19 @@
+{
+  "id": "about-cpg-book",
+  "cat": "about",
+  "featured": true,
+  "sort": 0,
+  "title": "บทนำ: เกี่ยวกับหนังสือเล่มนี้",
+  "excerpt": "หนังสือเล่มนี้กลั่นรากฐานการให้เหตุผลของบุคคล (Person Reasoning) เป็นสมการและ pseudo-schema — ไฟล์ตั้งต้นที่กระชับและเบา ให้ AI อ่านเป็นไฟล์แรกก่อนทำงานร่วมกับบุคคล",
+  "body_html": "<p><strong>สิ่งที่หนังสือเล่มนี้ต้องการสื่อ:</strong> รวบรวมรากฐานการให้เหตุผลของบุคคล (Person Reasoning) แล้วแปลเป็น <strong>สมการ</strong> และ <strong>pseudo-schema</strong> ให้กลายเป็น <strong>ไฟล์ตั้งต้น</strong> ไฟล์เดียวที่กระชับและเบา — เพื่อให้ AI อ่านไฟล์นี้ <strong>เป็นไฟล์แรก</strong> แล้วทำงานร่วมกับบุคคลผู้นั้นได้อย่างลงตัว ทั้งทาง <strong>การซิงโครไนซ์</strong> (ความหมายร่วม) และ <strong>รีทึม</strong> (จังหวะร่วม) โดยไม่ลดทอนบุคคลให้เหลือเพียงข้อมูลหรือแบบจำลอง (PR_t ≠ Person)</p>\n<blockquote><p>📄 ไฟล์ตั้งต้นสำหรับ AI: <a href=\"books/person-reasoning/PRDFP.seed.yaml\" target=\"_blank\" rel=\"noopener\">PRDFP.seed.yaml</a> — ให้ AI อ่านก่อนเริ่มงาน</p></blockquote>\n<p>ส่วนที่เหลือของหนังสือคือเนื้อหาที่ไฟล์ตั้งต้นนี้กลั่นมา — ฐานปรัชญา สมการหลัก และหลักการ เรียบเรียงจากห้องสมุดความรู้ cpg_book ของ Yaoharee Lahtee และ Walancha</p>\n<h2>หลักการของห้องสมุด</h2>\n<p><strong>เอกสารไม่เท่ากับตัวบุคคล</strong></p>\n<blockquote><p>Documented knowledge ≠ complete person</p></blockquote>\n<p><strong>บทสรุปไม่เท่ากับแหล่งต้นฉบับ</strong></p>\n<blockquote><p>Summary ≠ source</p></blockquote>\n<p><strong>ความมั่นใจไม่เท่ากับหลักฐาน</strong></p>\n<blockquote><p>Confidence ≠ evidence</p></blockquote>\n<p><strong>ประสบการณ์ไม่เท่ากับกฎทั่วไป</strong></p>\n<blockquote><p>Experience ≠ universal rule</p></blockquote>\n<p><strong>ความรู้ต้องรักษาบริบท</strong></p>\n<blockquote><p>AI interpretation ≠ owner intention</p></blockquote>\n<h2>คำแถลงสุดท้าย</h2>\n<blockquote><p>`cpg_book` คือห้องสมุดร่วมของ Yaoharee Lahtee และ Walancha สำหรับรักษา เชื่อมโยง และพัฒนาความรู้ ประสบการณ์ หลักคิด และคำถามที่มีความหมายต่อชีวิต ครอบครัว งาน และการเรียนรู้ร่วมกัน โดยเปิดให้มนุษย์และ AI ช่วยกันอ่านและพัฒนา แต่ไม่ลดทอนบุคคลให้เหลือเพียงข้อมูล แบบจำลอง หรือคำสั่งของระบบ</p></blockquote>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/README.md\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">cpg_book/README.md</a></p>",
+  "tags": [
+    "ห้องสมุด",
+    "ความรู้",
+    "AI"
+  ],
+  "read_minutes": 2,
+  "source": "README.md",
+  "source_id": "README",
+  "lang": "th",
+  "book_id": "person-reasoning"
+}

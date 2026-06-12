@@ -1,0 +1,19 @@
+{
+  "id": "examples",
+  "cat": "example",
+  "featured": false,
+  "sort": 40,
+  "title": "ตัวอย่างการใช้งานข้ามโดเมน",
+  "excerpt": "ไฟล์เดียวกัน ตีความต่างกันตามโดเมน — HR · COO · ที่ปรึกษาศาสนา · วิจัย · multi-agent",
+  "body_html": "<p>ไฟล์เดียวกัน ถูกตีความต่างกันตามโดเมน โดยยังอิงหลักการร่วมเดียวกัน — และไม่กลายเป็นคำสั่ง (แสดงต้นฉบับ)</p>\n<h2>HR</h2>\n<p><strong>สถานการณ์.</strong> A person is unsuitable for a current role.</p>\n<p><strong>หลักการที่เกี่ยว.</strong> PR-004, PR-005, PR-006</p>\n<p><strong>ใช้เชิงตีความ.</strong> Separate human worth from role fit; examine affected parties; preserve a path for reassignment, learning, or review.</p>\n<p><strong>ไม่ใช่คำสั่ง.</strong> The foundation does not decide whether to retain, transfer, or terminate the person.</p>\n<h2>COO</h2>\n<p><strong>สถานการณ์.</strong> A task is urgent and resources are limited.</p>\n<p><strong>หลักการที่เกี่ยว.</strong> PR-001, PR-003, PR-005, PR-006</p>\n<p><strong>ใช้เชิงตีความ.</strong> Distinguish urgency claims from verified impact, identify who bears the load, and consider reversibility.</p>\n<p><strong>ไม่ใช่คำสั่ง.</strong> The foundation does not choose the schedule or allocate resources.</p>\n<h2>Religious advisory</h2>\n<p><strong>สถานการณ์.</strong> A user describes a conflict and asks who is religiously wrong.</p>\n<p><strong>หลักการที่เกี่ยว.</strong> PR-001, PR-002, PR-003, PR-005</p>\n<p><strong>ใช้เชิงตีความ.</strong> Separate one-sided reports from established facts, distinguish explanation from authority, and preserve uncertainty.</p>\n<p><strong>ไม่ใช่คำสั่ง.</strong> The foundation does not issue a binding religious judgment.</p>\n<h2>Research</h2>\n<p><strong>สถานการณ์.</strong> An experiment supports the preferred hypothesis.</p>\n<p><strong>หลักการที่เกี่ยว.</strong> PR-002, PR-003, PR-007</p>\n<p><strong>ใช้เชิงตีความ.</strong> Distinguish supporting evidence from proof, keep alternative explanations visible, and revise after critique.</p>\n<p><strong>ไม่ใช่คำสั่ง.</strong> The foundation does not select the statistical method or publish the result.</p>\n<h2>Multi-agent AI</h2>\n<p><strong>สถานการณ์.</strong> HR AI and COO AI interpret the same team issue differently.</p>\n<p><strong>หลักการที่เกี่ยว.</strong> PR-004, PR-005, PR-008, PR-010</p>\n<p><strong>ใช้เชิงตีความ.</strong> Compare the different domain lenses against shared principles rather than forcing identical conclusions.</p>\n<p><strong>ไม่ใช่คำสั่ง.</strong> The foundation does not appoint a winning agent or resolve operational authority.</p>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · examples</a></p>",
+  "tags": [
+    "ตัวอย่าง",
+    "โดเมน"
+  ],
+  "read_minutes": 1,
+  "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+  "source_id": "PRF-001/examples",
+  "lang": "th-en",
+  "updated_at": "2026-06-12",
+  "book_id": "person-reasoning"
+}
