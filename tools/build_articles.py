@@ -18,7 +18,7 @@ Usage:
   python build_articles.py --book-dir <path-to-cpg_book> --out ../articles.json
   python build_articles.py --book-dir <path> --push-supabase   # uses env creds
 """
-import argparse, glob, json, os, re, sys, html, datetime
+import argparse, glob, json, os, re, shutil, sys, html, datetime
 import yaml
 
 # Windows consoles default to cp1252 and choke on Thai in print(); force UTF-8.
@@ -49,6 +49,8 @@ BOOK = {
     "seed_url": "https://morrocwi.github.io/cpg_bookweb/books/person-reasoning/PRDFP.seed.yaml",
     "book_repo": "https://github.com/morrocwi/cpg_bookweb",   # where this book lives (sparse-checkout target)
     "book_path": "books/person-reasoning",                    # download ONLY this folder, not the whole repo
+    # the published seed is sourced from cpg_book (canonical) — PCS-001 Person Core Synchronization & Rhythm
+    "seed_source": "personal_reasoning/01_PERSON_CORE_SYNCHRONIZATION_RHYTHM.seed.yaml",
     # what the book is + the problem it solves (problems = Thai gloss of PRF human_multi_ai_bridge.problem)
     "overview": {
         "what": ("กลั่นรากฐานการให้เหตุผลของบุคคล (Person Reasoning) เป็น สมการ + pseudo-schema "
@@ -70,6 +72,7 @@ CATEGORIES = {
     "position":   {"label": "นิยาม & ตำแหน่ง", "accent": "#6366f1"},
     "philosophy": {"label": "ฐานปรัชญา",       "accent": "#10b981"},
     "equation":   {"label": "สมการหลัก",       "accent": "#8b5cf6"},
+    "person-core":{"label": "แกนบุคคล (sync·rhythm)", "accent": "#e11d48"},
     "principle":  {"label": "หลักการ",         "accent": "#0ea5e9"},
     "protocol":   {"label": "กระบวนการ",       "accent": "#ec4899"},
     "example":    {"label": "ตัวอย่างใช้งาน",  "accent": "#14b8a6"},
@@ -408,6 +411,55 @@ def build_from_prf(book_dir):
             + [prf_protocol(data), prf_examples(data), prf_output_schema(data)])
 
 
+def build_person_core(book_dir):
+    """New chapter from the canonical PCS-001 seed (Person Core Synchronization & Rhythm), if present."""
+    path = os.path.join(book_dir, "personal_reasoning", "01_PERSON_CORE_SYNCHRONIZATION_RHYTHM.seed.yaml")
+    if not os.path.exists(path):
+        return None
+    d = yaml.safe_load(open(path, encoding="utf-8")) or {}
+    th = d.get("thesis", {})
+    p = ['<p>%s</p>' % esc(th.get("statement", "")),
+         '<h2>สมการแกน</h2>',
+         '<blockquote><p style="font-family:ui-monospace,monospace;">%s<br>%s<br>%s</p></blockquote>'
+         % (esc(th.get("compact_equation", "")), esc(th.get("project_equation", "")), esc(th.get("non_identity_law", "")))]
+    dps = []
+    for x in d.get("design_principles", []):
+        dps.append(x if isinstance(x, str) else (x.get("statement") or next(iter(x.values()), "")))
+    if dps:
+        p += ['<h2>หลักการออกแบบ</h2>', _ul(dps)]
+    sm = d.get("synchronization_model", {})
+    p += ['<h2>การซิงโครไนซ์ (synchronization)</h2>', '<p>%s</p>' % esc(sm.get("outcome_definition", ""))]
+    if sm.get("protocol"): p += ['<p><strong>ขั้นตอน</strong></p>', _ul(sm["protocol"])]
+    if sm.get("success_indicators"): p += ['<p><strong>สำเร็จเมื่อ</strong></p>', _ul(sm["success_indicators"])]
+    if sm.get("failure_indicators"): p += ['<p><strong>ล้มเหลวเมื่อ</strong></p>', _ul(sm["failure_indicators"])]
+    rm = d.get("rhythm_model", {})
+    p += ['<h2>รีทึม (rhythm)</h2>', '<p>%s</p>' % esc(rm.get("outcome_definition", ""))]
+    dp = rm.get("default_profile", {})
+    if dp:
+        prof = ["%s: %s" % (k, dp[k]) for k in ("preferred_depth", "preferred_step_size", "evidence_pace") if dp.get(k)]
+        if dp.get("progression_pattern"): prof.append("progression: " + " → ".join(dp["progression_pattern"]))
+        p += ['<p><strong>โปรไฟล์ตั้งต้น</strong></p>', _ul(prof)]
+    ar = []
+    for r in rm.get("adaptive_rules", []):
+        ar.append("%s → %s" % (r.get("condition", ""), r.get("response", "")) if isinstance(r, dict) else str(r))
+    if ar:
+        p += ['<p><strong>กฎปรับจังหวะ</strong></p>', _ul(ar)]
+    src = "personal_reasoning/01_PERSON_CORE_SYNCHRONIZATION_RHYTHM.seed.yaml"
+    p.append('<p style="font-family:\'Noto Sans Thai\',sans-serif;font-size:13px;color:#9aa5b1;">'
+             'ที่มา: <a href="%s" target="_blank" rel="noopener" style="color:#0ea5e9;">cpg_book · PCS-001 · %s</a></p>'
+             % ("https://github.com/morrocwi/cpg_book/blob/main/" + src, esc(d.get("document", {}).get("title", ""))))
+    body_html = "\n".join(p)
+    return {
+        "id": "person-core", "cat": "person-core", "featured": False, "sort": 6,
+        "title": "แกนบุคคล: การซิงโครไนซ์และรีทึม (PCS-001)",
+        "excerpt": ("sync + rhythm เป็น “ผลลัพธ์” ไม่ใช่ฟิลด์นิ่งๆ — เกิดเมื่อ AI ได้ MeaningMap + Distinctions + "
+                    "ReasoningAnchors + WorkingPreferences + CorrectionPattern + CurrentState"),
+        "body_html": body_html, "tags": ["sync", "rhythm", "person-core"],
+        "read_minutes": read_minutes(re.sub(r"<[^>]+>", " ", body_html)),
+        "source": src, "source_id": "PCS-001", "lang": "th-en",
+    }
+
+
 def build_references():
     """The closing chapter — cites every source back to its git origin."""
     seed_path = "books/%s/%s" % (BOOK["slug"], BOOK["seed"])
@@ -457,7 +509,8 @@ def build_references():
 
 
 def build(book_dir):
-    articles = [build_about(book_dir)] + build_from_prf(book_dir) + [build_references()]
+    extra = [c for c in [build_person_core(book_dir)] if c]   # new data, if present in cpg_book
+    articles = [build_about(book_dir)] + build_from_prf(book_dir) + extra + [build_references()]
     articles.sort(key=lambda a: a.get("sort", 999))
     for a in articles:
         a["book_id"] = BOOK["slug"]
@@ -549,6 +602,12 @@ def main():
     }
     book_json = os.path.join(book_dir_out, "book.json")
     write_json(book_json, manifest)
+
+    # publish the seed FROM cpg_book (canonical) — keep cpg_book as the single source of the seed too
+    src_seed = os.path.join(args.book_dir, BOOK.get("seed_source", ""))
+    if BOOK.get("seed_source") and os.path.exists(src_seed):
+        shutil.copyfile(src_seed, os.path.join(book_dir_out, BOOK["seed"]))
+        print(f"   seed <- {BOOK['seed_source']} (cpg_book)")
 
     # library index (lists the books; currently one)
     library = {

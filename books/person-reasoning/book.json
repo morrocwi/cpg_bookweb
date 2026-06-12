@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T07:48:33Z",
+  "generated_at": "2026-06-12T08:02:50Z",
   "_generated": "generated from cpg_book by tools/build_articles.py — canonical source = morrocwi/cpg_book; do NOT hand-edit (workflow A: edit cpg_book, then rebuild)",
   "source_repo": "morrocwi/cpg_book",
   "book": {
@@ -17,6 +17,7 @@
     "seed_url": "https://morrocwi.github.io/cpg_bookweb/books/person-reasoning/PRDFP.seed.yaml",
     "book_repo": "https://github.com/morrocwi/cpg_bookweb",
     "book_path": "books/person-reasoning",
+    "seed_source": "personal_reasoning/01_PERSON_CORE_SYNCHRONIZATION_RHYTHM.seed.yaml",
     "overview": {
       "what": "กลั่นรากฐานการให้เหตุผลของบุคคล (Person Reasoning) เป็น สมการ + pseudo-schema ไฟล์เดียวที่กระชับและเบา ให้ AI อ่านเป็นไฟล์แรกก่อนทำงานร่วมกับบุคคล",
       "problems": [
@@ -44,6 +45,10 @@
     "equation": {
       "label": "สมการหลัก",
       "accent": "#8b5cf6"
+    },
+    "person-core": {
+      "label": "แกนบุคคล (sync·rhythm)",
+      "accent": "#e11d48"
     },
     "principle": {
       "label": "หลักการ",
@@ -163,6 +168,25 @@
       "file": "chapters/05-core-equations.json"
     },
     {
+      "id": "person-core",
+      "book_id": "person-reasoning",
+      "cat": "person-core",
+      "title": "แกนบุคคล: การซิงโครไนซ์และรีทึม (PCS-001)",
+      "excerpt": "sync + rhythm เป็น “ผลลัพธ์” ไม่ใช่ฟิลด์นิ่งๆ — เกิดเมื่อ AI ได้ MeaningMap + Distinctions + ReasoningAnchors + WorkingPreferences + CorrectionPattern + CurrentState",
+      "read_minutes": 3,
+      "tags": [
+        "sync",
+        "rhythm",
+        "person-core"
+      ],
+      "featured": false,
+      "sort": 6,
+      "source": "personal_reasoning/01_PERSON_CORE_SYNCHRONIZATION_RHYTHM.seed.yaml",
+      "source_id": "PCS-001",
+      "lang": "th-en",
+      "file": "chapters/06-person-core.json"
+    },
+    {
       "id": "pr-001",
       "book_id": "person-reasoning",
       "cat": "principle",
@@ -180,7 +204,7 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-001",
       "lang": "th-en",
-      "file": "chapters/06-pr-001.json"
+      "file": "chapters/07-pr-001.json"
     },
     {
       "id": "pr-002",
@@ -200,7 +224,7 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-002",
       "lang": "th-en",
-      "file": "chapters/07-pr-002.json"
+      "file": "chapters/08-pr-002.json"
     },
     {
       "id": "pr-003",
@@ -220,7 +244,7 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-003",
       "lang": "th-en",
-      "file": "chapters/08-pr-003.json"
+      "file": "chapters/09-pr-003.json"
     },
     {
       "id": "pr-004",
@@ -240,7 +264,7 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-004",
       "lang": "th-en",
-      "file": "chapters/09-pr-004.json"
+      "file": "chapters/10-pr-004.json"
     },
     {
       "id": "pr-005",
@@ -260,7 +284,7 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-005",
       "lang": "th-en",
-      "file": "chapters/10-pr-005.json"
+      "file": "chapters/11-pr-005.json"
     },
     {
       "id": "pr-006",
@@ -280,7 +304,7 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-006",
       "lang": "th-en",
-      "file": "chapters/11-pr-006.json"
+      "file": "chapters/12-pr-006.json"
     },
     {
       "id": "pr-007",
@@ -300,7 +324,7 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-007",
       "lang": "th-en",
-      "file": "chapters/12-pr-007.json"
+      "file": "chapters/13-pr-007.json"
     },
     {
       "id": "pr-008",
@@ -319,7 +343,7 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-008",
       "lang": "th-en",
-      "file": "chapters/13-pr-008.json"
+      "file": "chapters/14-pr-008.json"
     },
     {
       "id": "pr-009",
@@ -337,7 +361,7 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-009",
       "lang": "th-en",
-      "file": "chapters/14-pr-009.json"
+      "file": "chapters/15-pr-009.json"
     },
     {
       "id": "pr-010",
@@ -356,7 +380,7 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PR-010",
       "lang": "th-en",
-      "file": "chapters/15-pr-010.json"
+      "file": "chapters/16-pr-010.json"
     },
     {
       "id": "protocol",
@@ -375,7 +399,7 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PRF-001/protocol",
       "lang": "th-en",
-      "file": "chapters/16-protocol.json"
+      "file": "chapters/17-protocol.json"
     },
     {
       "id": "examples",
@@ -393,7 +417,7 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PRF-001/examples",
       "lang": "th-en",
-      "file": "chapters/17-examples.json"
+      "file": "chapters/18-examples.json"
     },
     {
       "id": "output-schema",
@@ -412,7 +436,7 @@
       "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
       "source_id": "PRF-001/output-schema",
       "lang": "th-en",
-      "file": "chapters/18-output-schema.json"
+      "file": "chapters/19-output-schema.json"
     },
     {
       "id": "references",
@@ -431,7 +455,7 @@
       "source": "README.md",
       "source_id": "REFERENCES",
       "lang": "th-en",
-      "file": "chapters/19-references.json"
+      "file": "chapters/20-references.json"
     }
   ]
 }
