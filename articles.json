@@ -1,0 +1,275 @@
+{
+  "generated_at": "2026-06-12T04:47:53Z",
+  "source_repo": "morrocwi/cpg_book",
+  "categories": {
+    "about": {
+      "label": "เกี่ยวกับห้องสมุด",
+      "accent": "#f59e0b"
+    },
+    "philosophy": {
+      "label": "ฐานปรัชญา",
+      "accent": "#10b981"
+    },
+    "equation": {
+      "label": "สมการหลัก",
+      "accent": "#8b5cf6"
+    },
+    "principle": {
+      "label": "หลักการให้เหตุผล",
+      "accent": "#0ea5e9"
+    }
+  },
+  "articles": [
+    {
+      "id": "about-cpg-book",
+      "cat": "about",
+      "featured": true,
+      "sort": 0,
+      "title": "ห้องสมุดสบายๆ — cpg_book คืออะไร",
+      "excerpt": "ห้องสมุดเล็กๆ ที่รวบรวมแนวคิดเรื่องความรู้ การให้เหตุผล และการอยู่ร่วมกันระหว่างมนุษย์กับ AI ของ Yaoharee Lahtee และ Walancha",
+      "body_html": "<p>cpg_book คือพื้นที่กลางสำหรับรวบรวม จัดหมวดหมู่ เชื่อมโยง และพัฒนาความรู้ ให้กลับมาอ่าน ตรวจสอบ อ้างอิง และต่อยอดร่วมกับมนุษย์และ AI ได้อย่างมีบริบท ห้องสมุดนี้ไม่ได้มีไว้เก็บเฉพาะหนังสือ แต่รวมถึงความรู้ที่เกิดจากการอ่าน การทำงาน ประสบการณ์ การสนทนา และการสะท้อนคิดร่วมกัน</p>\n<h2>หลักการของห้องสมุด</h2>\n<p><strong>เอกสารไม่เท่ากับตัวบุคคล</strong></p>\n<blockquote><p>Documented knowledge ≠ complete person</p></blockquote>\n<p><strong>บทสรุปไม่เท่ากับแหล่งต้นฉบับ</strong></p>\n<blockquote><p>Summary ≠ source</p></blockquote>\n<p><strong>ความมั่นใจไม่เท่ากับหลักฐาน</strong></p>\n<blockquote><p>Confidence ≠ evidence</p></blockquote>\n<p><strong>ประสบการณ์ไม่เท่ากับกฎทั่วไป</strong></p>\n<blockquote><p>Experience ≠ universal rule</p></blockquote>\n<p><strong>ความรู้ต้องรักษาบริบท</strong></p>\n<blockquote><p>AI interpretation ≠ owner intention</p></blockquote>\n<h2>คำแถลงสุดท้าย</h2>\n<blockquote><p>`cpg_book` คือห้องสมุดร่วมของ Yaoharee Lahtee และ Walancha สำหรับรักษา เชื่อมโยง และพัฒนาความรู้ ประสบการณ์ หลักคิด และคำถามที่มีความหมายต่อชีวิต ครอบครัว งาน และการเรียนรู้ร่วมกัน โดยเปิดให้มนุษย์และ AI ช่วยกันอ่านและพัฒนา แต่ไม่ลดทอนบุคคลให้เหลือเพียงข้อมูล แบบจำลอง หรือคำสั่งของระบบ</p></blockquote>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/README.md\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">cpg_book/README.md</a></p>",
+      "tags": [
+        "ห้องสมุด",
+        "ความรู้",
+        "AI"
+      ],
+      "read_minutes": 2,
+      "source": "README.md",
+      "source_id": "README",
+      "lang": "th"
+    },
+    {
+      "id": "philosophical-foundation",
+      "cat": "philosophy",
+      "featured": false,
+      "sort": 1,
+      "title": "ฐานปรัชญา 7 ด้านของการให้เหตุผล",
+      "excerpt": "ความเป็นบุคคล ญาณวิทยา การตีความ ปัญญาเชิงปฏิบัติ จริยศาสตร์เชิงสัมพันธ์ จิตที่ขยายออก และความเข้าใจร่วม — รากฐานของ Personal Reasoning Foundation",
+      "body_html": "<p>ฐานปรัชญาเจ็ดด้านที่รองรับวิธีการให้เหตุผล — แต่ละด้านมี \"หลักการ\" และ \"นัยที่ตามมา\" (แสดงต้นฉบับภาษาอังกฤษตามที่บันทึกไว้)</p>\n<h2>ความเป็นบุคคล</h2>\n<p><strong>Principle.</strong> A person is more than stored preferences, memories, roles, or outputs.</p>\n<p><strong>Implication.</strong> The file may represent recurring reasoning patterns, but must never claim identity-equivalence with the person.</p>\n<h2>ญาณวิทยา</h2>\n<p><strong>Principle.</strong> Knowledge is finite, situated, corrigible, and answerable to evidence.</p>\n<p><strong>Implication.</strong> Confidence, fluency, status, and repetition do not independently establish truth.</p>\n<h2>การตีความ</h2>\n<p><strong>Principle.</strong> Meaning arises through the relation between content, context, language, and prior understanding.</p>\n<p><strong>Implication.</strong> A principle should guide interpretation without erasing the particular context.</p>\n<h2>ปัญญาเชิงปฏิบัติ</h2>\n<p><strong>Principle.</strong> Good judgment cannot be reduced to rule execution alone.</p>\n<p><strong>Implication.</strong> The file should preserve priorities, tensions, exceptions, and conditions for revision.</p>\n<h2>จริยศาสตร์เชิงสัมพันธ์</h2>\n<p><strong>Principle.</strong> Judgment is relational because decisions affect persons beyond the immediate speaker.</p>\n<p><strong>Implication.</strong> Relevant affected persons, dignity, responsibility, and repairability should remain visible.</p>\n<h2>จิตที่ขยายออก</h2>\n<p><strong>Principle.</strong> External artifacts can support human memory and reasoning without becoming the human.</p>\n<p><strong>Implication.</strong> This file is a shared cognitive reference for humans and AI, not an autonomous mind.</p>\n<h2>ความเข้าใจร่วมระหว่างผู้คน</h2>\n<p><strong>Principle.</strong> Collaboration requires shared meanings and standards, not identical conclusions.</p>\n<p><strong>Implication.</strong> Multiple AI systems may interpret differently while remaining coherent with common principles.</p>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml#L37\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · philosophical_foundation</a></p>",
+      "tags": [
+        "ปรัชญา",
+        "ญาณวิทยา",
+        "จริยศาสตร์"
+      ],
+      "read_minutes": 1,
+      "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+      "source_id": "PRF-001/philosophy",
+      "lang": "th-en",
+      "updated_at": "2026-06-12"
+    },
+    {
+      "id": "core-equations",
+      "cat": "equation",
+      "featured": false,
+      "sort": 2,
+      "title": "สมการหลัก 6 สมการของการให้เหตุผล",
+      "excerpt": "ClaimStrength ≤ EvidenceStrength · PR(t+1) = Revise(...) · PR_t ≠ Person — สมการเชิงตีความที่อธิบายความสัมพันธ์ ไม่ใช่ความแม่นยำทางคณิตศาสตร์ลวงตา",
+      "body_html": "<p>สมการช่วยให้เห็นความสัมพันธ์ระหว่างแนวคิด ไม่ใช่ข้อพิสูจน์ทางวิทยาศาสตร์ (ตามที่ระบุไว้ในมาตรฐานของห้องสมุด)</p>\n<h2>EQ-PRF-01 · Distillation</h2>\n<blockquote><p style=\"font-family:ui-monospace,monospace;\">PR_t = Distill(E_t, V_t, J_t, F_t, C_t)</p></blockquote>\n<ul><li><strong>PR_t</strong> — personal reasoning model at time t</li><li><strong>E_t</strong> — experience</li><li><strong>V_t</strong> — values</li><li><strong>J_t</strong> — recurring judgment patterns</li><li><strong>F_t</strong> — failures, feedback, and friction</li><li><strong>C_t</strong> — corrections and learned constraints</li></ul>\n<p>Personal Reasoning is produced by distilling experience, not by copying biography.</p>\n<h2>EQ-PRF-02 · Interpretive Lens</h2>\n<blockquote><p style=\"font-family:ui-monospace,monospace;\">I_i = Interpret_i(X | PR_t, D_i, K_i)</p></blockquote>\n<ul><li><strong>I_i</strong> — interpretation by human or AI system i</li><li><strong>X</strong> — current situation</li><li><strong>PR_t</strong> — personal reasoning reference</li><li><strong>D_i</strong> — domain of interpreter i</li><li><strong>K_i</strong> — available knowledge and context</li></ul>\n<p>The same foundation can be interpreted differently across domains without becoming a workflow.</p>\n<h2>EQ-PRF-03 · Claim-Evidence Proportion</h2>\n<blockquote><p style=\"font-family:ui-monospace,monospace;\">ClaimStrength &lt;= EvidenceStrength</p></blockquote>\n<ul><li><strong>ClaimStrength</strong> — strength or certainty of a claim</li><li><strong>EvidenceStrength</strong> — quality, relevance, and sufficiency of supporting evidence</li></ul>\n<p>A conclusion must not be stated more strongly than its evidence permits.</p>\n<h2>EQ-PRF-04 · Reasoning Continuity</h2>\n<blockquote><p style=\"font-family:ui-monospace,monospace;\">Coherence = Coherence(I_1, I_2, ..., I_n | PR_t)</p></blockquote>\n<ul><li><strong>Coherence</strong> — compatibility of interpretations with shared principles</li><li><strong>I_1...I_n</strong> — interpretations from multiple humans or AI systems</li><li><strong>PR_t</strong> — shared personal reasoning foundation</li></ul>\n<p>Different specialists may disagree while preserving a common reasoning grammar.</p>\n<h2>EQ-PRF-05 · Revision</h2>\n<blockquote><p style=\"font-family:ui-monospace,monospace;\">PR_(t+1) = Revise(PR_t, NewEvidence, Critique, Outcome)</p></blockquote>\n<ul><li><strong>PR_(t+1)</strong> — revised model</li><li><strong>PR_t</strong> — current model</li><li><strong>NewEvidence</strong> — newly available evidence</li><li><strong>Critique</strong> — reasoned challenge</li><li><strong>Outcome</strong> — observed consequence of prior use</li></ul>\n<p>The file is corrigible and must not freeze the person into a permanent model.</p>\n<h2>EQ-PRF-06 · Non-Identity</h2>\n<blockquote><p style=\"font-family:ui-monospace,monospace;\">PR_t != Person</p></blockquote>\n<ul><li><strong>PR_t</strong> — documented reasoning model</li><li><strong>Person</strong> — the living human person</li></ul>\n<p>The model represents selected reasoning patterns, never the whole person.</p>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · core_equations</a></p>",
+      "tags": [
+        "สมการ",
+        "การให้เหตุผล"
+      ],
+      "read_minutes": 1,
+      "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+      "source_id": "PRF-001/equations",
+      "lang": "th-en",
+      "updated_at": "2026-06-12"
+    },
+    {
+      "id": "pr-001",
+      "cat": "principle",
+      "featured": false,
+      "sort": 10,
+      "title": "แยกสิ่งที่สังเกต ออกจากการตีความและกฎที่กำกับ",
+      "excerpt": "Many errors occur when a report, its interpretation, and the rule applied to it are treated as one thing.",
+      "body_html": "<span class=\"principle\">PR-001 · ความเสถียร: สูง (high)</span>\n<h2>หลักการ (ต้นฉบับ)</h2>\n<blockquote><p>Separate observed content, contextual interpretation, and governing protocol.</p></blockquote>\n<h2>เหตุผล</h2>\n<p>Many errors occur when a report, its interpretation, and the rule applied to it are treated as one thing.</p>\n<h2>ตัวอย่างการใช้ผิด</h2>\n<p>Treating a client's statement as verified institutional fact.</p>\n<h2>เงื่อนไขทบทวน</h2>\n<p>A better distinction model is demonstrated across multiple cases.</p>\n<h2>ขอบเขต</h2>\n<div><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">general</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">research</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">operations</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">people</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">religious_advisory</span></div>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · PR-001</a></p>",
+      "tags": [
+        "general",
+        "research",
+        "operations",
+        "people"
+      ],
+      "read_minutes": 1,
+      "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+      "source_id": "PR-001",
+      "lang": "th-en",
+      "updated_at": "2026-06-12"
+    },
+    {
+      "id": "pr-002",
+      "cat": "principle",
+      "featured": false,
+      "sort": 11,
+      "title": "ความมั่นใจไม่ใช่หลักฐาน และความสามารถไม่ใช่อำนาจ",
+      "excerpt": "Fluent systems and experienced people can still exceed what is justified or permitted.",
+      "body_html": "<span class=\"principle\">PR-002 · ความเสถียร: รากฐาน (constitutional)</span>\n<h2>หลักการ (ต้นฉบับ)</h2>\n<blockquote><p>Confidence is not evidence, and capability is not authority.</p></blockquote>\n<h2>เหตุผล</h2>\n<p>Fluent systems and experienced people can still exceed what is justified or permitted.</p>\n<h2>ตัวอย่างการใช้ผิด</h2>\n<p>An AI infers that because it can read a legal document, it may determine binding legal status.</p>\n<h2>เงื่อนไขทบทวน</h2>\n<p>None for the distinction itself; domain-specific interpretations may evolve.</p>\n<h2>ขอบเขต</h2>\n<div><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">general</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">AI_collaboration</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">legal</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">religious_advisory</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">operations</span></div>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · PR-002</a></p>",
+      "tags": [
+        "general",
+        "AI_collaboration",
+        "legal",
+        "religious_advisory"
+      ],
+      "read_minutes": 1,
+      "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+      "source_id": "PR-002",
+      "lang": "th-en",
+      "updated_at": "2026-06-12"
+    },
+    {
+      "id": "pr-003",
+      "cat": "principle",
+      "featured": false,
+      "sort": 12,
+      "title": "ข้อสรุปยังเป็นชั่วคราว ตราบที่ยังมีความไม่แน่นอน",
+      "excerpt": "Making uncertainty visible prevents temporary interpretations from becoming false certainty.",
+      "body_html": "<span class=\"principle\">PR-003 · ความเสถียร: รากฐาน (constitutional)</span>\n<h2>หลักการ (ต้นฉบับ)</h2>\n<blockquote><p>A conclusion is provisional when relevant uncertainty remains.</p></blockquote>\n<h2>เหตุผล</h2>\n<p>Making uncertainty visible prevents temporary interpretations from becoming false certainty.</p>\n<h2>ตัวอย่างการใช้ผิด</h2>\n<p>Reporting a likely cause as the confirmed cause.</p>\n<h2>เงื่อนไขทบทวน</h2>\n<p>New evidence resolves or changes the uncertainty.</p>\n<h2>ขอบเขต</h2>\n<div><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">general</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">research</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">people</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">operations</span></div>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · PR-003</a></p>",
+      "tags": [
+        "general",
+        "research",
+        "people",
+        "operations"
+      ],
+      "read_minutes": 1,
+      "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+      "source_id": "PR-003",
+      "lang": "th-en",
+      "updated_at": "2026-06-12"
+    },
+    {
+      "id": "pr-004",
+      "cat": "principle",
+      "featured": false,
+      "sort": 13,
+      "title": "คุณค่าของคน ไม่ได้ลดทอนเหลือแค่ความเหมาะกับบทบาทหรือผลงาน",
+      "excerpt": "Operational judgment should not collapse human dignity into organizational utility.",
+      "body_html": "<span class=\"principle\">PR-004 · ความเสถียร: รากฐาน (constitutional)</span>\n<h2>หลักการ (ต้นฉบับ)</h2>\n<blockquote><p>The value of a person is not reducible to role fit, output, status, or one evaluation.</p></blockquote>\n<h2>เหตุผล</h2>\n<p>Operational judgment should not collapse human dignity into organizational utility.</p>\n<h2>ตัวอย่างการใช้ผิด</h2>\n<p>Calling a team member incapable because they are unsuitable for one role.</p>\n<h2>เงื่อนไขทบทวน</h2>\n<p>The wording may be refined, but the dignity distinction remains.</p>\n<h2>ขอบเขต</h2>\n<div><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">people</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">HR</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">leadership</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">education</span></div>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · PR-004</a></p>",
+      "tags": [
+        "people",
+        "HR",
+        "leadership",
+        "education"
+      ],
+      "read_minutes": 1,
+      "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+      "source_id": "PR-004",
+      "lang": "th-en",
+      "updated_at": "2026-06-12"
+    },
+    {
+      "id": "pr-005",
+      "cat": "principle",
+      "featured": false,
+      "sort": 14,
+      "title": "ผลกระทบต่อผู้เกี่ยวข้อง ต้องอยู่ในกรอบการให้เหตุผล",
+      "excerpt": "A technically correct answer may still be irresponsible if it ignores who bears the consequences.",
+      "body_html": "<span class=\"principle\">PR-005 · ความเสถียร: สูง (high)</span>\n<h2>หลักการ (ต้นฉบับ)</h2>\n<blockquote><p>Consequences for affected persons belong inside the reasoning frame.</p></blockquote>\n<h2>เหตุผล</h2>\n<p>A technically correct answer may still be irresponsible if it ignores who bears the consequences.</p>\n<h2>ตัวอย่างการใช้ผิด</h2>\n<p>Optimizing a schedule without considering the burden placed on one team member.</p>\n<h2>เงื่อนไขทบทวน</h2>\n<p>New categories of affected persons or harms are identified.</p>\n<h2>ขอบเขต</h2>\n<div><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">general</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">people</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">operations</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">religious_advisory</span></div>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · PR-005</a></p>",
+      "tags": [
+        "general",
+        "people",
+        "operations",
+        "religious_advisory"
+      ],
+      "read_minutes": 1,
+      "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+      "source_id": "PR-005",
+      "lang": "th-en",
+      "updated_at": "2026-06-12"
+    },
+    {
+      "id": "pr-006",
+      "cat": "principle",
+      "featured": false,
+      "sort": 15,
+      "title": "ความสามารถแก้ไขกลับ คือส่วนหนึ่งของการตัดสินที่รับผิดชอบ",
+      "excerpt": "Good decisions preserve correction, appeal, rollback, or remedy when possible.",
+      "body_html": "<span class=\"principle\">PR-006 · ความเสถียร: สูง (high)</span>\n<h2>หลักการ (ต้นฉบับ)</h2>\n<blockquote><p>Repairability is part of responsible judgment.</p></blockquote>\n<h2>เหตุผล</h2>\n<p>Good decisions preserve correction, appeal, rollback, or remedy when possible.</p>\n<h2>ตัวอย่างการใช้ผิด</h2>\n<p>Making an irreversible external commitment from incomplete information.</p>\n<h2>เงื่อนไขทบทวน</h2>\n<p>A domain requires a more specific concept of remedy or irreversibility.</p>\n<h2>ขอบเขต</h2>\n<div><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">general</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">operations</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">AI_collaboration</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">people</span></div>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · PR-006</a></p>",
+      "tags": [
+        "general",
+        "operations",
+        "AI_collaboration",
+        "people"
+      ],
+      "read_minutes": 1,
+      "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+      "source_id": "PR-006",
+      "lang": "th-en",
+      "updated_at": "2026-06-12"
+    },
+    {
+      "id": "pr-007",
+      "cat": "principle",
+      "featured": false,
+      "sort": 16,
+      "title": "เมื่อคำวิจารณ์ชี้จุดผิด ให้แก้แบบจำลองก่อนปกป้องคำตอบเดิม",
+      "excerpt": "Self-protection can convert a correctable error into systematic distortion.",
+      "body_html": "<span class=\"principle\">PR-007 · ความเสถียร: รากฐาน (constitutional)</span>\n<h2>หลักการ (ต้นฉบับ)</h2>\n<blockquote><p>When critique reveals a mismatch, revise the model before defending the old output.</p></blockquote>\n<h2>เหตุผล</h2>\n<p>Self-protection can convert a correctable error into systematic distortion.</p>\n<h2>ตัวอย่างการใช้ผิด</h2>\n<p>Generating increasingly elaborate reasons to defend an answer after its premise was disproven.</p>\n<h2>เงื่อนไขทบทวน</h2>\n<p>Evidence shows that the critique itself is mistaken.</p>\n<h2>ขอบเขต</h2>\n<div><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">general</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">AI_collaboration</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">leadership</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">research</span></div>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · PR-007</a></p>",
+      "tags": [
+        "general",
+        "AI_collaboration",
+        "leadership",
+        "research"
+      ],
+      "read_minutes": 1,
+      "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+      "source_id": "PR-007",
+      "lang": "th-en",
+      "updated_at": "2026-06-12"
+    },
+    {
+      "id": "pr-008",
+      "cat": "principle",
+      "featured": false,
+      "sort": 17,
+      "title": "หลักการร่วมช่วยให้ทำงานร่วมกันได้ โดยไม่ต้องสรุปเหมือนกัน",
+      "excerpt": "Specialized AI systems see different parts of the same human context.",
+      "body_html": "<span class=\"principle\">PR-008 · ความเสถียร: สูง (high)</span>\n<h2>หลักการ (ต้นฉบับ)</h2>\n<blockquote><p>Shared principles support coherent collaboration without requiring identical conclusions.</p></blockquote>\n<h2>เหตุผล</h2>\n<p>Specialized AI systems see different parts of the same human context.</p>\n<h2>ตัวอย่างการใช้ผิด</h2>\n<p>Forcing HR AI, COO AI, and advisory AI to produce the same interpretation despite different domains.</p>\n<h2>เงื่อนไขทบทวน</h2>\n<p>Observed collaboration failures reveal missing shared concepts.</p>\n<h2>ขอบเขต</h2>\n<div><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">multi_agent_AI</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">organization</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">human_AI_collaboration</span></div>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · PR-008</a></p>",
+      "tags": [
+        "multi_agent_AI",
+        "organization",
+        "human_AI_collaboration"
+      ],
+      "read_minutes": 1,
+      "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+      "source_id": "PR-008",
+      "lang": "th-en",
+      "updated_at": "2026-06-12"
+    },
+    {
+      "id": "pr-009",
+      "cat": "principle",
+      "featured": false,
+      "sort": 18,
+      "title": "หลักคิดควรชี้นำการตีความ ไม่ใช่กำหนดการกระทำล่วงหน้า",
+      "excerpt": "Turning principles into automatic action would confuse a reasoning foundation with workflow or command logic.",
+      "body_html": "<span class=\"principle\">PR-009 · ความเสถียร: รากฐาน (constitutional)</span>\n<h2>หลักการ (ต้นฉบับ)</h2>\n<blockquote><p>Personal Reasoning should guide interpretation, not predetermine action.</p></blockquote>\n<h2>เหตุผล</h2>\n<p>Turning principles into automatic action would confuse a reasoning foundation with workflow or command logic.</p>\n<h2>ตัวอย่างการใช้ผิด</h2>\n<p>Encoding 'religious question -&gt; call Imam AI' as a personal reasoning principle.</p>\n<h2>เงื่อนไขทบทวน</h2>\n<p>None; operational mappings belong in separate artifacts.</p>\n<h2>ขอบเขต</h2>\n<div><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">general</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">AI_architecture</span></div>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · PR-009</a></p>",
+      "tags": [
+        "general",
+        "AI_architecture"
+      ],
+      "read_minutes": 1,
+      "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+      "source_id": "PR-009",
+      "lang": "th-en",
+      "updated_at": "2026-06-12"
+    },
+    {
+      "id": "pr-010",
+      "cat": "principle",
+      "featured": false,
+      "sort": 19,
+      "title": "เอกสารต้องแก้ไขได้ ระบุที่มาได้ และมีขอบเขต",
+      "excerpt": "A static or anonymous model can freeze the person, hide bias, and become unaccountable.",
+      "body_html": "<span class=\"principle\">PR-010 · ความเสถียร: รากฐาน (constitutional)</span>\n<h2>หลักการ (ต้นฉบับ)</h2>\n<blockquote><p>The file must remain revisable, attributable, and bounded.</p></blockquote>\n<h2>เหตุผล</h2>\n<p>A static or anonymous model can freeze the person, hide bias, and become unaccountable.</p>\n<h2>ตัวอย่างการใช้ผิด</h2>\n<p>Treating an old reasoning file as the permanent and complete identity of its owner.</p>\n<h2>เงื่อนไขทบทวน</h2>\n<p>Scheduled review, material life change, repeated mismatch, or new evidence.</p>\n<h2>ขอบเขต</h2>\n<div><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">general</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">governance</span><span style=\"font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:4px 11px;border-radius:99px;margin:0 6px 6px 0;display:inline-block;\">AI_architecture</span></div>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">PRF-001 · PR-010</a></p>",
+      "tags": [
+        "general",
+        "governance",
+        "AI_architecture"
+      ],
+      "read_minutes": 1,
+      "source": "personal_reasoning/00_PERSONAL_REASONING_FOUNDATION_AND_PROTOCOL.yaml",
+      "source_id": "PR-010",
+      "lang": "th-en",
+      "updated_at": "2026-06-12"
+    }
+  ]
+}

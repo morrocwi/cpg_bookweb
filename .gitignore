@@ -1,0 +1,7 @@
+# local / build noise
+__pycache__/
+*.pyc
+.DS_Store
+.tmp_bundle/
+node_modules/
+*.log

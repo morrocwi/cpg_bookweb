@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ห้องสมุดสบายๆ · CPG Book</title>
+<meta name="description" content="ห้องสมุดเล็กๆ ที่รวบรวมแนวคิดเรื่องความรู้ การให้เหตุผล และการอยู่ร่วมกันระหว่างมนุษย์กับ AI">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Noto+Serif+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:#fbfaf7; color:#26303b; font-family:'Noto Serif Thai',serif; -webkit-font-smoothing:antialiased; }
+  button { font-family:inherit; }
+  a { color:#0ea5e9; }
+
+  .lib-card { transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+  .lib-card:hover { transform:translateY(-3px); box-shadow:0 10px 26px rgba(20,60,90,0.10); border-color:#bfe6fa; }
+  .lib-featured:hover { box-shadow:0 12px 30px rgba(20,60,90,0.12); border-color:#bfe6fa; }
+  .lib-related { transition:border-color .18s ease, transform .18s ease; }
+  .lib-related:hover { border-color:#bfe6fa; transform:translateX(2px); }
+  .lib-chip { transition:background .15s ease, color .15s ease, border-color .15s ease; }
+
+  .lib-scroll { scrollbar-width:thin; scrollbar-color:#e0dcd2 transparent; }
+  .lib-scroll::-webkit-scrollbar { height:5px; }
+  .lib-scroll::-webkit-scrollbar-thumb { background:#e0dcd2; border-radius:99px; }
+  .lib-scroll::-webkit-scrollbar-track { background:transparent; }
+
+  .article-body p { font-size:17.5px; line-height:1.98; color:#46535f; margin:0 0 20px; }
+  .article-body h2 { font-family:'Noto Sans Thai',sans-serif; font-size:21px; font-weight:600; color:#1b2531; margin:36px 0 14px; letter-spacing:-0.005em; }
+  .article-body ul { margin:0 0 20px; padding-left:22px; }
+  .article-body li { font-size:17px; line-height:1.9; color:#46535f; margin-bottom:8px; }
+  .article-body blockquote { margin:24px 0; padding:14px 20px; background:#f4fbff; border-left:3px solid #0ea5e9; border-radius:0 10px 10px 0; }
+  .article-body blockquote p { margin:0; font-size:16px; color:#3f5562; }
+  .article-body .principle { font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:#0284c7; background:#e3f4fd; display:inline-block; padding:4px 12px; border-radius:8px; font-weight:600; margin:2px 0 8px; }
+  .article-body strong { color:#1b2531; font-weight:600; }
+  .article-body a { color:#0ea5e9; }
+
+  @media (max-width:560px){ .article-body p, .article-body li { font-size:16.5px; } }
+</style>
+</head>
+<body>
+<div id="app"><div style="min-height:60vh;display:grid;place-items:center;font-family:'Noto Sans Thai',sans-serif;color:#9aa5b1;font-size:14px;">กำลังเปิดห้องสมุด…</div></div>
+
+<script>
+/* =====================================================================
+   ห้องสมุดสบายๆ · CPG Book
+   ---------------------------------------------------------------------
+   Extracted from the Claude design-code artifact "ห้องสมุดสบายๆ.dc.html"
+   and rebuilt as a clean, self-contained website.
+
+   DATA: real knowledge items from morrocwi/cpg_book, transformed by
+   tools/build_articles.py into articles.json. When Supabase is configured
+   (SUPABASE.anonKey set) the page prefers live rows from the `articles`
+   table; otherwise it serves articles.json. Both are the same real content.
+   ===================================================================== */
+
+const SUPABASE = {
+  url: "https://ckvxuvkxctssyozscfbm.supabase.co",
+  anonKey: ""   // public anon key — set once provisioned; empty => use articles.json
+};
+
+let CATEGORIES = {};
+let ARTICLES = [];
+const OWNERS = 'Yaoharee Lahtee · Walancha';
+const state = { view: 'home', cat: 'all', currentId: null };
+const $app = document.getElementById('app');
+
+/* ===================== data loading ===================== */
+async function fetchBundle() {
+  const res = await fetch('articles.json', { cache: 'no-cache' });
+  if (!res.ok) throw new Error('articles.json ' + res.status);
+  return res.json();
+}
+async function fetchSupabase() {
+  if (!SUPABASE.anonKey) return null;
+  const url = SUPABASE.url.replace(/\/$/, '') + '/rest/v1/articles?select=*&order=sort.asc';
+  const res = await fetch(url, { headers: { apikey: SUPABASE.anonKey, Authorization: 'Bearer ' + SUPABASE.anonKey } });
+  if (!res.ok) throw new Error('supabase ' + res.status);
+  const rows = await res.json();
+  return (rows && rows.length) ? rows : null;
+}
+async function bootstrap() {
+  let bundle;
+  try { bundle = await fetchBundle(); }
+  catch (e) {
+    $app.innerHTML = '<div style="min-height:60vh;display:grid;place-items:center;font-family:sans-serif;color:#9aa5b1;">โหลดข้อมูลไม่สำเร็จ — ' + e.message + '</div>';
+    return;
+  }
+  CATEGORIES = bundle.categories || {};
+  ARTICLES = bundle.articles || [];
+  try { const live = await fetchSupabase(); if (live) ARTICLES = live; } catch (e) { /* keep json fallback */ }
+  routeFromHash();
+  render();
+}
+
+/* ===================== helpers ===================== */
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function catLabel(c){ return CATEGORIES[c] ? CATEGORIES[c].label : c; }
+function catAccent(c){ return CATEGORIES[c] ? CATEGORIES[c].accent : '#0ea5e9'; }
+function readLabel(a){ return 'อ่าน ~' + (a.read_minutes || 1) + ' นาที'; }
+
+/* ===================== navigation ===================== */
+function goHome(){ state.view='home'; state.currentId=null; location.hash=''; render(); window.scrollTo(0,0); }
+function openArticle(id){ state.view='article'; state.currentId=id; location.hash='#/a/'+id; render(); window.scrollTo(0,0); }
+function selectCat(c){ state.cat=c; render(); }
+
+/* ===================== views ===================== */
+function header(){
+  const total = ARTICLES.length + ' บทความ';
+  return `
+  <header style="position:sticky;top:0;z-index:30;background:rgba(251,250,247,0.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #ece9e2;">
+    <div style="max-width:1080px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+      <button data-home style="display:flex;align-items:center;gap:11px;background:none;border:none;cursor:pointer;padding:0;">
+        <span style="display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:#0ea5e9;box-shadow:0 2px 8px rgba(14,165,233,0.28);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        </span>
+        <span style="text-align:left;line-height:1.1;">
+          <span style="display:block;font-size:17px;font-weight:600;color:#1b2531;">ห้องสมุดสบายๆ</span>
+          <span style="display:block;font-family:'Noto Sans Thai',sans-serif;font-size:11px;letter-spacing:0.06em;color:#94a3b8;">CPG BOOK · ค่อยๆ อ่าน</span>
+        </span>
+      </button>
+      <span style="font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#7c8794;font-weight:500;background:#f0ede5;padding:6px 13px;border-radius:99px;border:1px solid #e7e3da;">${total}</span>
+    </div>
+  </header>`;
+}
+
+function footer(){
+  return `
+  <footer style="border-top:1px solid #ece9e2;background:#f6f3ec;">
+    <div style="max-width:1080px;margin:0 auto;padding:26px 22px;font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#9aa5b1;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+      <span>ห้องสมุดสบายๆ · CPG Book</span>
+      <span>รักษาที่มา ก่อนเพิ่มการตีความ</span>
+    </div>
+  </footer>`;
+}
+
+function chipsBar(){
+  const counts = {}; ARTICLES.forEach(a => counts[a.cat] = (counts[a.cat]||0)+1);
+  const order = Object.keys(CATEGORIES);
+  const present = order.filter(c => counts[c]).concat(Object.keys(counts).filter(c => order.indexOf(c) < 0));
+  const items = [{ id:'all', label:'ทั้งหมด', count:ARTICLES.length }]
+    .concat(present.map(c => ({ id:c, label:catLabel(c), count:counts[c] })));
+  return items.map(it => {
+    const active = state.cat === it.id;
+    const accent = it.id==='all' ? '#16202c' : catAccent(it.id);
+    const base = `display:inline-flex;align-items:center;gap:8px;white-space:nowrap;cursor:pointer;border-radius:99px;padding:8px 15px;font-family:'Noto Sans Thai',sans-serif;font-size:13.5px;font-weight:500;`;
+    const style = active
+      ? base + `background:${accent};color:#fff;border:1px solid ${accent};`
+      : base + `background:#fff;color:#5d6b78;border:1px solid #e7e3da;`;
+    const cstyle = active
+      ? `font-size:11.5px;background:rgba(255,255,255,0.22);color:#fff;padding:1px 8px;border-radius:99px;`
+      : `font-size:11.5px;background:#f0ede5;color:#94a3b8;padding:1px 8px;border-radius:99px;`;
+    return `<button class="lib-chip" data-cat="${esc(it.id)}" style="${style}"><span>${esc(it.label)}</span><span style="${cstyle}">${it.count}</span></button>`;
+  }).join('');
+}
+
+function homeView(){
+  const featured = ARTICLES.find(a=>a.featured) || ARTICLES[0];
+  const grid = (state.cat==='all' ? ARTICLES.filter(a=>a!==featured) : ARTICLES.filter(a=>a.cat===state.cat));
+  return `
+  <main style="max-width:1080px;margin:0 auto;padding:0 22px 80px;">
+    <section style="padding:54px 0 30px;max-width:680px;">
+      <p style="font-family:'Noto Sans Thai',sans-serif;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#0ea5e9;font-weight:600;margin-bottom:16px;">ปรัชญาปัญญาประดิษฐ์ &amp; ความรู้</p>
+      <h1 style="font-size:clamp(30px,6vw,46px);line-height:1.25;font-weight:700;color:#16202c;letter-spacing:-0.01em;">สะพานเชื่อมมนุษย์<br>และปัญญาประดิษฐ์</h1>
+      <p style="margin-top:18px;font-size:18px;line-height:1.85;color:#5d6b78;">ห้องสมุดเล็กๆ ที่รวบรวมแนวคิดเรื่องความรู้ การให้เหตุผล และการอยู่ร่วมกันระหว่างมนุษย์กับ AI จัดวางตามหัวเรื่องให้หยิบอ่านได้สบายๆ ตามใจ</p>
+    </section>
+
+    ${featured ? `
+    <section style="margin-top:18px;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:16px;">
+        <h2 style="font-size:14px;font-family:'Noto Sans Thai',sans-serif;font-weight:600;letter-spacing:0.04em;color:#1b2531;">บทความน่าสนใจ</h2>
+        <span style="height:1px;flex:1;background:#ece9e2;"></span>
+      </div>
+      <button class="lib-featured" data-open="${esc(featured.id)}" style="width:100%;text-align:left;cursor:pointer;border:1px solid #e9e5db;border-radius:18px;background:linear-gradient(135deg,#ffffff 0%,#f4fbff 100%);padding:0;overflow:hidden;box-shadow:0 1px 2px rgba(20,40,60,0.03);transition:box-shadow .18s ease,border-color .18s ease;">
+        <div style="padding:30px 30px 32px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
+            <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;font-weight:600;color:#0284c7;background:#e3f4fd;padding:5px 12px;border-radius:99px;">${esc(catLabel(featured.cat))}</span>
+            <span style="font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#9aa5b1;">${readLabel(featured)}</span>
+          </div>
+          <h3 style="font-size:clamp(24px,4.5vw,32px);line-height:1.32;font-weight:700;color:#152232;letter-spacing:-0.01em;">${esc(featured.title)}</h3>
+          <p style="margin-top:14px;font-size:17px;line-height:1.8;color:#56646f;max-width:62ch;">${esc(featured.excerpt)}</p>
+          <span style="display:inline-flex;align-items:center;gap:7px;margin-top:22px;font-family:'Noto Sans Thai',sans-serif;font-size:14px;font-weight:600;color:#0ea5e9;">อ่านบทความนี้
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </span>
+        </div>
+      </button>
+    </section>` : ''}
+
+    <section style="margin-top:48px;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:18px;">
+        <h2 style="font-size:14px;font-family:'Noto Sans Thai',sans-serif;font-weight:600;letter-spacing:0.04em;color:#1b2531;">ชั้นหนังสือ</h2>
+        <span style="font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;color:#9aa5b1;">เลือกหยิบตามหัวเรื่อง</span>
+        <span style="height:1px;flex:1;background:#ece9e2;"></span>
+      </div>
+      <div class="lib-scroll" style="display:flex;gap:9px;overflow-x:auto;padding-bottom:6px;margin-bottom:26px;-webkit-overflow-scrolling:touch;">
+        ${chipsBar()}
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px;">
+        ${grid.map(a => `
+          <button class="lib-card" data-open="${esc(a.id)}" style="position:relative;text-align:left;cursor:pointer;background:#ffffff;border:1px solid #eae6dd;border-radius:16px;padding:24px 22px 22px;display:flex;flex-direction:column;min-height:212px;box-shadow:0 1px 2px rgba(20,40,60,0.03);">
+            <span style="position:absolute;left:0;top:22px;width:3px;height:30px;border-radius:0 3px 3px 0;background:${esc(catAccent(a.cat))};"></span>
+            <span style="font-family:'Noto Sans Thai',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:0.03em;color:${esc(catAccent(a.cat))};margin-bottom:13px;">${esc(catLabel(a.cat))}</span>
+            <span style="font-size:20px;line-height:1.42;font-weight:600;color:#1a2733;letter-spacing:-0.005em;">${esc(a.title)}</span>
+            <span style="margin-top:11px;font-size:14.5px;line-height:1.72;color:#6c7884;flex:1;">${esc(a.excerpt)}</span>
+            <span style="display:flex;align-items:center;gap:8px;margin-top:18px;font-family:'Noto Sans Thai',sans-serif;font-size:12px;color:#9aa5b1;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+              ${readLabel(a)}
+            </span>
+          </button>`).join('')}
+      </div>
+    </section>
+
+    <section style="margin-top:54px;border-top:1px solid #ece9e2;padding-top:34px;display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
+      <div>
+        <h3 style="font-size:18px;font-weight:600;color:#1b2531;margin-bottom:10px;">เกี่ยวกับห้องสมุดนี้</h3>
+        <p style="font-size:15px;line-height:1.8;color:#6c7884;">พื้นที่รวบรวมและเชื่อมโยงความรู้ ประสบการณ์ และหลักคิดที่มีความหมายต่อชีวิต งาน และการเรียนรู้ร่วมกัน — เปิดให้มนุษย์และ AI ช่วยกันอ่านและพัฒนา</p>
+      </div>
+      <div>
+        <h3 style="font-size:18px;font-weight:600;color:#1b2531;margin-bottom:10px;">วิธีใช้</h3>
+        <p style="font-size:15px;line-height:1.8;color:#6c7884;">เลือกหัวเรื่องที่สนใจจากชั้นหนังสือด้านบน แล้วหยิบบทความขึ้นมาอ่านได้เลย ไม่ต้องเรียงลำดับ — อ่านเล่มไหนก่อนก็ได้ตามใจ</p>
+      </div>
+    </section>
+  </main>`;
+}
+
+function articleView(){
+  const a = ARTICLES.find(x=>x.id===state.currentId);
+  if(!a) return homeView();
+  const accent = catAccent(a.cat);
+  const tags = a.tags || [];
+  const related = ARTICLES.filter(x=>x.cat===a.cat && x.id!==a.id).slice(0,3);
+  return `
+  <main style="max-width:720px;margin:0 auto;padding:0 22px 90px;">
+    <div style="padding:26px 0 0;">
+      <button data-home style="display:inline-flex;align-items:center;gap:8px;white-space:nowrap;background:none;border:none;cursor:pointer;font-family:'Noto Sans Thai',sans-serif;font-size:14px;font-weight:500;color:#0ea5e9;padding:0;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"></path></svg>
+        กลับชั้นหนังสือ
+      </button>
+    </div>
+    <article style="padding-top:30px;">
+      <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:20px;">
+        <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font-family:'Noto Sans Thai',sans-serif;font-size:12.5px;font-weight:600;color:#fff;background:${esc(accent)};padding:5px 13px;border-radius:99px;">${esc(catLabel(a.cat))}</span>
+        <span style="font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;display:inline-flex;align-items:center;gap:6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+          ${readLabel(a)}
+        </span>
+      </div>
+      <h1 style="font-size:clamp(28px,5.5vw,40px);line-height:1.32;font-weight:700;color:#141f2b;letter-spacing:-0.01em;">${esc(a.title)}</h1>
+      <p style="margin-top:18px;font-size:19px;line-height:1.75;color:#586470;font-style:italic;border-left:3px solid #bfe6fa;padding-left:18px;">${esc(a.excerpt)}</p>
+      <div style="margin-top:14px;display:flex;align-items:center;gap:10px;font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;padding-bottom:26px;border-bottom:1px solid #ece9e2;">
+        <span>เรียบเรียงจาก CPG Book</span><span style="color:#d4cfc4;">·</span><span>${esc(OWNERS)}</span>
+      </div>
+      <div class="article-body" style="margin-top:30px;">${a.body_html || ''}</div>
+      ${tags.length ? `
+      <div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:9px;align-items:center;">
+        <span style="font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;margin-right:2px;">แท็ก</span>
+        ${tags.map(t=>`<span style="font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#5d6b78;background:#f1eee7;border:1px solid #e8e4db;padding:5px 12px;border-radius:99px;">${esc(t)}</span>`).join('')}
+      </div>` : ''}
+    </article>
+    ${related.length ? `
+    <section style="margin-top:52px;border-top:1px solid #ece9e2;padding-top:30px;">
+      <h2 style="font-size:14px;font-family:'Noto Sans Thai',sans-serif;font-weight:600;letter-spacing:0.04em;color:#1b2531;margin-bottom:18px;">อ่านต่อในหัวเรื่องเดียวกัน</h2>
+      <div style="display:grid;gap:14px;">
+        ${related.map(r=>`
+          <button class="lib-related" data-open="${esc(r.id)}" style="text-align:left;cursor:pointer;background:#fff;border:1px solid #eae6dd;border-radius:14px;padding:18px 20px;display:flex;align-items:center;gap:16px;">
+            <span style="flex:1;">
+              <span style="display:block;font-family:'Noto Sans Thai',sans-serif;font-size:11.5px;font-weight:600;color:${esc(catAccent(r.cat))};margin-bottom:5px;">${esc(catLabel(r.cat))}</span>
+              <span style="display:block;font-size:18px;line-height:1.45;font-weight:600;color:#1a2733;">${esc(r.title)}</span>
+            </span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </button>`).join('')}
+      </div>
+    </section>` : ''}
+  </main>`;
+}
+
+/* ===================== render + events ===================== */
+function render(){
+  const body = state.view === 'article' ? articleView() : homeView();
+  $app.innerHTML = `<div style="min-height:100vh;background:#fbfaf7;color:#26303b;font-family:'Noto Serif Thai',serif;">${header()}${body}${footer()}</div>`;
+  $app.querySelectorAll('[data-home]').forEach(el => el.addEventListener('click', goHome));
+  $app.querySelectorAll('[data-open]').forEach(el => el.addEventListener('click', () => openArticle(el.getAttribute('data-open'))));
+  $app.querySelectorAll('[data-cat]').forEach(el => el.addEventListener('click', () => selectCat(el.getAttribute('data-cat'))));
+}
+
+function routeFromHash(){
+  const m = location.hash.match(/^#\/a\/(.+)$/);
+  if (m && ARTICLES.some(a=>a.id===decodeURIComponent(m[1]))) { state.view='article'; state.currentId=decodeURIComponent(m[1]); }
+  else { state.view='home'; state.currentId=null; }
+}
+window.addEventListener('hashchange', () => { routeFromHash(); render(); window.scrollTo(0,0); });
+
+bootstrap();
+</script>
+</body>
+</html>
