@@ -1,9 +1,14 @@
 {
-  "generated_at": "2026-06-12T04:47:53Z",
+  "generated_at": "2026-06-12T05:09:42Z",
   "source_repo": "morrocwi/cpg_book",
+  "book": {
+    "brand": "ปรัชญาปัญญาประดิษฐ์",
+    "title": "Person Reasoning Design Foundation and Protocol",
+    "title_th": "รากฐานและระเบียบการของการให้เหตุผลของบุคคล"
+  },
   "categories": {
     "about": {
-      "label": "เกี่ยวกับห้องสมุด",
+      "label": "บทนำ",
       "accent": "#f59e0b"
     },
     "philosophy": {
@@ -15,7 +20,7 @@
       "accent": "#8b5cf6"
     },
     "principle": {
-      "label": "หลักการให้เหตุผล",
+      "label": "หลักการ",
       "accent": "#0ea5e9"
     }
   },
@@ -25,9 +30,9 @@
       "cat": "about",
       "featured": true,
       "sort": 0,
-      "title": "ห้องสมุดสบายๆ — cpg_book คืออะไร",
-      "excerpt": "ห้องสมุดเล็กๆ ที่รวบรวมแนวคิดเรื่องความรู้ การให้เหตุผล และการอยู่ร่วมกันระหว่างมนุษย์กับ AI ของ Yaoharee Lahtee และ Walancha",
-      "body_html": "<p>cpg_book คือพื้นที่กลางสำหรับรวบรวม จัดหมวดหมู่ เชื่อมโยง และพัฒนาความรู้ ให้กลับมาอ่าน ตรวจสอบ อ้างอิง และต่อยอดร่วมกับมนุษย์และ AI ได้อย่างมีบริบท ห้องสมุดนี้ไม่ได้มีไว้เก็บเฉพาะหนังสือ แต่รวมถึงความรู้ที่เกิดจากการอ่าน การทำงาน ประสบการณ์ การสนทนา และการสะท้อนคิดร่วมกัน</p>\n<h2>หลักการของห้องสมุด</h2>\n<p><strong>เอกสารไม่เท่ากับตัวบุคคล</strong></p>\n<blockquote><p>Documented knowledge ≠ complete person</p></blockquote>\n<p><strong>บทสรุปไม่เท่ากับแหล่งต้นฉบับ</strong></p>\n<blockquote><p>Summary ≠ source</p></blockquote>\n<p><strong>ความมั่นใจไม่เท่ากับหลักฐาน</strong></p>\n<blockquote><p>Confidence ≠ evidence</p></blockquote>\n<p><strong>ประสบการณ์ไม่เท่ากับกฎทั่วไป</strong></p>\n<blockquote><p>Experience ≠ universal rule</p></blockquote>\n<p><strong>ความรู้ต้องรักษาบริบท</strong></p>\n<blockquote><p>AI interpretation ≠ owner intention</p></blockquote>\n<h2>คำแถลงสุดท้าย</h2>\n<blockquote><p>`cpg_book` คือห้องสมุดร่วมของ Yaoharee Lahtee และ Walancha สำหรับรักษา เชื่อมโยง และพัฒนาความรู้ ประสบการณ์ หลักคิด และคำถามที่มีความหมายต่อชีวิต ครอบครัว งาน และการเรียนรู้ร่วมกัน โดยเปิดให้มนุษย์และ AI ช่วยกันอ่านและพัฒนา แต่ไม่ลดทอนบุคคลให้เหลือเพียงข้อมูล แบบจำลอง หรือคำสั่งของระบบ</p></blockquote>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/README.md\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">cpg_book/README.md</a></p>",
+      "title": "บทนำ: เกี่ยวกับหนังสือเล่มนี้",
+      "excerpt": "บทนำของหนังสือ Person Reasoning Design Foundation and Protocol — รวมรากฐานปรัชญา สมการ และหลักการของการให้เหตุผลของบุคคลไว้ในเล่มเดียว",
+      "body_html": "<p>หนังสือเล่มนี้รวบรวมรากฐานการให้เหตุผลของบุคคล (Person Reasoning) ไว้ในเล่มเดียว — ฐานปรัชญา สมการหลัก และหลักการ — เพื่อให้มนุษย์และ AI หลายตัวเข้าใจวิธีตีความ ตัดสิน และแก้ไขของบุคคลได้อย่างสอดคล้องและมีบริบท โดยไม่ลดทอนบุคคลให้เหลือเพียงข้อมูลหรือแบบจำลอง เนื้อหาเรียบเรียงจากห้องสมุดความรู้ cpg_book ของ Yaoharee Lahtee และ Walancha</p>\n<h2>หลักการของห้องสมุด</h2>\n<p><strong>เอกสารไม่เท่ากับตัวบุคคล</strong></p>\n<blockquote><p>Documented knowledge ≠ complete person</p></blockquote>\n<p><strong>บทสรุปไม่เท่ากับแหล่งต้นฉบับ</strong></p>\n<blockquote><p>Summary ≠ source</p></blockquote>\n<p><strong>ความมั่นใจไม่เท่ากับหลักฐาน</strong></p>\n<blockquote><p>Confidence ≠ evidence</p></blockquote>\n<p><strong>ประสบการณ์ไม่เท่ากับกฎทั่วไป</strong></p>\n<blockquote><p>Experience ≠ universal rule</p></blockquote>\n<p><strong>ความรู้ต้องรักษาบริบท</strong></p>\n<blockquote><p>AI interpretation ≠ owner intention</p></blockquote>\n<h2>คำแถลงสุดท้าย</h2>\n<blockquote><p>`cpg_book` คือห้องสมุดร่วมของ Yaoharee Lahtee และ Walancha สำหรับรักษา เชื่อมโยง และพัฒนาความรู้ ประสบการณ์ หลักคิด และคำถามที่มีความหมายต่อชีวิต ครอบครัว งาน และการเรียนรู้ร่วมกัน โดยเปิดให้มนุษย์และ AI ช่วยกันอ่านและพัฒนา แต่ไม่ลดทอนบุคคลให้เหลือเพียงข้อมูล แบบจำลอง หรือคำสั่งของระบบ</p></blockquote>\n<p style=\"font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:#9aa5b1;\">ที่มา: <a href=\"https://github.com/morrocwi/cpg_book/blob/main/README.md\" target=\"_blank\" rel=\"noopener\" style=\"color:#0ea5e9;\">cpg_book/README.md</a></p>",
       "tags": [
         "ห้องสมุด",
         "ความรู้",

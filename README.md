@@ -1,8 +1,10 @@
-# cpg_bookweb · ห้องสมุดสบายๆ
+# cpg_bookweb · ปรัชญาปัญญาประดิษฐ์
 
-เว็บไซต์เผยแพร่ความรู้จาก [`cpg_book`](https://github.com/morrocwi/cpg_book) —
-ห้องสมุดของ **Yaoharee Lahtee** และ **Walancha** ที่รวบรวมแนวคิดเรื่องความรู้
-การให้เหตุผล และการอยู่ร่วมกันระหว่างมนุษย์กับ AI
+เว็บไซต์ของหนังสือ **Person Reasoning Design Foundation and Protocol**
+(รากฐานและระเบียบการของการให้เหตุผลของบุคคล) — **หนังสือเล่มเดียว** ที่รวมฐานปรัชญา
+สมการ และหลักการไว้ด้วยกัน แบ่งเป็นบท (chapters) เรียบเรียงจาก
+[`cpg_book`](https://github.com/morrocwi/cpg_book) ห้องสมุดความรู้ของ
+**Yaoharee Lahtee** และ **Walancha**
 
 > โฟลเดอร์นี้คือ "ที่รวบรวมเว็บ" (web collection) ที่เชื่อม **notify ─ supabase ─ git** เข้าด้วยกัน
 

@@ -28,12 +28,19 @@ for _s in (sys.stdout, sys.stderr):
     except Exception:
         pass
 
-# ----- category metadata (drives the website chips) -----
+# ----- the book -----
+BOOK = {
+    "brand": "ปรัชญาปัญญาประดิษฐ์",
+    "title": "Person Reasoning Design Foundation and Protocol",
+    "title_th": "รากฐานและระเบียบการของการให้เหตุผลของบุคคล",
+}
+
+# ----- category metadata = the parts of the single book (drives the chips/TOC) -----
 CATEGORIES = {
-    "about":      {"label": "เกี่ยวกับห้องสมุด", "accent": "#f59e0b"},
-    "philosophy": {"label": "ฐานปรัชญา",         "accent": "#10b981"},
-    "equation":   {"label": "สมการหลัก",         "accent": "#8b5cf6"},
-    "principle":  {"label": "หลักการให้เหตุผล",  "accent": "#0ea5e9"},
+    "about":      {"label": "บทนำ",       "accent": "#f59e0b"},
+    "philosophy": {"label": "ฐานปรัชญา",  "accent": "#10b981"},
+    "equation":   {"label": "สมการหลัก",  "accent": "#8b5cf6"},
+    "principle":  {"label": "หลักการ",    "accent": "#0ea5e9"},
 }
 
 # faithful Thai titles for the 10 principles (summaries of the verbatim English statement)
@@ -81,13 +88,13 @@ def build_about(book_dir):
     fm = re.search(r"## Final statement\s*\n+>\s*(.+?)(?:\n\n|\Z)", md, re.S)
     final = re.sub(r"\s+", " ", fm.group(1)).strip() if fm else ""
 
-    intro = ("ห้องสมุดเล็กๆ ที่รวบรวมแนวคิดเรื่องความรู้ การให้เหตุผล และการอยู่ร่วมกัน"
-             "ระหว่างมนุษย์กับ AI ของ Yaoharee Lahtee และ Walancha")
+    intro = ("บทนำของหนังสือ Person Reasoning Design Foundation and Protocol — "
+             "รวมรากฐานปรัชญา สมการ และหลักการของการให้เหตุผลของบุคคลไว้ในเล่มเดียว")
 
-    body = ['<p>cpg_book คือพื้นที่กลางสำหรับรวบรวม จัดหมวดหมู่ เชื่อมโยง และพัฒนาความรู้ '
-            'ให้กลับมาอ่าน ตรวจสอบ อ้างอิง และต่อยอดร่วมกับมนุษย์และ AI ได้อย่างมีบริบท '
-            'ห้องสมุดนี้ไม่ได้มีไว้เก็บเฉพาะหนังสือ แต่รวมถึงความรู้ที่เกิดจากการอ่าน '
-            'การทำงาน ประสบการณ์ การสนทนา และการสะท้อนคิดร่วมกัน</p>']
+    body = ['<p>หนังสือเล่มนี้รวบรวมรากฐานการให้เหตุผลของบุคคล (Person Reasoning) ไว้ในเล่มเดียว — '
+            'ฐานปรัชญา สมการหลัก และหลักการ — เพื่อให้มนุษย์และ AI หลายตัวเข้าใจวิธีตีความ ตัดสิน '
+            'และแก้ไขของบุคคลได้อย่างสอดคล้องและมีบริบท โดยไม่ลดทอนบุคคลให้เหลือเพียงข้อมูลหรือแบบจำลอง '
+            'เนื้อหาเรียบเรียงจากห้องสมุดความรู้ cpg_book ของ Yaoharee Lahtee และ Walancha</p>']
     if dist:
         body.append("<h2>หลักการของห้องสมุด</h2>")
         for title, eqn in dist:
@@ -103,7 +110,7 @@ def build_about(book_dir):
 
     return {
         "id": "about-cpg-book", "cat": "about", "featured": True, "sort": 0,
-        "title": "ห้องสมุดสบายๆ — cpg_book คืออะไร",
+        "title": "บทนำ: เกี่ยวกับหนังสือเล่มนี้",
         "excerpt": intro,
         "body_html": body_html,
         "tags": ["ห้องสมุด", "ความรู้", "AI"],
@@ -221,6 +228,7 @@ def build(book_dir):
     return {
         "generated_at": datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat() + "Z",
         "source_repo": "morrocwi/cpg_book",
+        "book": BOOK,
         "categories": CATEGORIES,
         "articles": articles,
     }
