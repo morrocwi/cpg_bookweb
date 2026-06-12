@@ -58,7 +58,8 @@
 
 const SUPABASE = {
   url: "https://ckvxuvkxctssyozscfbm.supabase.co",
-  anonKey: ""   // public anon key — set once provisioned; empty => use articles.json
+  // public anon key — safe to expose; access is restricted by RLS (supabase/schema.sql).
+  anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNrdnh1dmt4Y3Rzc3lvenNjZmJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExODIyMzQsImV4cCI6MjA5Njc1ODIzNH0.cN2EFIBtaVvPsbWfHrxtQWMmKnAKH0fRsKZaBVPDeRc"
 };
 
 let CATEGORIES = {};
